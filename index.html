@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Access Restricted</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 Access Restricted</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="lock-icon">🔒</div>
-        <h1>Enter Password</h1>
-        <p class="subtitle">This website is password protected</p>
-        
-        <div class="input-group">
-            <input type="password" id="passwordInput" placeholder="Enter password..." autofocus />
-            <button id="unlockBtn">Unlock →</button>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="lock-icon">🔒</div>
+            <h1>Secure Access</h1>
+            <p class="subtitle">Enter the password to continue</p>
+            
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
+                <button id="unlockBtn">Unlock →</button>
+            </div>
+            
+            <p id="errorMessage" class="error-message"></p>
         </div>
-        
-        <p id="errorMessage" class="error"></p>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
