@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Dashboard</title>
+    <title>AMIRI EDC</title>
     <style>
         /* ========================================
            RESET & BASE
@@ -19,12 +19,28 @@
             background: #000000;
             color: #ffffff;
             min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ========================================
+           ANIMATED BACKGROUND - PARTICLE SYSTEM
+           ======================================== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* ========================================
            PASSWORD SCREEN
            ======================================== */
         #passwordScreen {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,34 +49,65 @@
         }
 
         .login-box {
-            background: #0a0a0a;
-            border: 2px solid #1a1a1a;
-            border-radius: 24px;
-            padding: 50px 40px;
-            max-width: 420px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 60px 50px;
+            max-width: 440px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        .login-box .lock-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-box .brand-icon {
+            font-size: 56px;
+            margin-bottom: 8px;
             display: block;
+            letter-spacing: 4px;
         }
 
         .login-box h1 {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 3px;
             color: #ffffff;
             margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .login-box h1 span {
+            color: #888888;
+            font-weight: 300;
         }
 
         .login-box .subtitle {
-            color: #666666;
-            font-size: 14px;
-            margin-bottom: 28px;
+            color: #555555;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .login-box .divider {
+            width: 40px;
+            height: 2px;
+            background: #ffffff;
+            margin: 0 auto 32px;
+            opacity: 0.3;
         }
 
         .input-group {
@@ -73,68 +120,90 @@
         #passwordInput {
             flex: 1;
             min-width: 160px;
-            padding: 14px 18px;
+            padding: 16px 20px;
             font-size: 16px;
-            border: 2px solid #1a1a1a;
-            border-radius: 12px;
-            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.6);
             color: #ffffff;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         #passwordInput:focus {
-            border-color: #ffffff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         #passwordInput::placeholder {
-            color: #444444;
+            color: #333333;
+            letter-spacing: 0.5px;
+            font-weight: 300;
         }
 
         #passwordInput.error {
             border-color: #ff3333;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.1);
         }
 
         #unlockBtn {
-            padding: 14px 28px;
-            font-size: 16px;
+            padding: 16px 32px;
+            font-size: 15px;
             font-weight: 600;
             background: #ffffff;
             color: #000000;
-            border: 2px solid #ffffff;
-            border-radius: 12px;
+            border: none;
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             white-space: nowrap;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         #unlockBtn:hover {
-            background: transparent;
-            color: #ffffff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            background: #dddddd;
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        #unlockBtn:active {
+            transform: scale(0.97);
         }
 
         .error-message {
-            margin-top: 16px;
-            font-size: 14px;
+            margin-top: 18px;
+            font-size: 13px;
             font-weight: 500;
             color: #ff3333;
             min-height: 20px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            letter-spacing: 0.5px;
         }
 
         .error-message.show {
             opacity: 1;
         }
 
+        .login-box .footer-text {
+            margin-top: 32px;
+            font-size: 11px;
+            color: #222222;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
         /* ========================================
-           DASHBOARD SCREEN (Hidden by default)
+           DASHBOARD SCREEN
            ======================================== */
         #dashboardScreen {
             display: none;
+            position: relative;
+            z-index: 1;
             padding: 30px;
             min-height: 100vh;
         }
@@ -144,24 +213,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 24px;
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 16px;
+            padding: 16px 28px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 12px;
+            animation: fadeInUp 0.6s ease-out;
         }
 
         .dash-topbar .brand {
             font-size: 22px;
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
+            letter-spacing: 2px;
         }
 
         .dash-topbar .brand span {
-            color: #444444;
+            color: #555555;
             font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .dash-topbar .right-section {
@@ -172,36 +245,39 @@
 
         /* Clock */
         .dash-clock {
-            background: #000000;
-            border: 1px solid #1a1a1a;
-            border-radius: 30px;
-            padding: 8px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 40px;
+            padding: 8px 22px;
             text-align: center;
-            min-width: 130px;
+            min-width: 140px;
         }
 
         .dash-clock .time {
             display: block;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            font-variant-numeric: tabular-nums;
         }
 
         .dash-clock .date {
             display: block;
             font-size: 10px;
-            color: #555555;
+            color: #444444;
             font-weight: 400;
             margin-top: 2px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .dash-avatar {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: #1a1a1a;
-            border: 1px solid #222222;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,7 +287,8 @@
         }
 
         .dash-avatar:hover {
-            border-color: #444444;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* Stats */
@@ -220,37 +297,42 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 30px;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .stat-card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 14px;
-            padding: 20px 24px;
-            transition: all 0.3s;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 22px 26px;
+            transition: all 0.4s ease;
         }
 
         .stat-card:hover {
-            border-color: #333333;
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .stat-card .label {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 1.2px;
             color: #555555;
             font-weight: 500;
         }
 
         .stat-card .number {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 700;
             color: #ffffff;
             margin-top: 4px;
+            letter-spacing: -0.5px;
         }
 
         .stat-card .number .small {
-            color: #555555;
+            color: #444444;
             font-weight: 300;
             font-size: 16px;
         }
@@ -260,13 +342,20 @@
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 24px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .panel {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 14px;
-            padding: 24px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 26px;
+            transition: all 0.4s ease;
+        }
+
+        .panel:hover {
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .panel-header {
@@ -280,13 +369,15 @@
             font-size: 16px;
             font-weight: 600;
             color: #ffffff;
+            letter-spacing: 0.3px;
         }
 
         .panel-header .link {
             font-size: 12px;
-            color: #555555;
+            color: #444444;
             text-decoration: none;
             transition: color 0.3s;
+            letter-spacing: 0.5px;
         }
 
         .panel-header .link:hover {
@@ -298,7 +389,7 @@
             align-items: flex-start;
             gap: 12px;
             padding: 12px 0;
-            border-bottom: 1px solid #111111;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .activity-item:last-child {
@@ -323,12 +414,12 @@
 
         .activity-item .info .desc {
             font-size: 13px;
-            color: #666666;
+            color: #555555;
         }
 
         .activity-item .time {
             font-size: 11px;
-            color: #444444;
+            color: #333333;
             flex-shrink: 0;
         }
 
@@ -337,9 +428,10 @@
             align-items: center;
             gap: 12px;
             padding: 12px 0;
-            border-bottom: 1px solid #111111;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .quick-link:last-child {
@@ -358,10 +450,11 @@
         .quick-link .ql-text {
             font-size: 14px;
             color: #cccccc;
+            font-weight: 450;
         }
 
         .quick-link .ql-text .sub {
-            color: #555555;
+            color: #444444;
             font-weight: 300;
         }
 
@@ -371,6 +464,12 @@
         @media (max-width: 800px) {
             .two-col {
                 grid-template-columns: 1fr;
+            }
+            .login-box {
+                padding: 40px 28px;
+            }
+            .login-box h1 {
+                font-size: 26px;
             }
         }
 
@@ -389,6 +488,10 @@
             }
             .login-box {
                 padding: 30px 20px;
+                border-radius: 24px;
+            }
+            .login-box h1 {
+                font-size: 22px;
             }
             .input-group {
                 flex-direction: column;
@@ -399,6 +502,9 @@
             }
             #unlockBtn {
                 width: 100%;
+            }
+            .login-box .brand-icon {
+                font-size: 40px;
             }
         }
 
@@ -411,7 +517,7 @@
             }
             .dash-clock {
                 min-width: 80px;
-                padding: 4px 12px;
+                padding: 4px 14px;
             }
             .dash-clock .time {
                 font-size: 14px;
@@ -422,36 +528,43 @@
 <body>
 
     <!-- ============================================
+    ANIMATED BACKGROUND - PARTICLE CANVAS
+    ============================================ -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ============================================
     SCREEN 1: PASSWORD
     ============================================ -->
     <div id="passwordScreen">
         <div class="login-box">
-            <span class="lock-icon">🔒</span>
-            <h1>Secure Access</h1>
-            <p class="subtitle">Enter the password to continue</p>
+            <span class="brand-icon">◆</span>
+            <h1>AMIRI <span>EDC</span></h1>
+            <p class="subtitle">Secure Access Portal</p>
+            <div class="divider"></div>
 
             <div class="input-group">
-                <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
+                <input type="password" id="passwordInput" placeholder="Enter passcode..." autofocus>
                 <button id="unlockBtn">Unlock →</button>
             </div>
 
             <p id="errorMessage" class="error-message"></p>
+            <p class="footer-text">✦ restricted ✦</p>
         </div>
     </div>
 
     <!-- ============================================
-    SCREEN 2: DASHBOARD (Hidden by default)
+    SCREEN 2: DASHBOARD
     ============================================ -->
     <div id="dashboardScreen">
         <!-- TOP BAR -->
         <div class="dash-topbar">
-            <div class="brand">Studio<span>•</span></div>
+            <div class="brand">AMIRI <span>EDC</span></div>
             <div class="right-section">
                 <div class="dash-clock">
                     <span class="time" id="clockTime">00:00:00</span>
                     <span class="date" id="clockDate">Monday, Jan 1</span>
                 </div>
-                <div class="dash-avatar">👤</div>
+                <div class="dash-avatar">✦</div>
             </div>
         </div>
 
@@ -525,7 +638,7 @@
             <div class="panel">
                 <div class="panel-header">
                     <h3>⚡ Quick Actions</h3>
-                    <span style="font-size:12px; color:#444;">shortcuts</span>
+                    <span style="font-size:11px; color:#333; letter-spacing:0.5px;">shortcuts</span>
                 </div>
 
                 <a href="#" class="quick-link">
@@ -561,6 +674,112 @@
     ============================================ -->
     <script>
         // ============================================
+        // PARTICLE BACKGROUND ANIMATION
+        // ============================================
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Mouse interaction - particles move toward mouse slightly
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    const force = (150 - dist) / 150 * 0.02;
+                    this.x += dx * force;
+                    this.y += dy * force;
+                }
+
+                // Wrap around edges
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+
+                // Glow
+                ctx.shadowColor = 'rgba(255, 255, 255, 0.05)';
+                ctx.shadowBlur = 10;
+            }
+        }
+
+        // Create particles
+        const particleCount = Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 8000));
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // Draw lines between nearby particles
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.04 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            drawLines();
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        // Track mouse
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // ============================================
         // PASSWORD LOGIC
         // ============================================
         const CORRECT_PASSWORD = "2026";
@@ -575,15 +794,13 @@
             const entered = passwordInput.value.trim();
 
             if (entered === CORRECT_PASSWORD) {
-                // Hide password screen, show dashboard
                 passwordScreen.style.display = 'none';
                 dashboardScreen.style.display = 'block';
                 errorMessage.classList.remove('show');
-                // Start the clock
                 updateClock();
                 setInterval(updateClock, 1000);
             } else {
-                errorMessage.textContent = '❌ Incorrect password. Try again.';
+                errorMessage.textContent = '✗ Invalid passcode. Try again.';
                 errorMessage.classList.add('show');
                 passwordInput.classList.add('error');
                 passwordInput.value = '';
