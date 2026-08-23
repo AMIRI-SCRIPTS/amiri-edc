@@ -3,58 +3,478 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main Page</title>
+    <title>Home - Classroom</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-        /* Quick styles for the blank page */
+        /* Reset & Base - Black Theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Top Bar - Like Google Classroom */
+        .topbar {
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar-left .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .topbar-left .menu-icon:hover {
+            opacity: 1;
+        }
+
+        .topbar-left h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+        }
+
+        .topbar-left h1 span {
+            color: #888888;
+            font-weight: 300;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Clock - Star of the Show */
+        .clock {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-variant-numeric: tabular-nums;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .clock:hover {
+            border-color: #333333;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .clock .date {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: #666666;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .clock .time {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .clock .seconds {
+            color: #555555;
+            font-weight: 300;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 2px solid #222222;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-        }
-        .blank-container {
-            text-align: center;
-            padding: 40px;
-        }
-        .blank-container h1 {
-            font-size: 42px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            color: #000;
-        }
-        .blank-container p {
-            color: #666;
             font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
         }
-        .blank-container .status {
-            margin-top: 30px;
-            padding: 16px 32px;
-            background: #f5f5f5;
-            border: 2px solid #000;
-            border-radius: 12px;
-            display: inline-block;
+
+        .avatar:hover {
+            border-color: #444444;
+            background: #222222;
+        }
+
+        /* Main Content - Like Classroom Stream */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 32px 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffffff, #444444, #ffffff);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .welcome-banner h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .welcome-banner h2 span {
+            color: #666666;
+        }
+
+        .welcome-banner p {
+            color: #888888;
+            font-size: 15px;
+        }
+
+        /* Class Grid - Like Google Classroom Cards */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            color: #444444;
+            font-weight: 300;
+        }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .class-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .class-card:hover {
+            border-color: #333333;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .class-card .class-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .class-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .class-card .class-teacher {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 12px;
+        }
+
+        .class-card .class-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #141414;
+        }
+
+        .class-card .class-info .badge {
+            font-size: 11px;
+            color: #888888;
+            background: #141414;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-weight: 500;
         }
-        .blank-container .status span {
-            color: #00aa00;
+
+        .class-card .class-info .date {
+            font-size: 12px;
+            color: #555555;
+        }
+
+        /* Announcement */
+        .announcement {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-left: 4px solid #ffffff;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+        }
+
+        .announcement .announce-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .announcement .announce-header strong {
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .announcement .announce-header .time {
+            color: #555555;
+            font-size: 12px;
+        }
+
+        .announcement p {
+            color: #aaaaaa;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Bottom Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 24px 20px;
+            border-top: 1px solid #0a0a0a;
+            margin-top: 20px;
+        }
+
+        .footer p {
+            color: #333333;
+            font-size: 13px;
+        }
+
+        .footer p span {
+            color: #444444;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .topbar {
+                padding: 12px 16px;
+            }
+            .topbar-left h1 {
+                font-size: 18px;
+            }
+            .clock {
+                font-size: 13px;
+                padding: 6px 14px;
+                min-width: 100px;
+            }
+            .clock .time {
+                font-size: 14px;
+            }
+            .welcome-banner {
+                padding: 24px 20px;
+            }
+            .welcome-banner h2 {
+                font-size: 20px;
+            }
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-content {
+                padding: 16px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .topbar-left h1 {
+                font-size: 15px;
+            }
+            .clock .date {
+                display: none;
+            }
+            .clock {
+                min-width: 70px;
+                padding: 4px 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="blank-container">
-        <h1>🚀 Welcome</h1>
-        <p>You've successfully unlocked the page.</p>
-        <div class="status">
-            ✅ Status: <span>Authenticated</span>
+
+    <!-- TOP BAR - Like Google Classroom -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span class="menu-icon">☰</span>
+            <h1>Classroom <span>• Home</span></h1>
         </div>
-        <p style="margin-top: 30px; font-size: 14px; color: #999;">
-            (We'll add content here next)
-        </p>
+        <div class="topbar-right">
+            <!-- CLOCK -->
+            <div class="clock" id="clock">
+                <span class="time" id="timeDisplay">12:00:00</span>
+                <span class="date" id="dateDisplay">Monday, January 1</span>
+            </div>
+            <div class="avatar">👤</div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <h2>Welcome back, <span>Student</span> 👋</h2>
+            <p>You have 3 classes today. Stay focused!</p>
+        </div>
+
+        <!-- Class Section -->
+        <div class="section-title">
+            📚 Your Classes <span>• 3 enrolled</span>
+        </div>
+
+        <div class="class-grid">
+            <div class="class-card">
+                <span class="class-icon">📐</span>
+                <h3>Mathematics 101</h3>
+                <div class="class-teacher">Mr. Johnson</div>
+                <div class="class-info">
+                    <span class="badge">📝 Assignment due</span>
+                    <span class="date">Today, 11:59 PM</span>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <span class="class-icon">🔬</span>
+                <h3>Science</h3>
+                <div class="class-teacher">Ms. Rivera</div>
+                <div class="class-info">
+                    <span class="badge">📖 Reading</span>
+                    <span class="date">Tomorrow</span>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <span class="class-icon">📖</span>
+                <h3>English Literature</h3>
+                <div class="class-teacher">Mr. Thompson</div>
+                <div class="class-info">
+                    <span class="badge">✅ Completed</span>
+                    <span class="date">No due date</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcements -->
+        <div class="section-title">
+            📢 Announcements <span>• 2 new</span>
+        </div>
+
+        <div class="announcement">
+            <div class="announce-header">
+                <strong>📌 Mr. Johnson</strong>
+                <span class="time">Posted 2 hours ago</span>
+            </div>
+            <p>Reminder: Math quiz on Friday. Study chapters 5-7. I've posted review materials in the class resources.</p>
+        </div>
+
+        <div class="announcement">
+            <div class="announce-header">
+                <strong>📌 Ms. Rivera</strong>
+                <span class="time">Posted 1 day ago</span>
+            </div>
+            <p>Science fair registration closes next week. If you're interested, please sign up by Friday.</p>
+        </div>
+
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 <span>•</span> Classroom Portal <span>•</span> Secure Session</p>
+    </div>
+
+    <script>
+        // ========================================
+        // CLOCK FUNCTION - UPDATES EVERY SECOND
+        // ========================================
+        function updateClock() {
+            const now = new Date();
+
+            // Time: HH:MM:SS
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:<span class="seconds">${seconds}</span>`;
+
+            // Date: Day, Month Day
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const dayName = days[now.getDay()];
+            const monthName = months[now.getMonth()];
+            const dayNum = now.getDate();
+            const dateString = `${dayName}, ${monthName} ${dayNum}`;
+
+            document.getElementById('timeDisplay').innerHTML = timeString;
+            document.getElementById('dateDisplay').textContent = dateString;
+        }
+
+        // Update clock every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
 </body>
 </html>
