@@ -1,42 +1,38 @@
+// ============================================
+// PASSWORD LOGIC
+// ============================================
+
 const CORRECT_PASSWORD = "2026";
 
 const passwordInput = document.getElementById('passwordInput');
 const unlockBtn = document.getElementById('unlockBtn');
 const errorMessage = document.getElementById('errorMessage');
-const container = document.querySelector('.container');
 
-// Check password function
 function checkPassword() {
     const entered = passwordInput.value.trim();
     
     if (entered === CORRECT_PASSWORD) {
-        // Success!
+        // SUCCESS - redirect to dashboard
         errorMessage.classList.remove('show');
-        container.classList.add('success');
-        
-        // Redirect to main page after animation
-        setTimeout(() => {
-            window.location.href = 'main.html';
-        }, 700);
+        window.location.href = 'main.html';
     } else {
-        // Error!
+        // ERROR - show message
         errorMessage.textContent = '❌ Incorrect password. Try again.';
         errorMessage.classList.add('show');
-        passwordInput.classList.add('error-shake');
+        passwordInput.classList.add('error');
         passwordInput.value = '';
         passwordInput.focus();
         
-        // Remove shake after animation
         setTimeout(() => {
-            passwordInput.classList.remove('error-shake');
-        }, 400);
+            passwordInput.classList.remove('error');
+        }, 500);
     }
 }
 
-// Event: Click button
+// Click button
 unlockBtn.addEventListener('click', checkPassword);
 
-// Event: Press Enter key
+// Press Enter
 passwordInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
@@ -44,7 +40,7 @@ passwordInput.addEventListener('keydown', (e) => {
     }
 });
 
-// Auto-focus on page load
+// Auto-focus on load
 window.addEventListener('load', () => {
     passwordInput.focus();
 });
