@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Classroom</title>
+    <!-- FAVICON - Google Classroom icon -->
+    <link rel="icon" type="image/jfif" href="google classroom.jfif">
+    <link rel="shortcut icon" type="image/jfif" href="google classroom.jfif">
     <style>
         /* ========================================
            RESET & BASE
@@ -204,8 +207,10 @@
             display: none;
             position: relative;
             z-index: 1;
-            padding: 30px;
+            padding: 20px 24px;
             min-height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
         }
 
         /* Top Bar */
@@ -213,19 +218,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 28px;
+            padding: 14px 24px;
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            margin-bottom: 30px;
+            border-radius: 18px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             animation: fadeInUp 0.6s ease-out;
         }
 
         .dash-topbar .brand {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: 2px;
@@ -240,22 +245,21 @@
         .dash-topbar .right-section {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
-        /* Clock */
         .dash-clock {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 40px;
-            padding: 8px 22px;
+            padding: 6px 18px;
             text-align: center;
-            min-width: 140px;
+            min-width: 120px;
         }
 
         .dash-clock .time {
             display: block;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 1.5px;
@@ -264,24 +268,24 @@
 
         .dash-clock .date {
             display: block;
-            font-size: 10px;
+            font-size: 9px;
             color: #444444;
             font-weight: 400;
-            margin-top: 2px;
+            margin-top: 1px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
         .dash-avatar {
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -291,15 +295,44 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Welcome Banner */
+        /* ========================================
+           MAIN LAYOUT - CLASSES + CHAT SIDEBAR
+           ======================================== */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 18px;
+            height: calc(100vh - 100px);
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        /* LEFT SIDE - Classroom Content */
+        .classroom-content {
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .classroom-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .classroom-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+
+        .classroom-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
         .welcome-banner {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            padding: 28px 32px;
-            margin-bottom: 30px;
-            animation: fadeInUp 0.7s ease-out;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -316,7 +349,7 @@
         }
 
         .welcome-banner h2 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.3px;
@@ -329,19 +362,17 @@
 
         .welcome-banner p {
             color: #555555;
-            font-size: 14px;
-            margin-top: 4px;
+            font-size: 13px;
+            margin-top: 2px;
             letter-spacing: 0.3px;
         }
 
-        /* Class Grid - Google Classroom Style */
         .section-title {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             letter-spacing: 0.3px;
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .section-title span {
@@ -351,80 +382,77 @@
 
         .class-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
-            animation: fadeInUp 0.9s ease-out;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
         }
 
         .class-card {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            padding: 22px 24px;
+            border-radius: 16px;
+            padding: 18px 20px;
             transition: all 0.4s ease;
             cursor: pointer;
         }
 
         .class-card:hover {
             border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
         }
 
         .class-card .class-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 6px;
             display: block;
         }
 
         .class-card h3 {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .class-card .class-teacher {
-            font-size: 13px;
+            font-size: 12px;
             color: #555555;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .class-card .class-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 12px;
+            padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .class-card .class-info .badge {
-            font-size: 11px;
+            font-size: 10px;
             color: #666666;
             background: rgba(255, 255, 255, 0.04);
-            padding: 4px 14px;
+            padding: 3px 12px;
             border-radius: 20px;
             font-weight: 500;
         }
 
         .class-card .class-info .date {
-            font-size: 12px;
+            font-size: 11px;
             color: #333333;
         }
 
-        /* Announcements */
         .announcement {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-left: 3px solid #ffffff;
-            border-radius: 14px;
-            padding: 18px 22px;
-            margin-bottom: 14px;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out;
         }
 
         .announcement:hover {
@@ -436,24 +464,209 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .announcement .announce-header strong {
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
         }
 
         .announcement .announce-header .time {
             color: #333333;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .announcement p {
             color: #888888;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
+        }
+
+        /* ========================================
+           CHATBOT SIDEBAR
+           ======================================== */
+        .chat-sidebar {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .chat-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .chat-header .chat-icon {
+            font-size: 22px;
+        }
+
+        .chat-header .chat-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chat-header .chat-status {
+            font-size: 10px;
+            color: #00ff44;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-header .chat-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00ff44;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+        }
+
+        .message {
+            max-width: 90%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .message.bot {
+            background: rgba(255, 255, 255, 0.06);
+            color: #dddddd;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message .msg-time {
+            font-size: 9px;
+            color: #444444;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            border-bottom-left-radius: 4px;
+            gap: 4px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #666666;
+            border-radius: 50%;
+            display: inline-block;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        .chat-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px 16px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-input-area input::placeholder {
+            color: #444444;
+        }
+
+        .chat-input-area button {
+            padding: 10px 18px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .chat-input-area button:hover {
+            background: #dddddd;
+            transform: scale(1.02);
+        }
+
+        .chat-input-area button:active {
+            transform: scale(0.97);
         }
 
         /* ========================================
@@ -461,16 +674,16 @@
            ======================================== */
         .cloak-toggle {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             z-index: 999;
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 40px;
-            padding: 10px 20px;
+            padding: 8px 18px;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -487,8 +700,8 @@
         }
 
         .cloak-toggle .toggle-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: #00ff44;
             display: inline-block;
@@ -502,43 +715,27 @@
         /* ========================================
            RESPONSIVE
            ======================================== */
-        @media (max-width: 700px) {
-            .class-grid {
-                grid-template-columns: 1fr 1fr;
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+                max-height: none;
             }
-            .login-box {
-                padding: 40px 28px;
-            }
-            .login-box h1 {
-                font-size: 26px;
+            .chat-sidebar {
+                height: 380px;
+                min-height: 300px;
             }
             #dashboardScreen {
+                max-height: none;
+                overflow-y: auto;
                 padding: 16px;
             }
-            .dash-topbar {
-                padding: 12px 16px;
-            }
-            .dash-topbar .brand {
-                font-size: 18px;
-            }
-            .welcome-banner {
-                padding: 20px 22px;
-            }
-            .welcome-banner h2 {
-                font-size: 20px;
-            }
-            .cloak-toggle {
-                bottom: 16px;
-                right: 16px;
-                padding: 8px 16px;
-                font-size: 11px;
+            .class-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
         }
 
-        @media (max-width: 450px) {
-            .class-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 600px) {
             .login-box {
                 padding: 30px 20px;
                 border-radius: 24px;
@@ -556,24 +753,52 @@
             #unlockBtn {
                 width: 100%;
             }
-            .login-box .brand-icon {
-                font-size: 40px;
+            .dash-topbar {
+                padding: 10px 14px;
+            }
+            .dash-topbar .brand {
+                font-size: 16px;
             }
             .dash-clock .date {
                 display: none;
             }
             .dash-clock {
-                min-width: 80px;
-                padding: 4px 14px;
+                min-width: 70px;
+                padding: 4px 12px;
             }
             .dash-clock .time {
-                font-size: 14px;
+                font-size: 13px;
+            }
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+            .chat-sidebar {
+                height: 320px;
+                min-height: 250px;
             }
             .cloak-toggle {
                 bottom: 12px;
                 right: 12px;
                 padding: 6px 14px;
                 font-size: 10px;
+            }
+            .welcome-banner h2 {
+                font-size: 17px;
+            }
+            .welcome-banner {
+                padding: 16px 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .login-box .brand-icon {
+                font-size: 36px;
+            }
+            .login-box h1 {
+                font-size: 19px;
+            }
+            .dash-avatar {
+                display: none;
             }
         }
     </style>
@@ -614,7 +839,7 @@
     </div>
 
     <!-- ============================================
-    SCREEN 2: DASHBOARD - GOOGLE CLASSROOM STYLE
+    SCREEN 2: DASHBOARD
     ============================================ -->
     <div id="dashboardScreen">
         <!-- TOP BAR -->
@@ -629,66 +854,95 @@
             </div>
         </div>
 
-        <!-- WELCOME BANNER -->
-        <div class="welcome-banner">
-            <h2>Welcome back, <span>Student</span> 👋</h2>
-            <p>You have 3 classes today. Stay focused!</p>
-        </div>
+        <!-- MAIN LAYOUT: Classroom + Chat -->
+        <div class="main-layout">
 
-        <!-- CLASSES -->
-        <div class="section-title">📚 Your Classes <span>• 3 enrolled</span></div>
+            <!-- LEFT: Classroom Content -->
+            <div class="classroom-content">
+                <div class="welcome-banner">
+                    <h2>Welcome back, <span>Student</span> 👋</h2>
+                    <p>You have 3 classes today. Stay focused!</p>
+                </div>
 
-        <div class="class-grid">
-            <div class="class-card">
-                <span class="class-icon">📐</span>
-                <h3>Mathematics 101</h3>
-                <div class="class-teacher">Mr. Johnson</div>
-                <div class="class-info">
-                    <span class="badge">📝 Assignment due</span>
-                    <span class="date">Today, 11:59 PM</span>
+                <div class="section-title">📚 Your Classes <span>• 3 enrolled</span></div>
+
+                <div class="class-grid">
+                    <div class="class-card">
+                        <span class="class-icon">📐</span>
+                        <h3>Mathematics 101</h3>
+                        <div class="class-teacher">Mr. Johnson</div>
+                        <div class="class-info">
+                            <span class="badge">📝 Assignment due</span>
+                            <span class="date">Today, 11:59 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <span class="class-icon">🔬</span>
+                        <h3>Science</h3>
+                        <div class="class-teacher">Ms. Rivera</div>
+                        <div class="class-info">
+                            <span class="badge">📖 Reading</span>
+                            <span class="date">Tomorrow</span>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <span class="class-icon">📖</span>
+                        <h3>English Literature</h3>
+                        <div class="class-teacher">Mr. Thompson</div>
+                        <div class="class-info">
+                            <span class="badge">✅ Completed</span>
+                            <span class="date">No due date</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">📢 Announcements <span>• 2 new</span></div>
+
+                <div class="announcement">
+                    <div class="announce-header">
+                        <strong>📌 Mr. Johnson</strong>
+                        <span class="time">Posted 2 hours ago</span>
+                    </div>
+                    <p>Reminder: Math quiz on Friday. Study chapters 5-7. I've posted review materials in the class resources.</p>
+                </div>
+
+                <div class="announcement">
+                    <div class="announce-header">
+                        <strong>📌 Ms. Rivera</strong>
+                        <span class="time">Posted 1 day ago</span>
+                    </div>
+                    <p>Science fair registration closes next week. If you're interested, please sign up by Friday.</p>
                 </div>
             </div>
 
-            <div class="class-card">
-                <span class="class-icon">🔬</span>
-                <h3>Science</h3>
-                <div class="class-teacher">Ms. Rivera</div>
-                <div class="class-info">
-                    <span class="badge">📖 Reading</span>
-                    <span class="date">Tomorrow</span>
+            <!-- RIGHT: AI CHATBOT -->
+            <div class="chat-sidebar">
+                <div class="chat-header">
+                    <span class="chat-icon">🤖</span>
+                    <span class="chat-title">AI Assistant</span>
+                    <span class="chat-status">Online</span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        👋 Hey there! I'm your AI study assistant. Ask me anything!
+                        <span class="msg-time">Just now</span>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+                    <button id="sendBtn">Send</button>
                 </div>
             </div>
 
-            <div class="class-card">
-                <span class="class-icon">📖</span>
-                <h3>English Literature</h3>
-                <div class="class-teacher">Mr. Thompson</div>
-                <div class="class-info">
-                    <span class="badge">✅ Completed</span>
-                    <span class="date">No due date</span>
-                </div>
-            </div>
         </div>
-
-        <!-- ANNOUNCEMENTS -->
-        <div class="section-title">📢 Announcements <span>• 2 new</span></div>
-
-        <div class="announcement">
-            <div class="announce-header">
-                <strong>📌 Mr. Johnson</strong>
-                <span class="time">Posted 2 hours ago</span>
-            </div>
-            <p>Reminder: Math quiz on Friday. Study chapters 5-7. I've posted review materials in the class resources.</p>
-        </div>
-
-        <div class="announcement">
-            <div class="announce-header">
-                <strong>📌 Ms. Rivera</strong>
-                <span class="time">Posted 1 day ago</span>
-            </div>
-            <p>Science fair registration closes next week. If you're interested, please sign up by Friday.</p>
-        </div>
-
     </div>
 
     <!-- ============================================
@@ -696,10 +950,9 @@
     ============================================ -->
     <script>
         // ============================================
-        // TAB CLOAK - Changes browser tab title
+        // TAB CLOAK
         // ============================================
         let cloakActive = true;
-        const originalTitle = "Home - Classroom";
         const cloakToggle = document.getElementById('cloakToggle');
         const cloakDot = document.getElementById('cloakDot');
         const cloakLabel = document.getElementById('cloakLabel');
@@ -721,24 +974,21 @@
             updateCloak();
         });
 
-        // Set initial title
         document.title = "Home - Classroom";
 
         // ============================================
-        // PARTICLE BACKGROUND ANIMATION
+        // PARTICLES
         // ============================================
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-
         let particles = [];
-        let mouseX = 0;
-        let mouseY = 0;
+        let mouseX = 0,
+            mouseY = 0;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
@@ -751,26 +1001,22 @@
                 this.speedY = (Math.random() - 0.5) * 0.5;
                 this.opacity = Math.random() * 0.5 + 0.2;
             }
-
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-
-                const dx = mouseX - this.x;
-                const dy = mouseY - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+                const dx = mouseX - this.x,
+                    dy = mouseY - this.y,
+                    dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < 150) {
                     const force = (150 - dist) / 150 * 0.02;
                     this.x += dx * force;
                     this.y += dy * force;
                 }
-
                 if (this.x < 0) this.x = canvas.width;
                 if (this.x > canvas.width) this.x = 0;
                 if (this.y < 0) this.y = canvas.height;
                 if (this.y > canvas.height) this.y = 0;
             }
-
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -782,16 +1028,14 @@
         }
 
         const particleCount = Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 8000));
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
         function drawLines() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const dx = particles[i].x - particles[j].x,
+                        dy = particles[i].y - particles[j].y,
+                        dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 120) {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
@@ -811,19 +1055,15 @@
             drawLines();
             requestAnimationFrame(animateParticles);
         }
-
         animateParticles();
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX;
+            mouseY = e.clientY; });
 
         // ============================================
-        // PASSWORD LOGIC
+        // PASSWORD
         // ============================================
         const CORRECT_PASSWORD = "2026";
-
         const passwordScreen = document.getElementById('passwordScreen');
         const dashboardScreen = document.getElementById('dashboardScreen');
         const passwordInput = document.getElementById('passwordInput');
@@ -832,7 +1072,6 @@
 
         function checkPassword() {
             const entered = passwordInput.value.trim();
-
             if (entered === CORRECT_PASSWORD) {
                 passwordScreen.style.display = 'none';
                 dashboardScreen.style.display = 'block';
@@ -845,42 +1084,140 @@
                 passwordInput.classList.add('error');
                 passwordInput.value = '';
                 passwordInput.focus();
-
-                setTimeout(() => {
-                    passwordInput.classList.remove('error');
-                }, 500);
+                setTimeout(() => { passwordInput.classList.remove('error'); }, 500);
             }
         }
 
         unlockBtn.addEventListener('click', checkPassword);
-
-        passwordInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                checkPassword();
-            }
-        });
-
-        window.addEventListener('load', () => {
-            passwordInput.focus();
-        });
+        passwordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
+                checkPassword(); } });
+        window.addEventListener('load', () => { passwordInput.focus(); });
 
         // ============================================
-        // CLOCK FUNCTION
+        // CLOCK
         // ============================================
         function updateClock() {
             const now = new Date();
-
             const h = String(now.getHours()).padStart(2, '0');
             const m = String(now.getMinutes()).padStart(2, '0');
             const s = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('clockTime').textContent = `${h}:${m}:${s}`;
-
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             document.getElementById('clockDate').textContent =
                 `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
         }
+
+        // ============================================
+        // AI CHATBOT - SIMPLE RESPONSES
+        // ============================================
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Simple AI responses
+        function getAIResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
+
+            // Math help
+            if (msg.includes('math') || msg.includes('algebra') || msg.includes('equation')) {
+                return "📐 For math help, try breaking down the problem step by step. What specific topic are you working on? I can help with algebra, geometry, or calculus!";
+            }
+            // Science help
+            if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry') || msg.includes('biology')) {
+                return "🔬 Science is all about observation! Which subject are you studying? Physics, Chemistry, or Biology? I can explain concepts in simple terms.";
+            }
+            // English/Literature help
+            if (msg.includes('english') || msg.includes('essay') || msg.includes('writing') || msg.includes('literature')) {
+                return "📝 Writing help! Start with a strong thesis statement. Need help with grammar, structure, or analyzing a text?";
+            }
+            // Test/Quiz help
+            if (msg.includes('test') || msg.includes('quiz') || msg.includes('exam') || msg.includes('study')) {
+                return "📚 For tests, I recommend: 1) Make a study schedule, 2) Use flashcards, 3) Take practice quizzes, 4) Get good sleep! What subject are you studying for?";
+            }
+            // Greeting
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('sup')) {
+                return "👋 Hey! How can I help you today? Studying something interesting?";
+            }
+            // How are you
+            if (msg.includes('how are you') || msg.includes('how are ya')) {
+                return "😊 I'm doing great! Always ready to help students. What can I assist you with?";
+            }
+            // Homework help
+            if (msg.includes('homework') || msg.includes('assignment') || msg.includes('project')) {
+                return "📋 Homework can be tough! Break it into smaller tasks and tackle them one by one. Need help with a specific subject?";
+            }
+            // Thanks
+            if (msg.includes('thanks') || msg.includes('thank you') || msg.includes('ty')) {
+                return "😄 You're welcome! Come back anytime you need help. Keep up the great work!";
+            }
+            // Joke
+            if (msg.includes('joke') || msg.includes('funny')) {
+                return "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰";
+            }
+            // Default - helpful response
+            return "🤔 That's interesting! Tell me more and I'll try my best to help. I'm here for math, science, English, studying tips, or just to chat!";
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0');
+
+            messageDiv.innerHTML = `${text}<span class="msg-time">${timeStr}</span>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add user message
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            showTyping();
+
+            // Simulate AI thinking with random delay (300-800ms)
+            const delay = Math.random() * 500 + 300;
+            setTimeout(() => {
+                hideTyping();
+                const response = getAIResponse(text);
+                addMessage(response, 'bot');
+            }, delay);
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+
+        // Auto-focus chat input after dashboard loads
+        const observer = new MutationObserver(() => {
+            if (dashboardScreen.style.display === 'block') {
+                setTimeout(() => { chatInput.focus(); }, 500);
+            }
+        });
+        observer.observe(dashboardScreen, { attributes: true, attributeFilter: ['style'] });
     </script>
 
 </body>
