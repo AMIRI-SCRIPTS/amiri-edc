@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIRI EDC</title>
+    <title>Home - Classroom</title>
     <style>
         /* ========================================
            RESET & BASE
@@ -291,179 +291,220 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
+        /* Welcome Banner */
+        .welcome-banner {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 28px 32px;
             margin-bottom: 30px;
             animation: fadeInUp 0.7s ease-out;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-card {
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            padding: 22px 26px;
-            transition: all 0.4s ease;
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            opacity: 0.3;
         }
 
-        .stat-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .stat-card .label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: #555555;
-            font-weight: 500;
-        }
-
-        .stat-card .number {
-            font-size: 32px;
+        .welcome-banner h2 {
+            font-size: 24px;
             font-weight: 700;
             color: #ffffff;
-            margin-top: 4px;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
         }
 
-        .stat-card .number .small {
-            color: #444444;
+        .welcome-banner h2 span {
+            color: #666666;
             font-weight: 300;
-            font-size: 16px;
         }
 
-        /* Two Column */
-        .two-col {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .panel {
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            padding: 26px;
-            transition: all 0.4s ease;
-        }
-
-        .panel:hover {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .panel-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #ffffff;
+        .welcome-banner p {
+            color: #555555;
+            font-size: 14px;
+            margin-top: 4px;
             letter-spacing: 0.3px;
         }
 
-        .panel-header .link {
-            font-size: 12px;
+        /* Class Grid - Google Classroom Style */
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title span {
             color: #444444;
-            text-decoration: none;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
+            font-weight: 300;
         }
 
-        .panel-header .link:hover {
-            color: #ffffff;
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.9s ease-out;
         }
 
-        .activity-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-item .icon {
-            font-size: 18px;
-            width: 30px;
-            flex-shrink: 0;
-        }
-
-        .activity-item .info {
-            flex: 1;
-        }
-
-        .activity-item .info .title {
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 500;
-        }
-
-        .activity-item .info .desc {
-            font-size: 13px;
-            color: #555555;
-        }
-
-        .activity-item .time {
-            font-size: 11px;
-            color: #333333;
-            flex-shrink: 0;
-        }
-
-        .quick-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .class-card {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 22px 24px;
+            transition: all 0.4s ease;
             cursor: pointer;
         }
 
-        .quick-link:last-child {
-            border-bottom: none;
+        .class-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .quick-link:hover {
-            padding-left: 8px;
+        .class-card .class-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .quick-link .ql-icon {
-            font-size: 18px;
-            width: 30px;
+        .class-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
         }
 
-        .quick-link .ql-text {
+        .class-card .class-teacher {
+            font-size: 13px;
+            color: #555555;
+            margin-bottom: 12px;
+        }
+
+        .class-card .class-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .class-card .class-info .badge {
+            font-size: 11px;
+            color: #666666;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .class-card .class-info .date {
+            font-size: 12px;
+            color: #333333;
+        }
+
+        /* Announcements */
+        .announcement {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-left: 3px solid #ffffff;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .announcement:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            border-left-color: #ffffff;
+        }
+
+        .announcement .announce-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .announcement .announce-header strong {
+            color: #ffffff;
             font-size: 14px;
-            color: #cccccc;
-            font-weight: 450;
+            font-weight: 600;
         }
 
-        .quick-link .ql-text .sub {
-            color: #444444;
-            font-weight: 300;
+        .announcement .announce-header .time {
+            color: #333333;
+            font-size: 12px;
+        }
+
+        .announcement p {
+            color: #888888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           TAB CLOAK TOGGLE BUTTON
+           ======================================== */
+        .cloak-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 10px 20px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .cloak-toggle:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
+        }
+
+        .cloak-toggle .toggle-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff44;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .cloak-toggle .toggle-dot.off {
+            background: #444444;
         }
 
         /* ========================================
            RESPONSIVE
            ======================================== */
-        @media (max-width: 800px) {
-            .two-col {
-                grid-template-columns: 1fr;
+        @media (max-width: 700px) {
+            .class-grid {
+                grid-template-columns: 1fr 1fr;
             }
             .login-box {
                 padding: 40px 28px;
@@ -471,9 +512,6 @@
             .login-box h1 {
                 font-size: 26px;
             }
-        }
-
-        @media (max-width: 600px) {
             #dashboardScreen {
                 padding: 16px;
             }
@@ -483,8 +521,23 @@
             .dash-topbar .brand {
                 font-size: 18px;
             }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
+            .welcome-banner {
+                padding: 20px 22px;
+            }
+            .welcome-banner h2 {
+                font-size: 20px;
+            }
+            .cloak-toggle {
+                bottom: 16px;
+                right: 16px;
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .class-grid {
+                grid-template-columns: 1fr;
             }
             .login-box {
                 padding: 30px 20px;
@@ -506,12 +559,6 @@
             .login-box .brand-icon {
                 font-size: 40px;
             }
-        }
-
-        @media (max-width: 400px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
             .dash-clock .date {
                 display: none;
             }
@@ -522,6 +569,12 @@
             .dash-clock .time {
                 font-size: 14px;
             }
+            .cloak-toggle {
+                bottom: 12px;
+                right: 12px;
+                padding: 6px 14px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
@@ -531,6 +584,14 @@
     ANIMATED BACKGROUND - PARTICLE CANVAS
     ============================================ -->
     <canvas id="particles-canvas"></canvas>
+
+    <!-- ============================================
+    TAB CLOAK TOGGLE BUTTON
+    ============================================ -->
+    <button class="cloak-toggle" id="cloakToggle">
+        <span class="toggle-dot" id="cloakDot"></span>
+        <span id="cloakLabel">Tab Cloak: ON</span>
+    </button>
 
     <!-- ============================================
     SCREEN 1: PASSWORD
@@ -553,7 +614,7 @@
     </div>
 
     <!-- ============================================
-    SCREEN 2: DASHBOARD
+    SCREEN 2: DASHBOARD - GOOGLE CLASSROOM STYLE
     ============================================ -->
     <div id="dashboardScreen">
         <!-- TOP BAR -->
@@ -568,111 +629,101 @@
             </div>
         </div>
 
-        <!-- STATS -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="label">Projects</div>
-                <div class="number">6 <span class="small">/ 12</span></div>
+        <!-- WELCOME BANNER -->
+        <div class="welcome-banner">
+            <h2>Welcome back, <span>Student</span> 👋</h2>
+            <p>You have 3 classes today. Stay focused!</p>
+        </div>
+
+        <!-- CLASSES -->
+        <div class="section-title">📚 Your Classes <span>• 3 enrolled</span></div>
+
+        <div class="class-grid">
+            <div class="class-card">
+                <span class="class-icon">📐</span>
+                <h3>Mathematics 101</h3>
+                <div class="class-teacher">Mr. Johnson</div>
+                <div class="class-info">
+                    <span class="badge">📝 Assignment due</span>
+                    <span class="date">Today, 11:59 PM</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="label">Tasks Due</div>
-                <div class="number">4</div>
+
+            <div class="class-card">
+                <span class="class-icon">🔬</span>
+                <h3>Science</h3>
+                <div class="class-teacher">Ms. Rivera</div>
+                <div class="class-info">
+                    <span class="badge">📖 Reading</span>
+                    <span class="date">Tomorrow</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="label">Messages</div>
-                <div class="number">8 <span class="small">new</span></div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Streak</div>
-                <div class="number">12 <span class="small">days</span></div>
+
+            <div class="class-card">
+                <span class="class-icon">📖</span>
+                <h3>English Literature</h3>
+                <div class="class-teacher">Mr. Thompson</div>
+                <div class="class-info">
+                    <span class="badge">✅ Completed</span>
+                    <span class="date">No due date</span>
+                </div>
             </div>
         </div>
 
-        <!-- TWO COLUMNS -->
-        <div class="two-col">
-            <!-- LEFT: Activity -->
-            <div class="panel">
-                <div class="panel-header">
-                    <h3>📋 Recent Activity</h3>
-                    <a href="#" class="link">View all →</a>
-                </div>
+        <!-- ANNOUNCEMENTS -->
+        <div class="section-title">📢 Announcements <span>• 2 new</span></div>
 
-                <div class="activity-item">
-                    <div class="icon">📄</div>
-                    <div class="info">
-                        <div class="title">Project Alpha</div>
-                        <div class="desc">You updated the design brief</div>
-                    </div>
-                    <div class="time">12 min ago</div>
-                </div>
-
-                <div class="activity-item">
-                    <div class="icon">✅</div>
-                    <div class="info">
-                        <div class="title">Task Complete</div>
-                        <div class="desc">"Research phase" marked as done</div>
-                    </div>
-                    <div class="time">1 hour ago</div>
-                </div>
-
-                <div class="activity-item">
-                    <div class="icon">💬</div>
-                    <div class="info">
-                        <div class="title">New Comment</div>
-                        <div class="desc">Jordan replied on your post</div>
-                    </div>
-                    <div class="time">3 hours ago</div>
-                </div>
-
-                <div class="activity-item">
-                    <div class="icon">📎</div>
-                    <div class="info">
-                        <div class="title">File Uploaded</div>
-                        <div class="desc">"Final_v2.pdf" added to Drive</div>
-                    </div>
-                    <div class="time">Yesterday</div>
-                </div>
+        <div class="announcement">
+            <div class="announce-header">
+                <strong>📌 Mr. Johnson</strong>
+                <span class="time">Posted 2 hours ago</span>
             </div>
-
-            <!-- RIGHT: Quick Links -->
-            <div class="panel">
-                <div class="panel-header">
-                    <h3>⚡ Quick Actions</h3>
-                    <span style="font-size:11px; color:#333; letter-spacing:0.5px;">shortcuts</span>
-                </div>
-
-                <a href="#" class="quick-link">
-                    <span class="ql-icon">📝</span>
-                    <span class="ql-text">New Note <span class="sub">• draft</span></span>
-                </a>
-
-                <a href="#" class="quick-link">
-                    <span class="ql-icon">📅</span>
-                    <span class="ql-text">Schedule <span class="sub">• 2 free</span></span>
-                </a>
-
-                <a href="#" class="quick-link">
-                    <span class="ql-icon">👥</span>
-                    <span class="ql-text">Team <span class="sub">• 5 online</span></span>
-                </a>
-
-                <a href="#" class="quick-link">
-                    <span class="ql-icon">📊</span>
-                    <span class="ql-text">Reports <span class="sub">• weekly</span></span>
-                </a>
-
-                <a href="#" class="quick-link">
-                    <span class="ql-icon">🎯</span>
-                    <span class="ql-text">Goals <span class="sub">• 80%</span></span>
-                </a>
-            </div>
+            <p>Reminder: Math quiz on Friday. Study chapters 5-7. I've posted review materials in the class resources.</p>
         </div>
+
+        <div class="announcement">
+            <div class="announce-header">
+                <strong>📌 Ms. Rivera</strong>
+                <span class="time">Posted 1 day ago</span>
+            </div>
+            <p>Science fair registration closes next week. If you're interested, please sign up by Friday.</p>
+        </div>
+
     </div>
 
     <!-- ============================================
     JAVASCRIPT
     ============================================ -->
     <script>
+        // ============================================
+        // TAB CLOAK - Changes browser tab title
+        // ============================================
+        let cloakActive = true;
+        const originalTitle = "Home - Classroom";
+        const cloakToggle = document.getElementById('cloakToggle');
+        const cloakDot = document.getElementById('cloakDot');
+        const cloakLabel = document.getElementById('cloakLabel');
+
+        function updateCloak() {
+            if (cloakActive) {
+                document.title = "Home - Classroom";
+                cloakDot.className = 'toggle-dot';
+                cloakLabel.textContent = 'Tab Cloak: ON';
+            } else {
+                document.title = "AMIRI EDC";
+                cloakDot.className = 'toggle-dot off';
+                cloakLabel.textContent = 'Tab Cloak: OFF';
+            }
+        }
+
+        cloakToggle.addEventListener('click', () => {
+            cloakActive = !cloakActive;
+            updateCloak();
+        });
+
+        // Set initial title
+        document.title = "Home - Classroom";
+
         // ============================================
         // PARTICLE BACKGROUND ANIMATION
         // ============================================
@@ -705,7 +756,6 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Mouse interaction - particles move toward mouse slightly
                 const dx = mouseX - this.x;
                 const dy = mouseY - this.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -715,7 +765,6 @@
                     this.y += dy * force;
                 }
 
-                // Wrap around edges
                 if (this.x < 0) this.x = canvas.width;
                 if (this.x > canvas.width) this.x = 0;
                 if (this.y < 0) this.y = canvas.height;
@@ -727,20 +776,16 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.fill();
-
-                // Glow
                 ctx.shadowColor = 'rgba(255, 255, 255, 0.05)';
                 ctx.shadowBlur = 10;
             }
         }
 
-        // Create particles
         const particleCount = Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 8000));
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
 
-        // Draw lines between nearby particles
         function drawLines() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
@@ -761,19 +806,14 @@
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
+            particles.forEach(p => { p.update();
+                p.draw(); });
             drawLines();
             requestAnimationFrame(animateParticles);
         }
 
         animateParticles();
 
-        // Track mouse
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
