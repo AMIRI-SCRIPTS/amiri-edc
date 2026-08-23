@@ -3,25 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 Access Restricted</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Secure Dashboard</title>
+    <style>
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* ========================================
+           PASSWORD SCREEN
+           ======================================== */
+        #passwordScreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #0a0a0a;
+            border: 2px solid #1a1a1a;
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .login-box .lock-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .login-box h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .login-box .subtitle {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #passwordInput {
+            flex: 1;
+            min-width: 160px;
+            padding: 14px 18px;
+            font-size: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #000000;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #passwordInput:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        #passwordInput::placeholder {
+            color: #444444;
+        }
+
+        #passwordInput.error {
+            border-color: #ff3333;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+        }
+
+        #unlockBtn {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            background: #ffffff;
+            color: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        #unlockBtn:hover {
+            background: transparent;
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .error-message {
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ff3333;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* ========================================
+           DASHBOARD SCREEN (Hidden by default)
+           ======================================== */
+        #dashboardScreen {
+            display: none;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        /* Top Bar */
+        .dash-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .dash-topbar .brand {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .dash-topbar .brand span {
+            color: #444444;
+            font-weight: 300;
+        }
+
+        .dash-topbar .right-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Clock */
+        .dash-clock {
+            background: #000000;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            padding: 8px 20px;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .dash-clock .time {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .dash-clock .date {
+            display: block;
+            font-size: 10px;
+            color: #555555;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .dash-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 1px solid #222222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dash-avatar:hover {
+            border-color: #444444;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 14px;
+            padding: 20px 24px;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: #333333;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .stat-card .number {
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 4px;
+        }
+
+        .stat-card .number .small {
+            color: #555555;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .panel {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .panel-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .panel-header .link {
+            font-size: 12px;
+            color: #555555;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .panel-header .link:hover {
+            color: #ffffff;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #111111;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item .icon {
+            font-size: 18px;
+            width: 30px;
+            flex-shrink: 0;
+        }
+
+        .activity-item .info {
+            flex: 1;
+        }
+
+        .activity-item .info .title {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .activity-item .info .desc {
+            font-size: 13px;
+            color: #666666;
+        }
+
+        .activity-item .time {
+            font-size: 11px;
+            color: #444444;
+            flex-shrink: 0;
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #111111;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .quick-link:last-child {
+            border-bottom: none;
+        }
+
+        .quick-link:hover {
+            padding-left: 8px;
+        }
+
+        .quick-link .ql-icon {
+            font-size: 18px;
+            width: 30px;
+        }
+
+        .quick-link .ql-text {
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+        .quick-link .ql-text .sub {
+            color: #555555;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 800px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #dashboardScreen {
+                padding: 16px;
+            }
+            .dash-topbar {
+                padding: 12px 16px;
+            }
+            .dash-topbar .brand {
+                font-size: 18px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .login-box {
+                padding: 30px 20px;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            #passwordInput {
+                min-width: unset;
+                width: 100%;
+            }
+            #unlockBtn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .dash-clock .date {
+                display: none;
+            }
+            .dash-clock {
+                min-width: 80px;
+                padding: 4px 12px;
+            }
+            .dash-clock .time {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
+
+    <!-- ============================================
+    SCREEN 1: PASSWORD
+    ============================================ -->
+    <div id="passwordScreen">
         <div class="login-box">
-            <div class="lock-icon">🔒</div>
+            <span class="lock-icon">🔒</span>
             <h1>Secure Access</h1>
             <p class="subtitle">Enter the password to continue</p>
-            
+
             <div class="input-group">
                 <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
                 <button id="unlockBtn">Unlock →</button>
             </div>
-            
+
             <p id="errorMessage" class="error-message"></p>
         </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <!-- ============================================
+    SCREEN 2: DASHBOARD (Hidden by default)
+    ============================================ -->
+    <div id="dashboardScreen">
+        <!-- TOP BAR -->
+        <div class="dash-topbar">
+            <div class="brand">Studio<span>•</span></div>
+            <div class="right-section">
+                <div class="dash-clock">
+                    <span class="time" id="clockTime">00:00:00</span>
+                    <span class="date" id="clockDate">Monday, Jan 1</span>
+                </div>
+                <div class="dash-avatar">👤</div>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">Projects</div>
+                <div class="number">6 <span class="small">/ 12</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Tasks Due</div>
+                <div class="number">4</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Messages</div>
+                <div class="number">8 <span class="small">new</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Streak</div>
+                <div class="number">12 <span class="small">days</span></div>
+            </div>
+        </div>
+
+        <!-- TWO COLUMNS -->
+        <div class="two-col">
+            <!-- LEFT: Activity -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>📋 Recent Activity</h3>
+                    <a href="#" class="link">View all →</a>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">📄</div>
+                    <div class="info">
+                        <div class="title">Project Alpha</div>
+                        <div class="desc">You updated the design brief</div>
+                    </div>
+                    <div class="time">12 min ago</div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">✅</div>
+                    <div class="info">
+                        <div class="title">Task Complete</div>
+                        <div class="desc">"Research phase" marked as done</div>
+                    </div>
+                    <div class="time">1 hour ago</div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">💬</div>
+                    <div class="info">
+                        <div class="title">New Comment</div>
+                        <div class="desc">Jordan replied on your post</div>
+                    </div>
+                    <div class="time">3 hours ago</div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">📎</div>
+                    <div class="info">
+                        <div class="title">File Uploaded</div>
+                        <div class="desc">"Final_v2.pdf" added to Drive</div>
+                    </div>
+                    <div class="time">Yesterday</div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Quick Links -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>⚡ Quick Actions</h3>
+                    <span style="font-size:12px; color:#444;">shortcuts</span>
+                </div>
+
+                <a href="#" class="quick-link">
+                    <span class="ql-icon">📝</span>
+                    <span class="ql-text">New Note <span class="sub">• draft</span></span>
+                </a>
+
+                <a href="#" class="quick-link">
+                    <span class="ql-icon">📅</span>
+                    <span class="ql-text">Schedule <span class="sub">• 2 free</span></span>
+                </a>
+
+                <a href="#" class="quick-link">
+                    <span class="ql-icon">👥</span>
+                    <span class="ql-text">Team <span class="sub">• 5 online</span></span>
+                </a>
+
+                <a href="#" class="quick-link">
+                    <span class="ql-icon">📊</span>
+                    <span class="ql-text">Reports <span class="sub">• weekly</span></span>
+                </a>
+
+                <a href="#" class="quick-link">
+                    <span class="ql-icon">🎯</span>
+                    <span class="ql-text">Goals <span class="sub">• 80%</span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    JAVASCRIPT
+    ============================================ -->
+    <script>
+        // ============================================
+        // PASSWORD LOGIC
+        // ============================================
+        const CORRECT_PASSWORD = "2026";
+
+        const passwordScreen = document.getElementById('passwordScreen');
+        const dashboardScreen = document.getElementById('dashboardScreen');
+        const passwordInput = document.getElementById('passwordInput');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        function checkPassword() {
+            const entered = passwordInput.value.trim();
+
+            if (entered === CORRECT_PASSWORD) {
+                // Hide password screen, show dashboard
+                passwordScreen.style.display = 'none';
+                dashboardScreen.style.display = 'block';
+                errorMessage.classList.remove('show');
+                // Start the clock
+                updateClock();
+                setInterval(updateClock, 1000);
+            } else {
+                errorMessage.textContent = '❌ Incorrect password. Try again.';
+                errorMessage.classList.add('show');
+                passwordInput.classList.add('error');
+                passwordInput.value = '';
+                passwordInput.focus();
+
+                setTimeout(() => {
+                    passwordInput.classList.remove('error');
+                }, 500);
+            }
+        }
+
+        unlockBtn.addEventListener('click', checkPassword);
+
+        passwordInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkPassword();
+            }
+        });
+
+        window.addEventListener('load', () => {
+            passwordInput.focus();
+        });
+
+        // ============================================
+        // CLOCK FUNCTION
+        // ============================================
+        function updateClock() {
+            const now = new Date();
+
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clockTime').textContent = `${h}:${m}:${s}`;
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            document.getElementById('clockDate').textContent =
+                `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+        }
+    </script>
+
 </body>
 </html>
