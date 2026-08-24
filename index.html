@@ -19,6 +19,7 @@
             color: #ffffff;
             min-height: 100vh;
             overflow: hidden;
+            cursor: none;
         }
 
         #particles-canvas {
@@ -31,16 +32,18 @@
             pointer-events: none;
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+        /* ===== CURSOR TRAIL ===== */
+        .trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: all 0.05s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         /* ===== PASSWORD SCREEN ===== */
@@ -52,6 +55,61 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
+            overflow: hidden;
+        }
+
+        /* ===== ROCKET SHIP ANIMATION ===== */
+        .rocket {
+            position: fixed;
+            font-size: 40px;
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+            transition: none;
+        }
+
+        .rocket.fly {
+            animation: rocketFly 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes rocketFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 100vh) rotate(-45deg) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(100vw, -20vh) rotate(-45deg) scale(1.2);
+            }
+        }
+
+        /* ===== ROCKET TRAIL PARTICLES ===== */
+        .rocket-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 200, 100, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .rocket-particle.active {
+            animation: rocketParticle 1s ease-out forwards;
+        }
+
+        @keyframes rocketParticle {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-30px, 50px) scale(0);
+            }
         }
 
         .login-box {
@@ -59,12 +117,14 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 32px;
-            padding: 60px 50px;
-            max-width: 440px;
+            padding: 50px 40px;
+            max-width: 420px;
             width: 100%;
             text-align: center;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
             animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 3;
         }
 
         @keyframes fadeInUp {
@@ -189,18 +249,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 18px;
+            padding: 8px 16px;
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .dash-topbar .brand {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: 1px;
@@ -213,20 +273,20 @@
         .dash-topbar .right-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .dash-clock {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 30px;
-            padding: 4px 14px;
+            padding: 4px 12px;
             text-align: center;
-            min-width: 85px;
+            min-width: 75px;
         }
         .dash-clock .time {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 1px;
@@ -239,15 +299,15 @@
         }
 
         .dash-avatar {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
         }
 
@@ -255,14 +315,14 @@
         .proxy-toggle {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
+            gap: 5px;
+            padding: 4px 10px;
             background: rgba(10, 10, 10, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 10px;
+            font-size: 9px;
             color: #888888;
         }
         .proxy-toggle:hover {
@@ -286,9 +346,9 @@
         /* ===== MAIN LAYOUT ===== */
         .main-layout {
             display: grid;
-            grid-template-columns: 160px 1fr 280px;
+            grid-template-columns: 140px 1fr 260px;
             gap: 10px;
-            height: calc(100vh - 68px);
+            height: calc(100vh - 62px);
         }
 
         /* ===== CLOAK PANEL ===== */
@@ -297,14 +357,14 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
-            padding: 10px 10px;
+            padding: 10px 8px;
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
         }
         .cloak-panel .panel-title {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 0.5px;
@@ -317,8 +377,8 @@
         .cloak-option {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 5px 8px;
+            gap: 5px;
+            padding: 4px 6px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 6px;
@@ -335,18 +395,18 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
         .cloak-option .cloak-icon {
-            font-size: 14px;
-            width: 20px;
+            font-size: 12px;
+            width: 18px;
             text-align: center;
         }
         .cloak-option .cloak-name {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 500;
             color: #ffffff;
         }
         .cloak-option .cloak-check {
             color: #00ff44;
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0;
             margin-left: auto;
         }
@@ -370,7 +430,7 @@
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
-            gap: 10px;
+            gap: 8px;
         }
         .center-content::-webkit-scrollbar {
             width: 3px;
@@ -388,11 +448,11 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 10px;
-            padding: 10px 16px;
+            padding: 8px 14px;
             flex-shrink: 0;
         }
         .welcome-banner h2 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: #ffffff;
         }
@@ -402,7 +462,7 @@
         }
         .welcome-banner p {
             color: #555555;
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 2px;
         }
         .welcome-banner p strong {
@@ -410,14 +470,14 @@
         }
 
         /* ========================================
-           CALCULATOR - PROPERLY FORMATTED
+           CALCULATOR - SMALLER
            ======================================== */
         .calculator-container {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 14px 16px;
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -428,14 +488,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             flex-shrink: 0;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
         }
 
         .calc-header .calc-title {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             color: #555555;
             letter-spacing: 0.5px;
@@ -444,18 +504,18 @@
 
         .calc-mode-selector {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 2px;
         }
 
         .calc-mode-btn {
-            padding: 4px 12px;
-            font-size: 10px;
+            padding: 3px 10px;
+            font-size: 9px;
             font-weight: 600;
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
             background: transparent;
             color: #666666;
             cursor: pointer;
@@ -474,53 +534,53 @@
         .calc-display {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding: 10px 16px;
+            border-radius: 6px;
+            padding: 6px 12px;
             text-align: right;
-            margin-bottom: 10px;
-            min-height: 56px;
+            margin-bottom: 6px;
+            min-height: 44px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             flex-shrink: 0;
         }
         .calc-display .calc-expr {
-            font-size: 13px;
+            font-size: 11px;
             color: #666666;
             font-weight: 300;
-            min-height: 18px;
+            min-height: 14px;
             font-family: 'Courier New', monospace;
             word-wrap: break-word;
             overflow-x: auto;
         }
         .calc-display .calc-result {
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
-            min-height: 32px;
+            min-height: 24px;
             font-family: 'Courier New', monospace;
         }
 
         .calc-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 4px;
             flex: 1;
         }
 
         .calc-btn {
-            padding: 8px 4px;
-            font-size: 15px;
+            padding: 5px 2px;
+            font-size: 12px;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.04);
             color: #ffffff;
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: inherit;
             text-align: center;
-            min-height: 38px;
+            min-height: 30px;
         }
         .calc-btn:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -557,7 +617,7 @@
         .calc-btn.fn {
             background: rgba(255, 200, 0, 0.06);
             color: #ffcc44;
-            font-size: 12px;
+            font-size: 10px;
         }
         .calc-btn.fn:hover {
             background: rgba(255, 200, 0, 0.12);
@@ -571,10 +631,6 @@
             background: rgba(200, 200, 200, 0.12);
         }
 
-        .calc-btn.span2 {
-            grid-column: span 2;
-        }
-
         /* ========================================
            GRAPHING CALCULATOR
            ======================================== */
@@ -583,7 +639,7 @@
             flex: 1;
             flex-direction: column;
             min-height: 0;
-            gap: 10px;
+            gap: 6px;
         }
 
         .graphing-container.active {
@@ -592,15 +648,15 @@
 
         .graphing-container .graph-input-area {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
         .graphing-container .graph-input-area input {
             flex: 1;
-            padding: 8px 14px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 11px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.4);
             color: #ffffff;
             outline: none;
@@ -614,12 +670,12 @@
             color: #444444;
         }
         .graphing-container .graph-input-area button {
-            padding: 8px 20px;
+            padding: 5px 14px;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 8px;
-            font-size: 12px;
+            border-radius: 6px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -633,10 +689,10 @@
             flex: 1;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             position: relative;
-            min-height: 200px;
+            min-height: 150px;
         }
 
         .graphing-container .graph-canvas-wrapper canvas {
@@ -647,16 +703,16 @@
 
         .graphing-container .graph-presets {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
             flex-shrink: 0;
         }
         .graphing-container .graph-presets button {
-            padding: 4px 12px;
-            font-size: 10px;
+            padding: 3px 10px;
+            font-size: 9px;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            border-radius: 5px;
             background: rgba(255, 255, 255, 0.03);
             color: #888888;
             cursor: pointer;
@@ -676,53 +732,53 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 10px;
-            padding: 10px 12px;
+            padding: 8px 10px;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
-            max-height: 180px;
+            max-height: 160px;
         }
 
         .party-modern .party-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             flex-shrink: 0;
         }
 
         .party-modern .party-top .party-title-section {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
         .party-modern .party-top .party-title-section .party-icon {
-            font-size: 14px;
+            font-size: 12px;
         }
         .party-modern .party-top .party-title-section .party-name {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: #ffffff;
         }
         .party-modern .party-top .party-title-section .party-count {
-            font-size: 8px;
+            font-size: 7px;
             color: #555555;
             background: rgba(255, 255, 255, 0.04);
-            padding: 1px 8px;
-            border-radius: 8px;
+            padding: 1px 6px;
+            border-radius: 6px;
         }
 
         .party-modern .party-top .party-actions {
             display: flex;
-            gap: 4px;
+            gap: 3px;
         }
 
         .party-btn-modern {
-            padding: 3px 10px;
-            font-size: 8px;
+            padding: 2px 8px;
+            font-size: 7px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 5px;
+            border-radius: 4px;
             background: rgba(255, 255, 255, 0.04);
             color: #aaaaaa;
             cursor: pointer;
@@ -762,29 +818,29 @@
         .party-code-modern {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 3px 10px;
+            gap: 5px;
+            padding: 2px 8px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 6px;
+            border-radius: 5px;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             flex-shrink: 0;
         }
         .party-code-modern .pc-label {
-            font-size: 7px;
+            font-size: 6px;
             color: #555555;
             text-transform: uppercase;
         }
         .party-code-modern .pc-code {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
             color: #44ff88;
             letter-spacing: 2px;
             font-family: 'Courier New', monospace;
         }
         .party-code-modern .pc-copy {
-            padding: 1px 8px;
-            font-size: 8px;
+            padding: 1px 6px;
+            font-size: 7px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 4px;
@@ -800,12 +856,12 @@
         .party-msgs-modern {
             flex: 1;
             overflow-y: auto;
-            padding: 4px 2px;
+            padding: 3px 2px;
             display: flex;
             flex-direction: column;
             gap: 2px;
-            min-height: 30px;
-            max-height: 60px;
+            min-height: 25px;
+            max-height: 50px;
         }
         .party-msgs-modern::-webkit-scrollbar {
             width: 3px;
@@ -819,9 +875,9 @@
         }
 
         .party-msg-modern {
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 8px;
             line-height: 1.3;
             word-wrap: break-word;
             max-width: 95%;
@@ -832,7 +888,7 @@
             text-align: center;
             font-style: italic;
             align-self: center;
-            font-size: 8px;
+            font-size: 7px;
         }
         .party-msg-modern.me {
             background: rgba(68, 200, 255, 0.12);
@@ -847,27 +903,27 @@
         .party-msg-modern .pm-user {
             font-weight: 600;
             color: #ffffff;
-            margin-right: 4px;
+            margin-right: 3px;
         }
         .party-msg-modern .pm-time {
-            font-size: 7px;
+            font-size: 6px;
             color: #333333;
-            margin-left: 4px;
+            margin-left: 3px;
         }
 
         .party-input-modern {
             display: flex;
-            gap: 4px;
-            padding-top: 4px;
+            gap: 3px;
+            padding-top: 3px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
         }
         .party-input-modern input {
             flex: 1;
-            padding: 4px 10px;
-            font-size: 9px;
+            padding: 3px 8px;
+            font-size: 8px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
+            border-radius: 5px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
@@ -879,12 +935,12 @@
             color: #333333;
         }
         .party-input-modern button {
-            padding: 4px 12px;
+            padding: 3px 10px;
             background: linear-gradient(135deg, #ffffff, #eeeeee);
             color: #000000;
             border: none;
-            border-radius: 6px;
-            font-size: 9px;
+            border-radius: 5px;
+            font-size: 8px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -974,8 +1030,8 @@
         .message {
             max-width: 92%;
             padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 11px;
+            border-radius: 8px;
+            font-size: 10px;
             line-height: 1.5;
             animation: fadeInUp 0.3s ease;
             word-wrap: break-word;
@@ -1001,9 +1057,9 @@
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            padding: 6px 12px;
+            padding: 5px 10px;
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
+            border-radius: 8px;
             gap: 3px;
         }
         .typing-indicator span {
@@ -1033,7 +1089,7 @@
         }
 
         .chat-input-area {
-            padding: 6px 10px;
+            padding: 5px 8px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             gap: 4px;
@@ -1041,10 +1097,10 @@
         }
         .chat-input-area input {
             flex: 1;
-            padding: 5px 10px;
-            font-size: 10px;
+            padding: 4px 8px;
+            font-size: 9px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            border-radius: 5px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
@@ -1056,12 +1112,12 @@
             color: #444444;
         }
         .chat-input-area button {
-            padding: 5px 12px;
+            padding: 4px 10px;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 6px;
-            font-size: 10px;
+            border-radius: 5px;
+            font-size: 9px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -1079,7 +1135,7 @@
             }
             .cloak-panel {
                 height: auto;
-                max-height: 80px;
+                max-height: 70px;
                 flex-direction: row;
                 flex-wrap: wrap;
                 padding: 6px 8px;
@@ -1096,7 +1152,7 @@
                 padding: 3px 6px;
                 margin-bottom: 0;
                 flex: 1;
-                min-width: 60px;
+                min-width: 55px;
             }
             .cloak-option .cloak-name {
                 font-size: 8px;
@@ -1106,14 +1162,14 @@
                 max-height: none;
             }
             .calculator-container {
-                min-height: 300px;
+                min-height: 280px;
             }
             .party-modern {
                 max-height: none;
             }
             .chat-sidebar {
-                height: 200px;
-                min-height: 150px;
+                height: 180px;
+                min-height: 140px;
             }
             #dashboardScreen {
                 height: auto;
@@ -1121,7 +1177,7 @@
                 overflow-y: auto;
             }
             .graphing-container .graph-canvas-wrapper {
-                min-height: 250px;
+                min-height: 200px;
             }
         }
 
@@ -1174,69 +1230,69 @@
                 min-width: 45px;
             }
             .cloak-option .cloak-icon {
-                font-size: 11px;
-                width: 16px;
+                font-size: 10px;
+                width: 14px;
             }
             .cloak-option .cloak-name {
                 font-size: 7px;
             }
             .calculator-container {
-                padding: 10px 12px;
-                min-height: 350px;
+                padding: 8px 10px;
+                min-height: 300px;
             }
             .calc-btn {
-                font-size: 13px;
-                padding: 6px 2px;
-                min-height: 34px;
+                font-size: 11px;
+                padding: 4px 2px;
+                min-height: 26px;
             }
             .calc-display .calc-result {
-                font-size: 22px;
+                font-size: 18px;
             }
             .calc-header .calc-title {
-                font-size: 10px;
+                font-size: 9px;
             }
             .calc-mode-btn {
-                font-size: 9px;
-                padding: 3px 8px;
-            }
-            .party-modern {
-                padding: 8px 10px;
-            }
-            .party-msg-modern {
                 font-size: 8px;
                 padding: 2px 8px;
             }
+            .party-modern {
+                padding: 6px 8px;
+            }
+            .party-msg-modern {
+                font-size: 7px;
+                padding: 2px 6px;
+            }
             .party-code-modern .pc-code {
-                font-size: 12px;
+                font-size: 11px;
             }
             .chat-sidebar {
-                height: 160px;
-                min-height: 120px;
+                height: 140px;
+                min-height: 110px;
             }
             .message {
-                font-size: 10px;
-                padding: 5px 10px;
+                font-size: 9px;
+                padding: 4px 8px;
             }
             .welcome-banner h2 {
-                font-size: 14px;
+                font-size: 13px;
             }
             .welcome-banner {
-                padding: 8px 12px;
+                padding: 6px 10px;
             }
             .proxy-toggle {
                 font-size: 8px;
                 padding: 3px 8px;
             }
             .graphing-container .graph-canvas-wrapper {
-                min-height: 200px;
+                min-height: 160px;
             }
             .graphing-container .graph-input-area input {
-                font-size: 11px;
-                padding: 6px 10px;
+                font-size: 10px;
+                padding: 4px 8px;
             }
             .graphing-container .graph-input-area button {
-                font-size: 10px;
-                padding: 6px 14px;
+                font-size: 9px;
+                padding: 4px 12px;
             }
         }
     </style>
@@ -1244,6 +1300,12 @@
 <body>
 
     <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== CURSOR TRAIL ===== -->
+    <div id="trailContainer"></div>
+
+    <!-- ===== ROCKET SHIP ===== -->
+    <div class="rocket" id="rocket">🚀</div>
 
     <!-- ===== PASSWORD SCREEN ===== -->
     <div id="passwordScreen">
@@ -1454,7 +1516,97 @@
 
     <script>
         // ============================================
-        // PROXY TOGGLE - 100% SCHOOL COMPATIBLE
+        // CURSOR TRAIL - 0.5 inch effect
+        // ============================================
+        const trailContainer = document.getElementById('trailContainer');
+        const trailCount = 12;
+        let trailPositions = [];
+        let mouseX = 0,
+            mouseY = 0;
+
+        // Create trail elements
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.opacity = (1 - i / trailCount) * 0.8;
+            trail.style.width = (6 - i * 0.3) + 'px';
+            trail.style.height = (6 - i * 0.3) + 'px';
+            trail.style.background = `rgba(255, 255, 255, ${0.6 - i * 0.04})`;
+            trailContainer.appendChild(trail);
+            trailPositions.push({ x: -100, y: -100 });
+        }
+
+        const trails = trailContainer.querySelectorAll('.trail');
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateTrails() {
+            // Shift positions
+            trailPositions.unshift({ x: mouseX, y: mouseY });
+            trailPositions.pop();
+
+            // Update trail elements
+            trails.forEach((trail, index) => {
+                const pos = trailPositions[index] || { x: mouseX, y: mouseY };
+                trail.style.left = pos.x + 'px';
+                trail.style.top = pos.y + 'px';
+                // Smoother follow with slight delay
+                const delay = index * 0.03;
+                trail.style.transition = `all ${0.08 + delay}s ease`;
+            });
+
+            requestAnimationFrame(updateTrails);
+        }
+
+        // Start trail animation
+        updateTrails();
+
+        // ============================================
+        // ROCKET SHIP ANIMATION
+        // ============================================
+        function launchRocket() {
+            const rocket = document.getElementById('rocket');
+            rocket.classList.remove('fly');
+            // Force reflow
+            void rocket.offsetWidth;
+            rocket.classList.add('fly');
+
+            // Create trail particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'rocket-particle';
+                    particle.style.left = (10 + Math.random() * 60) + 'px';
+                    particle.style.top = (window.innerHeight - 50 - Math.random() * 40) + 'px';
+                    particle.style.width = (2 + Math.random() * 4) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.background = `rgba(255, ${150 + Math.random() * 100}, 50, ${0.5 + Math.random() * 0.5})`;
+                    document.body.appendChild(particle);
+
+                    // Trigger animation
+                    setTimeout(() => {
+                        particle.classList.add('active');
+                    }, 10);
+
+                    // Remove after animation
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1200);
+                }, i * 30);
+            }
+
+            // Hide rocket after animation
+            setTimeout(() => {
+                rocket.classList.remove('fly');
+                rocket.style.opacity = '0';
+            }, 1300);
+        }
+
+        // ============================================
+        // PROXY TOGGLE
         // ============================================
         let proxyActive = false;
         const proxyToggle = document.getElementById('proxyToggle');
@@ -1531,8 +1683,8 @@
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let mouseX = 0,
-            mouseY = 0;
+        let mouseX2 = 0,
+            mouseY2 = 0;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -1553,8 +1705,8 @@
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                const dx = mouseX - this.x,
-                    dy = mouseY - this.y,
+                const dx = mouseX2 - this.x,
+                    dy = mouseY2 - this.y,
                     dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < 150) {
                     const force = (150 - dist) / 150 * 0.02;
@@ -1585,8 +1737,8 @@
         }
         animateParticles();
 
-        document.addEventListener('mousemove', (e) => { mouseX = e.clientX;
-            mouseY = e.clientY; });
+        document.addEventListener('mousemove', (e) => { mouseX2 = e.clientX;
+            mouseY2 = e.clientY; });
 
         // ============================================
         // PASSWORD
@@ -1601,18 +1753,24 @@
         function checkPassword() {
             const entered = passwordInput.value.trim();
             if (entered === CORRECT_PASSWORD) {
-                passwordScreen.style.display = 'none';
-                dashboardScreen.style.display = 'block';
-                errorMessage.classList.remove('show');
-                updateClock();
-                setInterval(updateClock, 1000);
-                const firstCloak = document.querySelector('.cloak-option.active');
-                if (firstCloak) {
-                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.tab, firstCloak.dataset.favicon);
-                }
-                setTimeout(() => { document.getElementById('chatInput').focus(); }, 500);
-                // Initialize graph
-                setTimeout(drawGraph, 600);
+                // Launch rocket animation
+                launchRocket();
+
+                // Show dashboard after rocket animation
+                setTimeout(() => {
+                    passwordScreen.style.display = 'none';
+                    dashboardScreen.style.display = 'block';
+                    errorMessage.classList.remove('show');
+                    updateClock();
+                    setInterval(updateClock, 1000);
+                    const firstCloak = document.querySelector('.cloak-option.active');
+                    if (firstCloak) {
+                        applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.tab, firstCloak.dataset.favicon);
+                    }
+                    setTimeout(() => { document.getElementById('chatInput').focus(); }, 500);
+                    // Initialize graph
+                    setTimeout(drawGraph, 600);
+                }, 1400);
             } else {
                 errorMessage.textContent = '✗ Invalid passcode. Try again.';
                 errorMessage.classList.add('show');
@@ -1744,12 +1902,11 @@
         function resizeGraphCanvas() {
             const wrapper = graphCanvas.parentElement;
             graphCanvas.width = wrapper.clientWidth || 400;
-            graphCanvas.height = wrapper.clientHeight || 300;
+            graphCanvas.height = wrapper.clientHeight || 250;
             drawGraph();
         }
 
         function parseFunction(funcStr) {
-            // Replace common math notation with JavaScript
             let expr = funcStr
                 .replace(/sin\(/g, 'Math.sin(')
                 .replace(/cos\(/g, 'Math.cos(')
@@ -1771,11 +1928,9 @@
             const h = graphCanvas.height;
             graphCtx.clearRect(0, 0, w, h);
 
-            // Background
             graphCtx.fillStyle = 'rgba(0,0,0,0.3)';
             graphCtx.fillRect(0, 0, w, h);
 
-            // Grid
             const xMin = -10,
                 xMax = 10;
             const yMin = -10,
@@ -1786,7 +1941,6 @@
             graphCtx.strokeStyle = 'rgba(255,255,255,0.05)';
             graphCtx.lineWidth = 0.5;
 
-            // Grid lines
             for (let x = -10; x <= 10; x++) {
                 const px = (x - xMin) * xScale;
                 graphCtx.beginPath();
@@ -1802,7 +1956,6 @@
                 graphCtx.stroke();
             }
 
-            // Axes
             graphCtx.strokeStyle = 'rgba(255,255,255,0.3)';
             graphCtx.lineWidth = 1.5;
             const x0 = (0 - xMin) * xScale;
@@ -1816,7 +1969,6 @@
             graphCtx.lineTo(w, y0);
             graphCtx.stroke();
 
-            // Axis labels
             graphCtx.fillStyle = 'rgba(255,255,255,0.2)';
             graphCtx.font = '10px monospace';
             graphCtx.textAlign = 'center';
@@ -1824,7 +1976,6 @@
             graphCtx.fillText('x', w - 16, y0 - 8);
             graphCtx.fillText('y', x0 + 14, 16);
 
-            // Plot function
             const funcStr = graphInput.value.trim() || 'x^2';
             try {
                 const func = parseFunction(funcStr);
@@ -1867,11 +2018,9 @@
             }
         }
 
-        // Graph events
         graphBtn.addEventListener('click', drawGraph);
         graphInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') drawGraph(); });
 
-        // Preset buttons
         document.querySelectorAll('.graph-presets button').forEach(btn => {
             btn.addEventListener('click', () => {
                 graphInput.value = btn.dataset.func;
@@ -1880,7 +2029,6 @@
         });
 
         window.addEventListener('resize', resizeGraphCanvas);
-        // Initial draw after a delay
         setTimeout(resizeGraphCanvas, 500);
 
         // ============================================
@@ -2084,7 +2232,6 @@
         function getAIResponse(msg) {
             const m = msg.toLowerCase().trim();
 
-            // Math help
             if (m.includes('math') || m.includes('algebra') || m.includes('equation') || m.includes('solve')) {
                 return `📐 **Math Help**
 
@@ -2098,7 +2245,6 @@ I can help you with math! Try:
 Tell me what specific math topic you're working on and I'll explain it step by step! 🧮`;
             }
 
-            // Science help
             if (m.includes('science') || m.includes('physics') || m.includes('chemistry') || m.includes('biology')) {
                 return `🔬 **Science Help**
 
@@ -2111,7 +2257,6 @@ Which science subject are you studying?
 Let me know your topic and I'll break it down for you! 🧪`;
             }
 
-            // Essay writing
             if (m.includes('essay') || m.includes('paragraph') || m.includes('write') || m.includes('explain') ||
                 m.includes('describe')) {
                 let topic = msg.replace(/write|paragraph|essay|explain|describe|tell me about|what is|a|an|the|for|on|about|with|by|of|to|from|in|at|and|or|but|so|because|if|then|than|that|these|those|this|that|they|them|their|there|its|it|is|are|was|were|have|has|had|do|does|did|will|would|could|should|may|might|must|please|can|you/gi, '')
@@ -2129,7 +2274,6 @@ ${topic} connects to various disciplines including science, technology, arts, an
 📚 *Would you like me to explore any specific aspect of ${topic} in more detail?*`;
             }
 
-            // History
             if (m.includes('history') || m.includes('war') || m.includes('ancient') || m.includes('civilization')) {
                 return `🏛️ **History Help**
 
@@ -2143,7 +2287,6 @@ History helps us understand the present! What era or topic are you studying?
 Tell me what you need help with! 📜`;
             }
 
-            // Study tips
             if (m.includes('study') || m.includes('homework') || m.includes('assignment') || m.includes('exam') ||
                 m.includes('test')) {
                 return `📚 **Study Tips for Success**
@@ -2159,7 +2302,6 @@ Tell me what you need help with! 📜`;
 What subject are you studying for? I can give more specific advice! 🎯`;
             }
 
-            // Jokes
             if (m.includes('joke') || m.includes('funny')) {
                 const jokes = [
                     "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰",
@@ -2170,17 +2312,14 @@ What subject are you studying for? I can give more specific advice! 🎯`;
                 return jokes[Math.floor(Math.random() * jokes.length)];
             }
 
-            // Greetings
             if (m.includes('hello') || m.includes('hi') || m.includes('hey')) {
                 return "👋 Hey there! I'm your AI tutor. Ask me about math, science, history, essay writing, study tips, or anything school-related!";
             }
 
-            // Thank you
             if (m.includes('thank')) {
                 return "😄 You're welcome! Happy to help. Anything else I can assist with?";
             }
 
-            // Default
             return "🤔 That's interesting! Tell me more about what you need help with. I'm here to tutor you in:\n\n• Math (algebra, geometry, calculus)\n• Science (physics, chemistry, biology)\n• History\n• Essay writing\n• Study tips and homework help\n\nWhat subject are we tackling today? 🎓";
         }
 
