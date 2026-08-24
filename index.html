@@ -6,9 +6,6 @@
     <title>Home - Classroom</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" id="favicon">
     <style>
-        /* ========================================
-           RESET & BASE
-           ======================================== */
         * {
             margin: 0;
             padding: 0;
@@ -23,9 +20,6 @@
             overflow: hidden;
         }
 
-        /* ========================================
-           ANIMATED BACKGROUND - PARTICLE SYSTEM
-           ======================================== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -36,9 +30,7 @@
             pointer-events: none;
         }
 
-        /* ========================================
-           PASSWORD SCREEN
-           ======================================== */
+        /* ===== PASSWORD SCREEN ===== */
         #passwordScreen {
             position: relative;
             z-index: 1;
@@ -54,11 +46,11 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 32px;
-            padding: 60px 50px;
-            max-width: 440px;
+            padding: 50px 40px;
+            max-width: 420px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
             animation: fadeInUp 0.8s ease-out;
         }
 
@@ -74,40 +66,32 @@
         }
 
         .login-box .brand-icon {
-            font-size: 56px;
+            font-size: 48px;
             margin-bottom: 8px;
             display: block;
-            letter-spacing: 4px;
         }
-
         .login-box h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
             letter-spacing: 3px;
             color: #ffffff;
-            margin-bottom: 4px;
-            text-transform: uppercase;
         }
-
         .login-box h1 span {
             color: #888888;
             font-weight: 300;
         }
-
         .login-box .subtitle {
             color: #555555;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 32px;
-            font-weight: 400;
+            margin-bottom: 28px;
         }
-
         .login-box .divider {
             width: 40px;
             height: 2px;
             background: #ffffff;
-            margin: 0 auto 32px;
+            margin: 0 auto 28px;
             opacity: 0.3;
         }
 
@@ -120,92 +104,71 @@
 
         #passwordInput {
             flex: 1;
-            min-width: 160px;
-            padding: 16px 20px;
-            font-size: 16px;
+            min-width: 150px;
+            padding: 14px 18px;
+            font-size: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
+            border-radius: 12px;
             background: rgba(0, 0, 0, 0.6);
             color: #ffffff;
             outline: none;
             transition: all 0.4s ease;
-            font-weight: 500;
-            letter-spacing: 1px;
         }
-
         #passwordInput:focus {
             border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
-            background: rgba(0, 0, 0, 0.8);
         }
-
         #passwordInput::placeholder {
             color: #333333;
-            letter-spacing: 0.5px;
-            font-weight: 300;
         }
-
         #passwordInput.error {
             border-color: #ff3333;
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
         }
 
         #unlockBtn {
-            padding: 16px 32px;
-            font-size: 15px;
+            padding: 14px 28px;
+            font-size: 14px;
             font-weight: 600;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-
         #unlockBtn:hover {
             background: #dddddd;
             transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-        }
-
-        #unlockBtn:active {
-            transform: scale(0.97);
         }
 
         .error-message {
-            margin-top: 18px;
+            margin-top: 14px;
             font-size: 13px;
             font-weight: 500;
             color: #ff3333;
             min-height: 20px;
             opacity: 0;
-            transition: opacity 0.4s ease;
-            letter-spacing: 0.5px;
+            transition: opacity 0.3s ease;
         }
-
         .error-message.show {
             opacity: 1;
         }
-
         .login-box .footer-text {
-            margin-top: 32px;
+            margin-top: 28px;
             font-size: 11px;
             color: #222222;
             letter-spacing: 1px;
-            font-weight: 300;
         }
 
-        /* ========================================
-           DASHBOARD SCREEN
-           ======================================== */
+        /* ===== DASHBOARD ===== */
         #dashboardScreen {
             display: none;
             position: relative;
             z-index: 1;
-            padding: 12px 16px;
+            padding: 10px 14px;
             min-height: 100vh;
             height: 100vh;
             overflow: hidden;
@@ -215,226 +178,205 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 18px;
+            padding: 8px 16px;
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            margin-bottom: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 8px;
-            animation: fadeInUp 0.6s ease-out;
+            gap: 6px;
         }
 
         .dash-topbar .brand {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 800;
             color: #ffffff;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
-
         .dash-topbar .brand span {
             color: #555555;
             font-weight: 300;
-            letter-spacing: 1px;
         }
 
         .dash-topbar .right-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .dash-clock {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 40px;
-            padding: 4px 14px;
+            border-radius: 30px;
+            padding: 3px 12px;
             text-align: center;
-            min-width: 90px;
+            min-width: 80px;
         }
-
         .dash-clock .time {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 1px;
-            font-variant-numeric: tabular-nums;
         }
-
         .dash-clock .date {
             display: block;
             font-size: 7px;
             color: #444444;
             font-weight: 400;
-            margin-top: 1px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         .dash-avatar {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .dash-avatar:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+        .proxy-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 9px;
+            color: #888888;
+        }
+        .proxy-toggle:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .proxy-toggle .proxy-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #444444;
+            transition: background 0.3s;
+        }
+        .proxy-toggle .proxy-dot.active {
+            background: #00ff44;
+            box-shadow: 0 0 15px rgba(0, 255, 68, 0.2);
+        }
+        .proxy-toggle .proxy-label.active {
+            color: #00ff44;
         }
 
-        /* ========================================
-           MAIN LAYOUT
-           ======================================== */
+        /* ===== MAIN LAYOUT ===== */
         .main-layout {
             display: grid;
-            grid-template-columns: 200px 1fr 320px;
-            gap: 12px;
-            height: calc(100vh - 75px);
-            animation: fadeInUp 0.7s ease-out;
+            grid-template-columns: 160px 1fr 280px;
+            gap: 10px;
+            height: calc(100vh - 68px);
         }
 
-        /* ========================================
-           LEFT - CLOAK PANEL
-           ======================================== */
+        /* ===== CLOAK PANEL ===== */
         .cloak-panel {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 14px 12px;
+            border-radius: 12px;
+            padding: 10px 10px;
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
         }
-
         .cloak-panel::-webkit-scrollbar {
             width: 3px;
         }
-
         .cloak-panel::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 4px;
         }
-
         .cloak-panel::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
         }
 
         .cloak-panel .panel-title {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            padding-bottom: 8px;
+            margin-bottom: 6px;
+            padding-bottom: 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .cloak-panel .panel-title span {
-            color: #444444;
-            font-weight: 300;
         }
 
         .cloak-option {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
+            gap: 6px;
+            padding: 5px 8px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            margin-bottom: 4px;
+            border-radius: 6px;
+            margin-bottom: 3px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .cloak-option:hover {
             background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
-
         .cloak-option.active {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
         }
-
         .cloak-option .cloak-icon {
-            font-size: 16px;
-            width: 24px;
+            font-size: 14px;
+            width: 20px;
             text-align: center;
         }
-
-        .cloak-option .cloak-info .cloak-name {
-            font-size: 11px;
+        .cloak-option .cloak-name {
+            font-size: 10px;
             font-weight: 500;
             color: #ffffff;
         }
-
         .cloak-option .cloak-check {
             color: #00ff44;
-            font-size: 12px;
+            font-size: 10px;
             opacity: 0;
-            transition: opacity 0.3s;
             margin-left: auto;
         }
-
         .cloak-option.active .cloak-check {
             opacity: 1;
         }
-
         .cloak-option .cloak-status-dot {
             width: 4px;
             height: 4px;
             border-radius: 50%;
             background: #444444;
-            transition: background 0.3s;
-            flex-shrink: 0;
             margin-left: auto;
         }
-
         .cloak-option.active .cloak-status-dot {
             background: #00ff44;
         }
 
-        /* ========================================
-           CENTER - CALCULATOR + PARTY CHAT
-           ======================================== */
+        /* ===== CENTER ===== */
         .center-content {
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
-            padding-right: 4px;
-            gap: 10px;
+            gap: 8px;
         }
-
         .center-content::-webkit-scrollbar {
             width: 3px;
         }
-
         .center-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 4px;
         }
-
         .center-content::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
@@ -444,202 +386,157 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 16px;
-            position: relative;
-            overflow: hidden;
+            border-radius: 10px;
+            padding: 8px 14px;
             flex-shrink: 0;
         }
-
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffffff, transparent);
-            opacity: 0.3;
-        }
-
         .welcome-banner h2 {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: -0.3px;
         }
-
         .welcome-banner h2 span {
             color: #666666;
             font-weight: 300;
         }
-
         .welcome-banner p {
             color: #555555;
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 1px;
-            letter-spacing: 0.3px;
         }
-
         .welcome-banner p strong {
             color: #ffffff;
         }
 
-        /* ========================================
-           ADVANCED CALCULATOR (Smaller)
-           ======================================== */
+        /* ===== CALCULATOR - SMALLER ===== */
         .calculator {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 14px;
+            border-radius: 10px;
+            padding: 8px 10px;
             flex-shrink: 0;
         }
-
         .calculator .calc-title {
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 600;
             color: #555555;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            margin-bottom: 4px;
         }
 
         .calc-display {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 10px 14px;
+            border-radius: 8px;
+            padding: 6px 10px;
             text-align: right;
-            margin-bottom: 10px;
-            min-height: 54px;
+            margin-bottom: 6px;
+            min-height: 40px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             overflow: hidden;
         }
-
         .calc-display .calc-expression {
-            font-size: 13px;
+            font-size: 11px;
             color: #888888;
             font-weight: 300;
-            min-height: 18px;
-            word-wrap: break-word;
+            min-height: 14px;
             text-align: right;
         }
-
         .calc-display .calc-result {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
-            min-height: 30px;
+            min-height: 24px;
             text-align: right;
-            letter-spacing: 0.5px;
         }
 
         .calc-buttons {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 5px;
+            gap: 3px;
         }
-
         .calc-btn {
-            padding: 8px 4px;
-            font-size: 14px;
+            padding: 4px 2px;
+            font-size: 11px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.03);
             color: #ffffff;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             font-family: inherit;
+            text-align: center;
         }
-
         .calc-btn:hover {
             background: rgba(255, 255, 255, 0.08);
             transform: scale(1.03);
         }
-
         .calc-btn:active {
             transform: scale(0.95);
         }
-
         .calc-btn.operator {
             background: rgba(255, 255, 255, 0.06);
             color: #00ccff;
         }
-
         .calc-btn.operator:hover {
             background: rgba(255, 255, 255, 0.1);
         }
-
         .calc-btn.equals {
             background: #ffffff;
             color: #000000;
             grid-column: span 2;
         }
-
         .calc-btn.equals:hover {
             background: #dddddd;
         }
-
         .calc-btn.clear {
             background: rgba(255, 0, 0, 0.15);
             color: #ff6666;
         }
-
         .calc-btn.clear:hover {
             background: rgba(255, 0, 0, 0.25);
         }
-
         .calc-btn.func {
             background: rgba(255, 255, 255, 0.05);
             color: #ffcc00;
-            font-size: 12px;
+            font-size: 10px;
         }
-
         .calc-btn.func:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* ========================================
-           PARTY CHAT
-           ======================================== */
+        /* ===== PARTY CHAT - SMALLER ===== */
         .party-chat {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 14px;
+            border-radius: 10px;
+            padding: 8px 10px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 150px;
+            min-height: 100px;
         }
 
         .party-chat .party-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 4px;
         }
-
         .party-chat .party-title {
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
-
         .party-chat .party-title span {
             color: #555555;
             font-weight: 300;
@@ -647,50 +544,42 @@
 
         .party-controls {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
         }
-
         .party-btn {
-            padding: 4px 12px;
-            font-size: 10px;
+            padding: 2px 8px;
+            font-size: 8px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: inherit;
         }
-
         .party-btn:hover {
             background: rgba(255, 255, 255, 0.1);
         }
-
         .party-btn.create {
             background: #00ff44;
             color: #000000;
         }
-
         .party-btn.create:hover {
             background: #00dd33;
         }
-
         .party-btn.join {
             background: #0088ff;
             color: #ffffff;
         }
-
         .party-btn.join:hover {
             background: #0077dd;
         }
-
         .party-btn.leave {
             background: rgba(255, 0, 0, 0.2);
             color: #ff6666;
         }
-
         .party-btn.leave:hover {
             background: rgba(255, 0, 0, 0.3);
         }
@@ -698,199 +587,147 @@
         .party-code-display {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 4px 10px;
+            gap: 4px;
+            padding: 2px 8px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
-
         .party-code-display .code-label {
-            font-size: 9px;
+            font-size: 7px;
             color: #555555;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .party-code-display .code-value {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: #00ff44;
             letter-spacing: 2px;
             font-family: monospace;
         }
+        .party-code-display .copy-btn {
+            padding: 1px 6px;
+            font-size: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            color: #888888;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .party-code-display .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
         .party-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 6px 4px;
+            padding: 4px 2px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            min-height: 60px;
-            max-height: 120px;
+            gap: 2px;
+            min-height: 40px;
+            max-height: 80px;
         }
-
         .party-messages::-webkit-scrollbar {
             width: 3px;
         }
-
         .party-messages::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 4px;
         }
-
         .party-messages::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
         }
 
         .party-msg {
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            line-height: 1.5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 9px;
+            line-height: 1.4;
             word-wrap: break-word;
-            max-width: 90%;
+            max-width: 95%;
         }
-
         .party-msg.system {
             background: rgba(255, 255, 255, 0.03);
             color: #666666;
             text-align: center;
             font-style: italic;
             align-self: center;
-            font-size: 10px;
+            font-size: 8px;
         }
-
         .party-msg.own {
             background: rgba(0, 136, 255, 0.2);
             color: #88ccff;
             align-self: flex-end;
-            border-bottom-right-radius: 4px;
         }
-
         .party-msg.other {
             background: rgba(255, 255, 255, 0.05);
             color: #dddddd;
             align-self: flex-start;
-            border-bottom-left-radius: 4px;
         }
-
-        .party-msg .p-msg-time {
-            font-size: 8px;
-            color: #444444;
-            margin-left: 6px;
-        }
-
         .party-msg .p-msg-user {
             font-weight: 600;
             color: #ffffff;
-            margin-right: 6px;
+            margin-right: 4px;
+        }
+        .party-msg .p-msg-time {
+            font-size: 7px;
+            color: #444444;
+            margin-left: 4px;
         }
 
         .party-input-area {
             display: flex;
-            gap: 6px;
-            padding-top: 6px;
+            gap: 4px;
+            padding-top: 4px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
         }
-
         .party-input-area input {
             flex: 1;
-            padding: 6px 10px;
-            font-size: 11px;
+            padding: 4px 8px;
+            font-size: 10px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
-            transition: all 0.3s;
         }
-
         .party-input-area input:focus {
             border-color: rgba(255, 255, 255, 0.15);
         }
-
         .party-input-area input::placeholder {
             color: #444444;
         }
-
         .party-input-area button {
-            padding: 6px 14px;
+            padding: 4px 10px;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 8px;
-            font-size: 11px;
+            border-radius: 6px;
+            font-size: 9px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            white-space: nowrap;
         }
-
         .party-input-area button:hover {
             background: #dddddd;
         }
-
         .party-input-area button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
 
-        /* ========================================
-           PROXY TOGGLE
-           ======================================== */
-        .proxy-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: rgba(10, 10, 10, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 10px;
-            color: #888888;
-            flex-shrink: 0;
-        }
-
-        .proxy-toggle:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .proxy-toggle .proxy-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #444444;
-            transition: background 0.3s;
-        }
-
-        .proxy-toggle .proxy-dot.active {
-            background: #00ff44;
-            box-shadow: 0 0 20px rgba(0, 255, 68, 0.2);
-        }
-
-        .proxy-toggle .proxy-label {
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .proxy-toggle .proxy-label.active {
-            color: #00ff44;
-        }
-
-        /* ========================================
-           CHAT SIDEBAR
-           ======================================== */
+        /* ===== CHAT SIDEBAR ===== */
         .chat-sidebar {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -898,33 +735,29 @@
         }
 
         .chat-header {
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
-
         .chat-header .chat-icon {
-            font-size: 16px;
+            font-size: 14px;
         }
-
         .chat-header .chat-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
         }
-
         .chat-header .chat-status {
-            font-size: 8px;
+            font-size: 7px;
             color: #00ff44;
             margin-left: auto;
             display: flex;
             align-items: center;
             gap: 4px;
         }
-
         .chat-header .chat-status::before {
             content: '';
             width: 5px;
@@ -934,23 +767,30 @@
             animation: pulse 2s infinite;
         }
 
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 10px 12px;
+            padding: 8px 10px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 3px;
         }
-
         .chat-messages::-webkit-scrollbar {
             width: 3px;
         }
-
         .chat-messages::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
         }
-
         .chat-messages::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
@@ -958,55 +798,47 @@
 
         .message {
             max-width: 92%;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 12px;
-            line-height: 1.6;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            line-height: 1.5;
             animation: fadeInUp 0.3s ease;
             word-wrap: break-word;
             white-space: pre-wrap;
         }
-
         .message.bot {
             background: rgba(255, 255, 255, 0.06);
             color: #dddddd;
             align-self: flex-start;
-            border-bottom-left-radius: 3px;
         }
-
         .message.user {
             background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
             align-self: flex-end;
-            border-bottom-right-radius: 3px;
         }
-
         .message .msg-time {
             font-size: 7px;
             color: #444444;
-            margin-top: 4px;
+            margin-top: 3px;
             display: block;
         }
 
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            padding: 8px 14px;
+            padding: 6px 12px;
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            border-bottom-left-radius: 3px;
-            gap: 4px;
+            border-radius: 10px;
+            gap: 3px;
         }
-
         .typing-indicator span {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: #666666;
             border-radius: 50%;
             display: inline-block;
             animation: typingBounce 1.4s infinite;
         }
-
         .typing-indicator span:nth-child(2) {
             animation-delay: 0.2s;
         }
@@ -1021,74 +853,49 @@
                 transform: translateY(0);
             }
             30% {
-                transform: translateY(-6px);
-            }
-        }
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
+                transform: translateY(-5px);
             }
         }
 
         .chat-input-area {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-shrink: 0;
         }
-
         .chat-input-area input {
             flex: 1;
-            padding: 7px 12px;
-            font-size: 11px;
+            padding: 5px 10px;
+            font-size: 10px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
-            transition: all 0.3s;
         }
-
         .chat-input-area input:focus {
             border-color: rgba(255, 255, 255, 0.15);
         }
-
         .chat-input-area input::placeholder {
             color: #444444;
         }
-
         .chat-input-area button {
-            padding: 7px 14px;
+            padding: 5px 12px;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 8px;
-            font-size: 11px;
+            border-radius: 6px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            white-space: nowrap;
         }
-
         .chat-input-area button:hover {
             background: #dddddd;
         }
 
-        /* ========================================
-           RESPONSIVE
-           ======================================== */
-        @media (max-width: 1000px) {
-            .main-layout {
-                grid-template-columns: 170px 1fr 270px;
-            }
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 850px) {
             .main-layout {
                 grid-template-columns: 1fr;
@@ -1098,65 +905,62 @@
             }
             .cloak-panel {
                 height: auto;
-                max-height: 150px;
+                max-height: 120px;
                 flex-direction: row;
                 flex-wrap: wrap;
-                padding: 10px 12px;
-                gap: 4px;
+                padding: 6px 8px;
+                gap: 3px;
                 overflow-y: auto;
             }
             .cloak-panel .panel-title {
                 width: 100%;
-                margin-bottom: 4px;
-                padding-bottom: 4px;
-                font-size: 10px;
+                margin-bottom: 3px;
+                padding-bottom: 3px;
+                font-size: 8px;
             }
             .cloak-option {
-                padding: 5px 8px;
+                padding: 3px 6px;
                 margin-bottom: 0;
                 flex: 1;
-                min-width: 100px;
+                min-width: 80px;
             }
-            .cloak-option .cloak-info .cloak-name {
-                font-size: 10px;
+            .cloak-option .cloak-name {
+                font-size: 9px;
             }
             .center-content {
                 height: auto;
                 max-height: none;
             }
-            .calculator {
-                flex-shrink: 0;
-            }
             .party-chat {
-                min-height: 180px;
+                min-height: 140px;
             }
             .chat-sidebar {
-                height: 300px;
-                min-height: 240px;
+                height: 240px;
+                min-height: 180px;
             }
             #dashboardScreen {
                 height: auto;
                 max-height: none;
                 overflow-y: auto;
-                padding: 10px 12px;
             }
-            .message {
-                max-width: 95%;
-                font-size: 11px;
-                padding: 6px 12px;
+            .calc-buttons {
+                gap: 2px;
+            }
+            .calc-btn {
+                font-size: 10px;
+                padding: 3px 2px;
             }
         }
 
         @media (max-width: 600px) {
             .login-box {
                 padding: 30px 20px;
-                border-radius: 24px;
             }
             .login-box h1 {
                 font-size: 22px;
             }
             .login-box .brand-icon {
-                font-size: 40px;
+                font-size: 36px;
             }
             .input-group {
                 flex-direction: column;
@@ -1169,86 +973,109 @@
                 width: 100%;
             }
             .dash-topbar {
-                padding: 8px 12px;
+                padding: 6px 10px;
             }
             .dash-topbar .brand {
-                font-size: 13px;
+                font-size: 12px;
             }
             .dash-clock .date {
                 display: none;
             }
             .dash-clock {
-                min-width: 60px;
-                padding: 3px 8px;
+                min-width: 55px;
+                padding: 2px 8px;
             }
             .dash-clock .time {
-                font-size: 11px;
+                font-size: 10px;
             }
             .dash-avatar {
-                width: 28px;
-                height: 28px;
-                font-size: 11px;
+                display: none;
             }
             .cloak-panel {
-                max-height: 120px;
-                padding: 8px;
+                max-height: 100px;
+                padding: 4px 6px;
             }
             .cloak-option {
-                padding: 3px 6px;
-                min-width: 70px;
+                padding: 2px 4px;
+                min-width: 60px;
             }
             .cloak-option .cloak-icon {
-                font-size: 12px;
-                width: 18px;
+                font-size: 11px;
+                width: 16px;
             }
-            .cloak-option .cloak-info .cloak-name {
-                font-size: 9px;
+            .cloak-option .cloak-name {
+                font-size: 8px;
             }
             .calculator {
-                padding: 8px 10px;
+                padding: 6px 6px;
             }
             .calc-btn {
-                font-size: 12px;
-                padding: 6px 2px;
+                font-size: 9px;
+                padding: 3px 1px;
             }
             .calc-display .calc-result {
-                font-size: 20px;
+                font-size: 16px;
+                min-height: 18px;
             }
             .calc-display .calc-expression {
-                font-size: 11px;
+                font-size: 9px;
+                min-height: 12px;
             }
             .party-chat {
-                min-height: 200px;
-                padding: 10px;
+                min-height: 150px;
+                padding: 6px;
+            }
+            .party-msg {
+                font-size: 8px;
+                padding: 2px 6px;
+            }
+            .party-code-display .code-value {
+                font-size: 12px;
             }
             .chat-sidebar {
-                height: 260px;
-                min-height: 200px;
-            }
-            .welcome-banner h2 {
-                font-size: 14px;
-            }
-            .welcome-banner {
-                padding: 10px 12px;
+                height: 200px;
+                min-height: 160px;
             }
             .message {
                 font-size: 10px;
+                padding: 5px 10px;
+            }
+            .welcome-banner h2 {
+                font-size: 13px;
+            }
+            .welcome-banner {
                 padding: 6px 10px;
-                max-width: 98%;
-            }
-            .calc-buttons {
-                gap: 4px;
-            }
-            .party-msg {
-                font-size: 10px;
-                padding: 3px 8px;
-            }
-            .party-code-display .code-value {
-                font-size: 14px;
             }
             .proxy-toggle {
+                font-size: 8px;
+                padding: 3px 8px;
+            }
+            .proxy-toggle .proxy-dot {
+                width: 5px;
+                height: 5px;
+            }
+            .party-btn {
+                font-size: 7px;
+                padding: 1px 6px;
+            }
+            .party-input-area input {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
+            .party-input-area button {
+                font-size: 8px;
+                padding: 3px 8px;
+            }
+            .chat-input-area input {
+                font-size: 9px;
+                padding: 4px 8px;
+            }
+            .chat-input-area button {
                 font-size: 9px;
                 padding: 4px 10px;
+            }
+            .calc-buttons {
+                gap: 2px;
             }
         }
 
@@ -1257,34 +1084,26 @@
                 font-size: 18px;
             }
             .login-box .brand-icon {
-                font-size: 32px;
+                font-size: 28px;
             }
             .dash-topbar .right-section {
-                gap: 6px;
-            }
-            .dash-avatar {
-                display: none;
+                gap: 4px;
             }
             .calc-btn {
-                font-size: 11px;
-                padding: 5px 2px;
+                font-size: 8px;
+                padding: 2px 1px;
             }
             .calc-display .calc-result {
-                font-size: 18px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-    ANIMATED BACKGROUND
-    ============================================ -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- ============================================
-    SCREEN 1: PASSWORD
-    ============================================ -->
+    <!-- ===== PASSWORD SCREEN ===== -->
     <div id="passwordScreen">
         <div class="login-box">
             <span class="brand-icon">◆</span>
@@ -1300,15 +1119,11 @@
         </div>
     </div>
 
-    <!-- ============================================
-    SCREEN 2: DASHBOARD
-    ============================================ -->
+    <!-- ===== DASHBOARD ===== -->
     <div id="dashboardScreen">
-        <!-- TOP BAR -->
         <div class="dash-topbar">
             <div class="brand">AMIRI <span>EDC</span></div>
             <div class="right-section">
-                <!-- PROXY TOGGLE -->
                 <div class="proxy-toggle" id="proxyToggle">
                     <span class="proxy-dot" id="proxyDot"></span>
                     <span class="proxy-label" id="proxyLabel">Proxy: OFF</span>
@@ -1321,59 +1136,53 @@
             </div>
         </div>
 
-        <!-- MAIN LAYOUT -->
         <div class="main-layout">
 
-            <!-- LEFT: Cloak Panel -->
+            <!-- CLOAK PANEL -->
             <div class="cloak-panel">
-                <div class="panel-title">🎭 Tab Cloaks <span>• select</span></div>
-
+                <div class="panel-title">🎭 Tab Cloaks</div>
                 <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
                     <span class="cloak-icon">🏫</span>
-                    <div class="cloak-info"><div class="cloak-name">Classroom</div></div>
+                    <span class="cloak-name">Classroom</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
-
                 <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
                     <span class="cloak-icon">📄</span>
-                    <div class="cloak-info"><div class="cloak-name">Google Docs</div></div>
+                    <span class="cloak-name">Google Docs</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
-
                 <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
                     <span class="cloak-icon">📁</span>
-                    <div class="cloak-info"><div class="cloak-name">Google Drive</div></div>
+                    <span class="cloak-name">Google Drive</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
-
                 <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
                     <span class="cloak-icon">📋</span>
-                    <div class="cloak-info"><div class="cloak-name">Google Forms</div></div>
+                    <span class="cloak-name">Google Forms</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
-
                 <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
                     <span class="cloak-icon">🖼️</span>
-                    <div class="cloak-info"><div class="cloak-name">Google Slides</div></div>
+                    <span class="cloak-name">Google Slides</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
             </div>
 
-            <!-- CENTER: Calculator + Party Chat -->
+            <!-- CENTER -->
             <div class="center-content">
                 <div class="welcome-banner">
                     <h2>Welcome back, <span>Student</span> 👋</h2>
-                    <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong> • <span id="proxyStatusDisplay">Proxy: OFF</span></p>
+                    <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong></p>
                 </div>
 
                 <!-- CALCULATOR -->
                 <div class="calculator">
-                    <div class="calc-title">🧮 Advanced Calculator</div>
+                    <div class="calc-title">🧮 Calculator</div>
                     <div class="calc-display">
                         <div class="calc-expression" id="calcExpression"></div>
                         <div class="calc-result" id="calcResult">0</div>
@@ -1410,7 +1219,7 @@
                 <!-- PARTY CHAT -->
                 <div class="party-chat">
                     <div class="party-header">
-                        <div class="party-title">🎉 Party Chat <span>• <span id="partyMemberCount">0</span> online</span></div>
+                        <div class="party-title">🎉 Party <span>• <span id="partyMemberCount">0</span></span></div>
                         <div class="party-controls">
                             <button class="party-btn create" id="createPartyBtn">+ Create</button>
                             <button class="party-btn join" id="joinPartyBtn">🔗 Join</button>
@@ -1418,12 +1227,12 @@
                         </div>
                     </div>
                     <div class="party-code-display" id="partyCodeDisplay" style="display:none;">
-                        <span class="code-label">Party Code:</span>
+                        <span class="code-label">Code:</span>
                         <span class="code-value" id="partyCodeValue">------</span>
-                        <button class="party-btn" id="copyCodeBtn" style="padding:2px 8px; font-size:9px;">📋</button>
+                        <button class="copy-btn" id="copyCodeBtn">📋</button>
                     </div>
                     <div class="party-messages" id="partyMessages">
-                        <div class="party-msg system">💬 Create or join a party to chat!</div>
+                        <div class="party-msg system">💬 Create or join a party!</div>
                     </div>
                     <div class="party-input-area">
                         <input type="text" id="partyInput" placeholder="Type a message..." disabled>
@@ -1432,7 +1241,7 @@
                 </div>
             </div>
 
-            <!-- RIGHT: Smart AI Chatbot -->
+            <!-- CHAT SIDEBAR -->
             <div class="chat-sidebar">
                 <div class="chat-header">
                     <span class="chat-icon">🧠</span>
@@ -1441,7 +1250,7 @@
                 </div>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
-                        👋 Hey! I can write essays, explain concepts, or help with homework!
+                        👋 Ask me to write essays or explain concepts!
                         <span class="msg-time">Just now</span>
                     </div>
                 </div>
@@ -1457,37 +1266,23 @@
         </div>
     </div>
 
-    <!-- ============================================
-    JAVASCRIPT
-    ============================================ -->
     <script>
         // ============================================
         // PROXY TOGGLE
         // ============================================
         let proxyActive = false;
-        const proxyToggle = document.getElementById('proxyToggle');
-        const proxyDot = document.getElementById('proxyDot');
-        const proxyLabel = document.getElementById('proxyLabel');
-        const proxyStatusDisplay = document.getElementById('proxyStatusDisplay');
-
-        proxyToggle.addEventListener('click', () => {
+        document.getElementById('proxyToggle').addEventListener('click', function() {
             proxyActive = !proxyActive;
+            const dot = document.getElementById('proxyDot');
+            const label = document.getElementById('proxyLabel');
             if (proxyActive) {
-                proxyDot.className = 'proxy-dot active';
-                proxyLabel.textContent = 'Proxy: ON';
-                proxyLabel.className = 'proxy-label active';
-                proxyStatusDisplay.textContent = 'Proxy: ON 🚀';
-                // Enable proxy - redirect through a CORS proxy
-                document.querySelectorAll('a').forEach(link => {
-                    if (link.href && !link.href.startsWith('#')) {
-                        link.href = 'https://corsproxy.io/?' + encodeURIComponent(link.href);
-                    }
-                });
+                dot.className = 'proxy-dot active';
+                label.textContent = 'Proxy: ON';
+                label.className = 'proxy-label active';
             } else {
-                proxyDot.className = 'proxy-dot';
-                proxyLabel.textContent = 'Proxy: OFF';
-                proxyLabel.className = 'proxy-label';
-                proxyStatusDisplay.textContent = 'Proxy: OFF';
+                dot.className = 'proxy-dot';
+                label.textContent = 'Proxy: OFF';
+                label.className = 'proxy-label';
             }
         });
 
@@ -1498,24 +1293,19 @@
         const currentCloakDisplayName = document.getElementById('currentCloakDisplayName');
         const faviconLink = document.getElementById('favicon');
 
-        function applyCloak(cloakName, icon, tabTitle, faviconPath) {
+        function applyCloak(cloakName, tabTitle, faviconPath) {
             document.title = tabTitle;
-            if (faviconPath) {
-                faviconLink.href = faviconPath;
-            }
+            if (faviconPath) faviconLink.href = faviconPath;
             currentCloakDisplayName.textContent = cloakName;
-            cloakOptions.forEach(option => {
-                option.classList.remove('active');
-                if (option.dataset.cloak === cloakName) {
-                    option.classList.add('active');
-                }
+            cloakOptions.forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.dataset.cloak === cloakName) opt.classList.add('active');
             });
         }
 
-        cloakOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                applyCloak(option.dataset.cloak, option.dataset.icon, option.dataset.tab, option.dataset
-                    .favicon);
+        cloakOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                applyCloak(opt.dataset.cloak, opt.dataset.tab, opt.dataset.favicon);
             });
         });
 
@@ -1539,10 +1329,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.4 + 0.1;
             }
             update() {
                 this.x += this.speedX;
@@ -1565,37 +1355,16 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.fill();
-                ctx.shadowColor = 'rgba(255, 255, 255, 0.05)';
-                ctx.shadowBlur = 10;
             }
         }
 
-        const particleCount = Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 8000));
+        const particleCount = Math.min(80, Math.floor((window.innerWidth * window.innerHeight) / 10000));
         for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-        function drawLines() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x,
-                        dy = particles[i].y - particles[j].y,
-                        dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.04 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update();
                 p.draw(); });
-            drawLines();
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
@@ -1623,10 +1392,9 @@
                 setInterval(updateClock, 1000);
                 const firstCloak = document.querySelector('.cloak-option.active');
                 if (firstCloak) {
-                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.icon, firstCloak.dataset.tab, firstCloak.dataset
-                        .favicon);
+                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.tab, firstCloak.dataset.favicon);
                 }
-                setTimeout(() => { document.getElementById('chatInput').focus(); }, 600);
+                setTimeout(() => { document.getElementById('chatInput').focus(); }, 500);
             } else {
                 errorMessage.textContent = '✗ Invalid passcode. Try again.';
                 errorMessage.classList.add('show');
@@ -1658,7 +1426,7 @@
         }
 
         // ============================================
-        // ADVANCED CALCULATOR
+        // CALCULATOR
         // ============================================
         let calcExpression = '';
         let calcResult = '0';
@@ -1683,16 +1451,13 @@
                         .replace(/÷/g, '/')
                         .replace(/−/g, '-')
                         .replace(/π/g, Math.PI)
-                        .replace(/e/g, Math.E);
-
-                    // Handle functions
-                    evalExpr = evalExpr.replace(/sqrt\(/g, 'Math.sqrt(');
-                    evalExpr = evalExpr.replace(/sin\(/g, 'Math.sin(');
-                    evalExpr = evalExpr.replace(/cos\(/g, 'Math.cos(');
-                    evalExpr = evalExpr.replace(/tan\(/g, 'Math.tan(');
-                    evalExpr = evalExpr.replace(/\^2/g, '**2');
-                    evalExpr = evalExpr.replace(/\^3/g, '**3');
-
+                        .replace(/e/g, Math.E)
+                        .replace(/sqrt\(/g, 'Math.sqrt(')
+                        .replace(/sin\(/g, 'Math.sin(')
+                        .replace(/cos\(/g, 'Math.cos(')
+                        .replace(/tan\(/g, 'Math.tan(')
+                        .replace(/\^2/g, '**2')
+                        .replace(/\^3/g, '**3');
                     const result = Function('"use strict"; return (' + evalExpr + ')')();
                     calcResult = String(parseFloat(result.toFixed(10)));
                     calcExpression = '';
@@ -1704,25 +1469,10 @@
                 return;
             }
 
-            // Handle function buttons
             if (['sqrt', 'sin', 'cos', 'tan', '^', '^3', 'pi', 'e'].includes(value)) {
-                if (value === 'sqrt') {
-                    calcExpression += 'sqrt(';
-                } else if (value === 'sin') {
-                    calcExpression += 'sin(';
-                } else if (value === 'cos') {
-                    calcExpression += 'cos(';
-                } else if (value === 'tan') {
-                    calcExpression += 'tan(';
-                } else if (value === '^') {
-                    calcExpression += '^2';
-                } else if (value === '^3') {
-                    calcExpression += '^3';
-                } else if (value === 'pi') {
-                    calcExpression += 'π';
-                } else if (value === 'e') {
-                    calcExpression += 'e';
-                }
+                const map = { 'sqrt': 'sqrt(', 'sin': 'sin(', 'cos': 'cos(', 'tan': 'tan(', '^': '^2', '^3': '^3', 'pi': 'π',
+                    'e': 'e' };
+                calcExpression += map[value] || value;
                 calcResult = '0';
                 updateCalcDisplay();
                 return;
@@ -1731,7 +1481,6 @@
             if (calcResult !== '0' && calcExpression === '' && !isNaN(value)) {
                 calcResult = '0';
             }
-
             if (calcResult !== '0' && calcExpression === '' && '+-/*%'.includes(value)) {
                 calcExpression = calcResult + value;
                 calcResult = '0';
@@ -1745,41 +1494,29 @@
         }
 
         document.querySelectorAll('.calc-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                handleCalcInput(btn.dataset.value);
-            });
+            btn.addEventListener('click', () => handleCalcInput(btn.dataset.value));
         });
 
         document.addEventListener('keydown', (e) => {
             const key = e.key;
-            if (key >= '0' && key <= '9') {
-                handleCalcInput(key);
-            } else if (key === '.') {
-                handleCalcInput('.');
-            } else if (key === '+') {
-                handleCalcInput('+');
-            } else if (key === '-') {
-                handleCalcInput('-');
-            } else if (key === '*') {
-                handleCalcInput('*');
-            } else if (key === '/') {
-                handleCalcInput('/');
-            } else if (key === 'Enter' || key === '=') {
-                e.preventDefault();
-                handleCalcInput('=');
-            } else if (key === 'Escape' || key === 'c' || key === 'C') {
-                handleCalcInput('clear');
-            }
+            if (key >= '0' && key <= '9') handleCalcInput(key);
+            else if (key === '.') handleCalcInput('.');
+            else if (key === '+') handleCalcInput('+');
+            else if (key === '-') handleCalcInput('-');
+            else if (key === '*') handleCalcInput('*');
+            else if (key === '/') handleCalcInput('/');
+            else if (key === 'Enter' || key === '=') { e.preventDefault();
+                handleCalcInput('='); } else if (key === 'Escape' || key === 'c' || key === 'C') handleCalcInput('clear');
         });
 
         // ============================================
-        // PARTY CHAT SYSTEM
+        // PARTY CHAT - COMPUTER TO COMPUTER
         // ============================================
         let partyCode = '';
-        let partyMembers = [];
         let isInParty = false;
-        let partyMessages = [];
-        let partyMessageHistory = [];
+        let partyMembers = [];
+        let username = 'User' + Math.floor(Math.random() * 1000);
+        let broadcastChannel = null;
 
         const partyMessagesEl = document.getElementById('partyMessages');
         const partyInput = document.getElementById('partyInput');
@@ -1795,9 +1532,7 @@
         function generatePartyCode() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             let code = '';
-            for (let i = 0; i < 6; i++) {
-                code += chars[Math.floor(Math.random() * chars.length)];
-            }
+            for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
             return code;
         }
 
@@ -1805,17 +1540,17 @@
             const msgDiv = document.createElement('div');
             msgDiv.className = `party-msg ${type}`;
             const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
-                now.getMinutes().toString().padStart(2, '0');
+            const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 
             if (type === 'system') {
                 msgDiv.textContent = text;
             } else if (type === 'own') {
-                msgDiv.innerHTML = `<span class="p-msg-user">You:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
+                msgDiv.innerHTML =
+                    `<span class="p-msg-user">You:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
             } else {
-                msgDiv.innerHTML = `<span class="p-msg-user">${user}:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
+                msgDiv.innerHTML =
+                    `<span class="p-msg-user">${user}:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
             }
-
             partyMessagesEl.appendChild(msgDiv);
             partyMessagesEl.scrollTop = partyMessagesEl.scrollHeight;
         }
@@ -1838,60 +1573,99 @@
                 joinPartyBtn.style.display = 'inline-block';
                 leavePartyBtn.style.display = 'none';
                 partyMemberCount.textContent = '0';
+                if (broadcastChannel) {
+                    broadcastChannel.close();
+                    broadcastChannel = null;
+                }
             }
         }
 
         function createParty() {
             partyCode = generatePartyCode();
             isInParty = true;
-            partyMembers = [];
-            partyMessages = [];
-            partyMessageHistory = [];
+            partyMembers = [username];
 
-            // Clear messages
+            // Create BroadcastChannel for this party
+            try {
+                broadcastChannel = new BroadcastChannel('party_' + partyCode);
+                broadcastChannel.onmessage = (event) => {
+                    const data = event.data;
+                    if (data.type === 'join') {
+                        if (!partyMembers.includes(data.user)) {
+                            partyMembers.push(data.user);
+                            partyMemberCount.textContent = partyMembers.length + 1;
+                            addPartyMessage(`${data.user} joined the party!`, 'system');
+                        }
+                    } else if (data.type === 'leave') {
+                        partyMembers = partyMembers.filter(u => u !== data.user);
+                        partyMemberCount.textContent = partyMembers.length + 1;
+                        addPartyMessage(`${data.user} left the party.`, 'system');
+                    } else if (data.type === 'message') {
+                        if (data.user !== username) {
+                            addPartyMessage(data.text, 'other', data.user);
+                        }
+                    }
+                };
+            } catch (e) {
+                console.log('BroadcastChannel not supported, using localStorage fallback');
+            }
+
+            // Announce join to others
+            broadcastChannel && broadcastChannel.postMessage({ type: 'join', user: username });
+
             partyMessagesEl.innerHTML = '';
             addPartyMessage(`🎉 Party created! Code: ${partyCode}`, 'system');
-            addPartyMessage('Share this code with friends to join!', 'system');
-
-            // Add to party message history
-            partyMessageHistory.push({ text: `🎉 Party created! Code: ${partyCode}`, type: 'system' });
-
+            addPartyMessage('Share the code for friends to join!', 'system');
             updatePartyUI();
         }
 
         function joinParty() {
-            const code = prompt('Enter party code:', '');
+            const code = prompt('Enter 6-character party code:', '');
             if (code && code.trim().length === 6) {
                 partyCode = code.toUpperCase();
                 isInParty = true;
-                partyMembers = [];
-                partyMessages = [];
+                partyMembers = [username];
 
-                // Clear messages
+                try {
+                    broadcastChannel = new BroadcastChannel('party_' + partyCode);
+                    broadcastChannel.onmessage = (event) => {
+                        const data = event.data;
+                        if (data.type === 'join') {
+                            if (!partyMembers.includes(data.user) && data.user !== username) {
+                                partyMembers.push(data.user);
+                                partyMemberCount.textContent = partyMembers.length + 1;
+                                addPartyMessage(`${data.user} joined the party!`, 'system');
+                            }
+                        } else if (data.type === 'leave') {
+                            partyMembers = partyMembers.filter(u => u !== data.user);
+                            partyMemberCount.textContent = partyMembers.length + 1;
+                            addPartyMessage(`${data.user} left the party.`, 'system');
+                        } else if (data.type === 'message') {
+                            if (data.user !== username) {
+                                addPartyMessage(data.text, 'other', data.user);
+                            }
+                        }
+                    };
+                } catch (e) {
+                    console.log('BroadcastChannel not supported');
+                }
+
+                broadcastChannel && broadcastChannel.postMessage({ type: 'join', user: username });
+
                 partyMessagesEl.innerHTML = '';
                 addPartyMessage(`🔗 Joined party: ${partyCode}`, 'system');
-                addPartyMessage('Welcome to the party!', 'system');
-
-                // Add to party message history
-                partyMessageHistory.push({ text: `🔗 Joined party: ${partyCode}`, type: 'system' });
-
                 updatePartyUI();
             } else if (code) {
-                alert('Invalid party code. Please enter a 6-character code.');
+                alert('Invalid code. Must be 6 characters.');
             }
         }
 
         function leaveParty() {
             if (confirm('Leave the party?')) {
+                broadcastChannel && broadcastChannel.postMessage({ type: 'leave', user: username });
                 isInParty = false;
-                partyCode = '';
-                partyMembers = [];
-                partyMessages = [];
-
-                // Clear messages
                 partyMessagesEl.innerHTML = '';
                 addPartyMessage('🚪 You left the party.', 'system');
-
                 updatePartyUI();
             }
         }
@@ -1900,45 +1674,17 @@
             const text = partyInput.value.trim();
             if (!text || !isInParty) return;
 
-            // Add to messages
             addPartyMessage(text, 'own');
-            partyMessageHistory.push({ text: text, type: 'own', user: 'You' });
-
-            // Simulate other members (for demo)
+            broadcastChannel && broadcastChannel.postMessage({ type: 'message', user: username, text: text });
             partyInput.value = '';
-
-            // Simulate friend responses (randomly)
-            if (Math.random() > 0.5) {
-                setTimeout(() => {
-                    const friendNames = ['Alex', 'Jordan', 'Sam', 'Taylor', 'Morgan', 'Casey', 'Riley', 'Avery', 'Quinn',
-                        'Logan'
-                    ];
-                    const friend = friendNames[Math.floor(Math.random() * friendNames.length)];
-                    const responses = ['😂 Lol!', 'That\'s awesome!', '😂😂😂', 'Fr?', '🔥🔥🔥', '👀', 'Lmaoo', 'I agree!',
-                        'Dead 💀', '😂 True!'
-                    ];
-                    const response = responses[Math.floor(Math.random() * responses.length)];
-                    addPartyMessage(response, 'other', friend);
-                    partyMessageHistory.push({ text: response, type: 'other', user: friend });
-                    // Update member count (simulate)
-                    const currentCount = parseInt(partyMemberCount.textContent);
-                    if (currentCount < 8 && Math.random() > 0.7) {
-                        partyMemberCount.textContent = currentCount + 1;
-                    }
-                }, Math.random() * 1500 + 500);
-            }
         }
 
         createPartyBtn.addEventListener('click', createParty);
         joinPartyBtn.addEventListener('click', joinParty);
         leavePartyBtn.addEventListener('click', leaveParty);
         partySendBtn.addEventListener('click', sendPartyMessage);
-        partyInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                sendPartyMessage();
-            }
-        });
+        partyInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
+                sendPartyMessage(); } });
 
         copyCodeBtn.addEventListener('click', () => {
             if (partyCode) {
@@ -1946,7 +1692,6 @@
                     copyCodeBtn.textContent = '✅';
                     setTimeout(() => { copyCodeBtn.textContent = '📋'; }, 2000);
                 }).catch(() => {
-                    // Fallback
                     const textArea = document.createElement('textarea');
                     textArea.value = partyCode;
                     document.body.appendChild(textArea);
@@ -1960,13 +1705,7 @@
         });
 
         // ============================================
-        // SMART AI CHATBOT (Same as before)
-        // ============================================
-        // [AI functions here - keeping the same as previous version]
-        // For brevity, I'll reference the previous AI code
-
-        // ============================================
-        // QUICK AI - Simplified version for this file
+        // SMART AI CHAT
         // ============================================
         const chatMessages2 = document.getElementById('chatMessages');
         const chatInput2 = document.getElementById('chatInput');
@@ -1974,12 +1713,13 @@
         const typingIndicator2 = document.getElementById('typingIndicator');
         const aiStatus2 = document.getElementById('aiStatus');
 
-        function getQuickAIResponse(msg) {
+        function getAIResponse(msg) {
             const m = msg.toLowerCase().trim();
 
             if (m.includes('write') || m.includes('paragraph') || m.includes('essay') || m.includes('explain') ||
                 m.includes('describe') || m.includes('tell me about') || m.includes('what is')) {
-                let topic = msg.replace(/write|paragraph|essay|explain|describe|tell me about|what is|a|an|the|for|on|about|with|by|of|to|from|in|at|and|or|but|so|because|if|then|than|that|these|those|this|that|they|them|their|there|its|it|is|are|was|were|have|has|had|do|does|did|will|would|could|should|may|might|must|please|can|you/gi, '').trim();
+                let topic = msg.replace(/write|paragraph|essay|explain|describe|tell me about|what is|a|an|the|for|on|about|with|by|of|to|from|in|at|and|or|but|so|because|if|then|than|that|these|those|this|that|they|them|their|there|its|it|is|are|was|were|have|has|had|do|does|did|will|would|could|should|may|might|must|please|can|you/gi, '')
+                    .trim();
                 if (!topic || topic.length < 2) topic = "this topic";
                 topic = topic.replace(/\b\w/g, l => l.toUpperCase());
                 return `📝 **Paragraph on "${topic}"**
@@ -2049,22 +1789,13 @@ ${topic} connects to various disciplines including science, technology, arts, an
             showTyping2();
             setTimeout(() => {
                 hideTyping2();
-                const response = getQuickAIResponse(text);
-                addMessage2(response, 'bot');
-            }, Math.random() * 500 + 300);
+                addMessage2(getAIResponse(text), 'bot');
+            }, Math.random() * 400 + 200);
         }
 
         sendBtn2.addEventListener('click', handleSend2);
         chatInput2.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
                 handleSend2(); } });
-
-        // Focus chat input when dashboard appears
-        const observer2 = new MutationObserver(() => {
-            if (dashboardScreen.style.display === 'block') {
-                setTimeout(() => { chatInput2.focus(); }, 600);
-            }
-        });
-        observer2.observe(dashboardScreen, { attributes: true, attributeFilter: ['style'] });
     </script>
 
 </body>
