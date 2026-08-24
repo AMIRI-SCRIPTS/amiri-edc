@@ -274,7 +274,7 @@
         /* ===== MAIN LAYOUT ===== */
         .main-layout {
             display: grid;
-            grid-template-columns: 160px 1fr 280px;
+            grid-template-columns: 150px 1fr 280px;
             gap: 10px;
             height: calc(100vh - 68px);
         }
@@ -408,318 +408,364 @@
             color: #ffffff;
         }
 
-        /* ===== CALCULATOR - SMALLER ===== */
-        .calculator {
+        /* ========================================
+           CALCULATOR - SLEEK MODERN DESIGN
+           ======================================== */
+        .calculator-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 8px 10px;
+            border-radius: 14px;
+            padding: 10px 12px;
             flex-shrink: 0;
+            max-height: 240px;
         }
-        .calculator .calc-title {
-            font-size: 8px;
+
+        .calculator-modern .calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .calculator-modern .calc-header .calc-label {
+            font-size: 9px;
             font-weight: 600;
             color: #555555;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 4px;
+        }
+        .calculator-modern .calc-header .calc-mode {
+            font-size: 7px;
+            color: #333333;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1px 8px;
+            border-radius: 10px;
         }
 
-        .calc-display {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+        .calc-display-modern {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 8px;
-            padding: 6px 10px;
+            padding: 6px 12px;
             text-align: right;
             margin-bottom: 6px;
-            min-height: 40px;
+            min-height: 44px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            overflow: hidden;
         }
-        .calc-display .calc-expression {
+        .calc-display-modern .calc-expr {
             font-size: 11px;
-            color: #888888;
+            color: #666666;
             font-weight: 300;
             min-height: 14px;
-            text-align: right;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
         }
-        .calc-display .calc-result {
-            font-size: 20px;
+        .calc-display-modern .calc-result {
+            font-size: 22px;
             font-weight: 700;
             color: #ffffff;
-            min-height: 24px;
-            text-align: right;
+            min-height: 26px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
         }
 
-        .calc-buttons {
+        .calc-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 3px;
+            gap: 4px;
         }
-        .calc-btn {
-            padding: 4px 2px;
-            font-size: 11px;
+
+        .calc-btn-modern {
+            padding: 5px 2px;
+            font-size: 12px;
             font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: none;
             border-radius: 6px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.04);
             color: #ffffff;
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: inherit;
             text-align: center;
+            min-height: 28px;
         }
-        .calc-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: scale(1.03);
-        }
-        .calc-btn:active {
-            transform: scale(0.95);
-        }
-        .calc-btn.operator {
-            background: rgba(255, 255, 255, 0.06);
-            color: #00ccff;
-        }
-        .calc-btn.operator:hover {
+        .calc-btn-modern:hover {
             background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
         }
-        .calc-btn.equals {
+        .calc-btn-modern:active {
+            transform: scale(0.92);
+        }
+        .calc-btn-modern.op {
+            background: rgba(0, 180, 255, 0.12);
+            color: #66ddff;
+        }
+        .calc-btn-modern.op:hover {
+            background: rgba(0, 180, 255, 0.2);
+        }
+        .calc-btn-modern.eq {
             background: #ffffff;
             color: #000000;
             grid-column: span 2;
         }
-        .calc-btn.equals:hover {
+        .calc-btn-modern.eq:hover {
             background: #dddddd;
         }
-        .calc-btn.clear {
-            background: rgba(255, 0, 0, 0.15);
+        .calc-btn-modern.clr {
+            background: rgba(255, 50, 50, 0.12);
             color: #ff6666;
         }
-        .calc-btn.clear:hover {
-            background: rgba(255, 0, 0, 0.25);
+        .calc-btn-modern.clr:hover {
+            background: rgba(255, 50, 50, 0.2);
         }
-        .calc-btn.func {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffcc00;
+        .calc-btn-modern.fn {
+            background: rgba(255, 200, 0, 0.06);
+            color: #ffcc44;
             font-size: 10px;
         }
-        .calc-btn.func:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .calc-btn-modern.fn:hover {
+            background: rgba(255, 200, 0, 0.12);
+        }
+        .calc-btn-modern.zero {
+            grid-column: span 2;
         }
 
-        /* ===== PARTY CHAT - SMALLER ===== */
-        .party-chat {
+        /* ========================================
+           PARTY CHAT - COMPLETELY DIFFERENT DESIGN
+           ======================================== */
+        .party-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 8px 10px;
+            border-radius: 14px;
+            padding: 10px 12px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 100px;
+            min-height: 120px;
         }
 
-        .party-chat .party-header {
+        .party-modern .party-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 4px;
             flex-shrink: 0;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-        .party-chat .party-title {
-            font-size: 9px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        .party-chat .party-title span {
-            color: #555555;
-            font-weight: 300;
         }
 
-        .party-controls {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-        .party-btn {
-            padding: 2px 8px;
-            font-size: 8px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        .party-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .party-btn.create {
-            background: #00ff44;
-            color: #000000;
-        }
-        .party-btn.create:hover {
-            background: #00dd33;
-        }
-        .party-btn.join {
-            background: #0088ff;
-            color: #ffffff;
-        }
-        .party-btn.join:hover {
-            background: #0077dd;
-        }
-        .party-btn.leave {
-            background: rgba(255, 0, 0, 0.2);
-            color: #ff6666;
-        }
-        .party-btn.leave:hover {
-            background: rgba(255, 0, 0, 0.3);
-        }
-
-        .party-code-display {
+        .party-modern .party-top .party-title-section {
             display: flex;
             align-items: center;
+            gap: 6px;
+        }
+        .party-modern .party-top .party-title-section .party-icon {
+            font-size: 14px;
+        }
+        .party-modern .party-top .party-title-section .party-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .party-modern .party-top .party-title-section .party-count {
+            font-size: 8px;
+            color: #555555;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1px 8px;
+            border-radius: 10px;
+        }
+
+        .party-modern .party-top .party-actions {
+            display: flex;
             gap: 4px;
-            padding: 2px 8px;
-            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .party-btn-modern {
+            padding: 2px 10px;
+            font-size: 8px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.04);
+            color: #aaaaaa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .party-btn-modern:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .party-btn-modern.create {
+            background: linear-gradient(135deg, #00cc44, #00aa33);
+            color: #000000;
+            border-color: transparent;
+        }
+        .party-btn-modern.create:hover {
+            background: linear-gradient(135deg, #00dd55, #00bb44);
+            transform: scale(1.05);
+        }
+        .party-btn-modern.join {
+            background: linear-gradient(135deg, #0066ff, #0044dd);
+            color: #ffffff;
+            border-color: transparent;
+        }
+        .party-btn-modern.join:hover {
+            background: linear-gradient(135deg, #0077ff, #0055ee);
+            transform: scale(1.05);
+        }
+        .party-btn-modern.leave {
+            background: rgba(255, 50, 50, 0.15);
+            color: #ff6666;
+            border-color: rgba(255, 50, 50, 0.2);
+        }
+        .party-btn-modern.leave:hover {
+            background: rgba(255, 50, 50, 0.25);
+        }
+
+        .party-code-modern {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
             margin-bottom: 4px;
             flex-shrink: 0;
         }
-        .party-code-display .code-label {
+        .party-code-modern .pc-label {
             font-size: 7px;
             color: #555555;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .party-code-display .code-value {
-            font-size: 14px;
+        .party-code-modern .pc-code {
+            font-size: 15px;
             font-weight: 700;
-            color: #00ff44;
-            letter-spacing: 2px;
-            font-family: monospace;
+            color: #44ff88;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
         }
-        .party-code-display .copy-btn {
-            padding: 1px 6px;
+        .party-code-modern .pc-copy {
+            padding: 1px 8px;
             font-size: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 4px;
-            color: #888888;
+            color: #666666;
             cursor: pointer;
             font-family: inherit;
+            transition: all 0.2s;
         }
-        .party-code-display .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .party-code-modern .pc-copy:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
         }
 
-        .party-messages {
+        .party-msgs-modern {
             flex: 1;
             overflow-y: auto;
             padding: 4px 2px;
             display: flex;
             flex-direction: column;
             gap: 2px;
-            min-height: 40px;
-            max-height: 80px;
+            min-height: 35px;
+            max-height: 70px;
         }
-        .party-messages::-webkit-scrollbar {
+        .party-msgs-modern::-webkit-scrollbar {
             width: 3px;
         }
-        .party-messages::-webkit-scrollbar-track {
+        .party-msgs-modern::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
         }
-        .party-messages::-webkit-scrollbar-thumb {
+        .party-msgs-modern::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
         }
 
-        .party-msg {
-            padding: 2px 8px;
-            border-radius: 6px;
+        .party-msg-modern {
+            padding: 2px 10px;
+            border-radius: 8px;
             font-size: 9px;
             line-height: 1.4;
             word-wrap: break-word;
             max-width: 95%;
         }
-        .party-msg.system {
-            background: rgba(255, 255, 255, 0.03);
-            color: #666666;
+        .party-msg-modern.sys {
+            background: rgba(255, 255, 255, 0.02);
+            color: #555555;
             text-align: center;
             font-style: italic;
             align-self: center;
             font-size: 8px;
         }
-        .party-msg.own {
-            background: rgba(0, 136, 255, 0.2);
-            color: #88ccff;
+        .party-msg-modern.me {
+            background: rgba(68, 200, 255, 0.12);
+            color: #88ddff;
             align-self: flex-end;
+            border-bottom-right-radius: 2px;
         }
-        .party-msg.other {
-            background: rgba(255, 255, 255, 0.05);
-            color: #dddddd;
+        .party-msg-modern.other {
+            background: rgba(255, 255, 255, 0.04);
+            color: #bbbbbb;
             align-self: flex-start;
+            border-bottom-left-radius: 2px;
         }
-        .party-msg .p-msg-user {
+        .party-msg-modern .pm-user {
             font-weight: 600;
             color: #ffffff;
             margin-right: 4px;
         }
-        .party-msg .p-msg-time {
+        .party-msg-modern .pm-time {
             font-size: 7px;
-            color: #444444;
+            color: #333333;
             margin-left: 4px;
         }
 
-        .party-input-area {
+        .party-input-modern {
             display: flex;
             gap: 4px;
             padding-top: 4px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
         }
-        .party-input-area input {
+        .party-input-modern input {
             flex: 1;
-            padding: 4px 8px;
+            padding: 4px 10px;
             font-size: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
+            transition: all 0.2s;
         }
-        .party-input-area input:focus {
-            border-color: rgba(255, 255, 255, 0.15);
+        .party-input-modern input:focus {
+            border-color: rgba(255, 255, 255, 0.12);
         }
-        .party-input-area input::placeholder {
-            color: #444444;
+        .party-input-modern input::placeholder {
+            color: #333333;
         }
-        .party-input-area button {
-            padding: 4px 10px;
-            background: #ffffff;
+        .party-input-modern button {
+            padding: 4px 14px;
+            background: linear-gradient(135deg, #ffffff, #eeeeee);
             color: #000000;
             border: none;
-            border-radius: 6px;
-            font-size: 9px;
+            border-radius: 8px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
-        .party-input-area button:hover {
-            background: #dddddd;
+        .party-input-modern button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ffffff, #dddddd);
         }
-        .party-input-area button:disabled {
+        .party-input-modern button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+            transform: none;
         }
 
         /* ===== CHAT SIDEBAR ===== */
@@ -905,7 +951,7 @@
             }
             .cloak-panel {
                 height: auto;
-                max-height: 120px;
+                max-height: 100px;
                 flex-direction: row;
                 flex-wrap: wrap;
                 padding: 6px 8px;
@@ -922,33 +968,29 @@
                 padding: 3px 6px;
                 margin-bottom: 0;
                 flex: 1;
-                min-width: 80px;
+                min-width: 70px;
             }
             .cloak-option .cloak-name {
-                font-size: 9px;
+                font-size: 8px;
             }
             .center-content {
                 height: auto;
                 max-height: none;
             }
-            .party-chat {
+            .calculator-modern {
+                max-height: none;
+            }
+            .party-modern {
                 min-height: 140px;
             }
             .chat-sidebar {
-                height: 240px;
-                min-height: 180px;
+                height: 220px;
+                min-height: 160px;
             }
             #dashboardScreen {
                 height: auto;
                 max-height: none;
                 overflow-y: auto;
-            }
-            .calc-buttons {
-                gap: 2px;
-            }
-            .calc-btn {
-                font-size: 10px;
-                padding: 3px 2px;
             }
         }
 
@@ -992,49 +1034,55 @@
                 display: none;
             }
             .cloak-panel {
-                max-height: 100px;
+                max-height: 80px;
                 padding: 4px 6px;
             }
             .cloak-option {
                 padding: 2px 4px;
-                min-width: 60px;
+                min-width: 50px;
             }
             .cloak-option .cloak-icon {
                 font-size: 11px;
                 width: 16px;
             }
             .cloak-option .cloak-name {
-                font-size: 8px;
+                font-size: 7px;
             }
-            .calculator {
-                padding: 6px 6px;
+            .calculator-modern {
+                padding: 6px 8px;
             }
-            .calc-btn {
+            .calc-btn-modern {
+                font-size: 10px;
+                padding: 4px 2px;
+                min-height: 24px;
+            }
+            .calc-display-modern .calc-result {
+                font-size: 18px;
+                min-height: 20px;
+            }
+            .calc-display-modern .calc-expr {
                 font-size: 9px;
-                padding: 3px 1px;
             }
-            .calc-display .calc-result {
-                font-size: 16px;
-                min-height: 18px;
+            .calc-grid {
+                gap: 3px;
             }
-            .calc-display .calc-expression {
-                font-size: 9px;
-                min-height: 12px;
-            }
-            .party-chat {
+            .party-modern {
                 min-height: 150px;
-                padding: 6px;
+                padding: 6px 8px;
             }
-            .party-msg {
+            .party-msg-modern {
                 font-size: 8px;
-                padding: 2px 6px;
+                padding: 2px 8px;
             }
-            .party-code-display .code-value {
+            .party-code-modern .pc-code {
                 font-size: 12px;
             }
+            .party-code-modern {
+                padding: 2px 8px;
+            }
             .chat-sidebar {
-                height: 200px;
-                min-height: 160px;
+                height: 180px;
+                min-height: 140px;
             }
             .message {
                 font-size: 10px;
@@ -1050,21 +1098,17 @@
                 font-size: 8px;
                 padding: 3px 8px;
             }
-            .proxy-toggle .proxy-dot {
-                width: 5px;
-                height: 5px;
-            }
-            .party-btn {
+            .party-btn-modern {
                 font-size: 7px;
                 padding: 1px 6px;
             }
-            .party-input-area input {
+            .party-input-modern input {
                 font-size: 9px;
-                padding: 3px 6px;
-            }
-            .party-input-area button {
-                font-size: 8px;
                 padding: 3px 8px;
+            }
+            .party-input-modern button {
+                font-size: 9px;
+                padding: 3px 10px;
             }
             .chat-input-area input {
                 font-size: 9px;
@@ -1073,9 +1117,6 @@
             .chat-input-area button {
                 font-size: 9px;
                 padding: 4px 10px;
-            }
-            .calc-buttons {
-                gap: 2px;
             }
         }
 
@@ -1089,12 +1130,13 @@
             .dash-topbar .right-section {
                 gap: 4px;
             }
-            .calc-btn {
-                font-size: 8px;
-                padding: 2px 1px;
+            .calc-btn-modern {
+                font-size: 9px;
+                padding: 3px 1px;
+                min-height: 20px;
             }
-            .calc-display .calc-result {
-                font-size: 14px;
+            .calc-display-modern .calc-result {
+                font-size: 16px;
             }
         }
     </style>
@@ -1180,61 +1222,71 @@
                     <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong></p>
                 </div>
 
-                <!-- CALCULATOR -->
-                <div class="calculator">
-                    <div class="calc-title">🧮 Calculator</div>
-                    <div class="calc-display">
-                        <div class="calc-expression" id="calcExpression"></div>
+                <!-- CALCULATOR - MODERN -->
+                <div class="calculator-modern">
+                    <div class="calc-header">
+                        <span class="calc-label">🧮 Calculator</span>
+                        <span class="calc-mode">advanced</span>
+                    </div>
+                    <div class="calc-display-modern">
+                        <div class="calc-expr" id="calcExpression"></div>
                         <div class="calc-result" id="calcResult">0</div>
                     </div>
-                    <div class="calc-buttons">
-                        <button class="calc-btn clear" data-value="clear">AC</button>
-                        <button class="calc-btn func" data-value="sqrt">√</button>
-                        <button class="calc-btn func" data-value="^">x²</button>
-                        <button class="calc-btn func" data-value="^3">x³</button>
-                        <button class="calc-btn operator" data-value="/">÷</button>
-                        <button class="calc-btn" data-value="7">7</button>
-                        <button class="calc-btn" data-value="8">8</button>
-                        <button class="calc-btn" data-value="9">9</button>
-                        <button class="calc-btn operator" data-value="*">×</button>
-                        <button class="calc-btn" data-value="4">4</button>
-                        <button class="calc-btn" data-value="5">5</button>
-                        <button class="calc-btn" data-value="6">6</button>
-                        <button class="calc-btn operator" data-value="-">−</button>
-                        <button class="calc-btn" data-value="1">1</button>
-                        <button class="calc-btn" data-value="2">2</button>
-                        <button class="calc-btn" data-value="3">3</button>
-                        <button class="calc-btn operator" data-value="+">+</button>
-                        <button class="calc-btn func" data-value="sin">sin</button>
-                        <button class="calc-btn func" data-value="cos">cos</button>
-                        <button class="calc-btn func" data-value="tan">tan</button>
-                        <button class="calc-btn equals" data-value="=">=</button>
-                        <button class="calc-btn zero" data-value="0">0</button>
-                        <button class="calc-btn" data-value=".">.</button>
-                        <button class="calc-btn func" data-value="pi">π</button>
-                        <button class="calc-btn func" data-value="e">e</button>
+                    <div class="calc-grid">
+                        <button class="calc-btn-modern clr" data-value="clear">AC</button>
+                        <button class="calc-btn-modern fn" data-value="sqrt">√</button>
+                        <button class="calc-btn-modern fn" data-value="^">x²</button>
+                        <button class="calc-btn-modern fn" data-value="^3">x³</button>
+                        <button class="calc-btn-modern op" data-value="/">÷</button>
+                        <button class="calc-btn-modern" data-value="7">7</button>
+                        <button class="calc-btn-modern" data-value="8">8</button>
+                        <button class="calc-btn-modern" data-value="9">9</button>
+                        <button class="calc-btn-modern op" data-value="*">×</button>
+                        <button class="calc-btn-modern" data-value="4">4</button>
+                        <button class="calc-btn-modern" data-value="5">5</button>
+                        <button class="calc-btn-modern" data-value="6">6</button>
+                        <button class="calc-btn-modern op" data-value="-">−</button>
+                        <button class="calc-btn-modern" data-value="1">1</button>
+                        <button class="calc-btn-modern" data-value="2">2</button>
+                        <button class="calc-btn-modern" data-value="3">3</button>
+                        <button class="calc-btn-modern op" data-value="+">+</button>
+                        <button class="calc-btn-modern fn" data-value="sin">sin</button>
+                        <button class="calc-btn-modern fn" data-value="cos">cos</button>
+                        <button class="calc-btn-modern fn" data-value="tan">tan</button>
+                        <button class="calc-btn-modern eq" data-value="=">=</button>
+                        <button class="calc-btn-modern zero" data-value="0">0</button>
+                        <button class="calc-btn-modern" data-value=".">.</button>
+                        <button class="calc-btn-modern fn" data-value="pi">π</button>
+                        <button class="calc-btn-modern fn" data-value="e">e</button>
                     </div>
                 </div>
 
-                <!-- PARTY CHAT -->
-                <div class="party-chat">
-                    <div class="party-header">
-                        <div class="party-title">🎉 Party <span>• <span id="partyMemberCount">0</span></span></div>
-                        <div class="party-controls">
-                            <button class="party-btn create" id="createPartyBtn">+ Create</button>
-                            <button class="party-btn join" id="joinPartyBtn">🔗 Join</button>
-                            <button class="party-btn leave" id="leavePartyBtn" style="display:none;">🚪 Leave</button>
+                <!-- PARTY CHAT - MODERN -->
+                <div class="party-modern">
+                    <div class="party-top">
+                        <div class="party-title-section">
+                            <span class="party-icon">🎉</span>
+                            <span class="party-name">Party Chat</span>
+                            <span class="party-count" id="partyMemberCount">0 online</span>
+                        </div>
+                        <div class="party-actions">
+                            <button class="party-btn-modern create" id="createPartyBtn">+ Create</button>
+                            <button class="party-btn-modern join" id="joinPartyBtn">🔗 Join</button>
+                            <button class="party-btn-modern leave" id="leavePartyBtn" style="display:none;">🚪 Leave</button>
                         </div>
                     </div>
-                    <div class="party-code-display" id="partyCodeDisplay" style="display:none;">
-                        <span class="code-label">Code:</span>
-                        <span class="code-value" id="partyCodeValue">------</span>
-                        <button class="copy-btn" id="copyCodeBtn">📋</button>
+
+                    <div class="party-code-modern" id="partyCodeDisplay" style="display:none;">
+                        <span class="pc-label">Code:</span>
+                        <span class="pc-code" id="partyCodeValue">------</span>
+                        <button class="pc-copy" id="copyCodeBtn">📋 Copy</button>
                     </div>
-                    <div class="party-messages" id="partyMessages">
-                        <div class="party-msg system">💬 Create or join a party!</div>
+
+                    <div class="party-msgs-modern" id="partyMessages">
+                        <div class="party-msg-modern sys">💬 Create or join a party to chat!</div>
                     </div>
-                    <div class="party-input-area">
+
+                    <div class="party-input-modern">
                         <input type="text" id="partyInput" placeholder="Type a message..." disabled>
                         <button id="partySendBtn" disabled>Send</button>
                     </div>
@@ -1493,7 +1545,7 @@
             updateCalcDisplay();
         }
 
-        document.querySelectorAll('.calc-btn').forEach(btn => {
+        document.querySelectorAll('.calc-btn-modern').forEach(btn => {
             btn.addEventListener('click', () => handleCalcInput(btn.dataset.value));
         });
 
@@ -1510,7 +1562,7 @@
         });
 
         // ============================================
-        // PARTY CHAT - COMPUTER TO COMPUTER
+        // PARTY CHAT
         // ============================================
         let partyCode = '';
         let isInParty = false;
@@ -1538,18 +1590,18 @@
 
         function addPartyMessage(text, type, user = '') {
             const msgDiv = document.createElement('div');
-            msgDiv.className = `party-msg ${type}`;
+            msgDiv.className = `party-msg-modern ${type}`;
             const now = new Date();
             const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 
-            if (type === 'system') {
+            if (type === 'sys') {
                 msgDiv.textContent = text;
-            } else if (type === 'own') {
+            } else if (type === 'me') {
                 msgDiv.innerHTML =
-                    `<span class="p-msg-user">You:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
+                    `<span class="pm-user">You:</span> ${text} <span class="pm-time">${timeStr}</span>`;
             } else {
                 msgDiv.innerHTML =
-                    `<span class="p-msg-user">${user}:</span> ${text} <span class="p-msg-time">${timeStr}</span>`;
+                    `<span class="pm-user">${user}:</span> ${text} <span class="pm-time">${timeStr}</span>`;
             }
             partyMessagesEl.appendChild(msgDiv);
             partyMessagesEl.scrollTop = partyMessagesEl.scrollHeight;
@@ -1564,7 +1616,7 @@
                 createPartyBtn.style.display = 'none';
                 joinPartyBtn.style.display = 'none';
                 leavePartyBtn.style.display = 'inline-block';
-                partyMemberCount.textContent = partyMembers.length + 1;
+                partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
             } else {
                 partyCodeDisplay.style.display = 'none';
                 partyInput.disabled = true;
@@ -1572,7 +1624,7 @@
                 createPartyBtn.style.display = 'inline-block';
                 joinPartyBtn.style.display = 'inline-block';
                 leavePartyBtn.style.display = 'none';
-                partyMemberCount.textContent = '0';
+                partyMemberCount.textContent = '0 online';
                 if (broadcastChannel) {
                     broadcastChannel.close();
                     broadcastChannel = null;
@@ -1585,7 +1637,6 @@
             isInParty = true;
             partyMembers = [username];
 
-            // Create BroadcastChannel for this party
             try {
                 broadcastChannel = new BroadcastChannel('party_' + partyCode);
                 broadcastChannel.onmessage = (event) => {
@@ -1593,29 +1644,26 @@
                     if (data.type === 'join') {
                         if (!partyMembers.includes(data.user)) {
                             partyMembers.push(data.user);
-                            partyMemberCount.textContent = partyMembers.length + 1;
-                            addPartyMessage(`${data.user} joined the party!`, 'system');
+                            partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
+                            addPartyMessage(`${data.user} joined!`, 'sys');
                         }
                     } else if (data.type === 'leave') {
                         partyMembers = partyMembers.filter(u => u !== data.user);
-                        partyMemberCount.textContent = partyMembers.length + 1;
-                        addPartyMessage(`${data.user} left the party.`, 'system');
+                        partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
+                        addPartyMessage(`${data.user} left.`, 'sys');
                     } else if (data.type === 'message') {
                         if (data.user !== username) {
                             addPartyMessage(data.text, 'other', data.user);
                         }
                     }
                 };
-            } catch (e) {
-                console.log('BroadcastChannel not supported, using localStorage fallback');
-            }
+            } catch (e) {}
 
-            // Announce join to others
             broadcastChannel && broadcastChannel.postMessage({ type: 'join', user: username });
 
             partyMessagesEl.innerHTML = '';
-            addPartyMessage(`🎉 Party created! Code: ${partyCode}`, 'system');
-            addPartyMessage('Share the code for friends to join!', 'system');
+            addPartyMessage(`🎉 Party created! Code: ${partyCode}`, 'sys');
+            addPartyMessage('Share the code for friends to join!', 'sys');
             updatePartyUI();
         }
 
@@ -1633,27 +1681,25 @@
                         if (data.type === 'join') {
                             if (!partyMembers.includes(data.user) && data.user !== username) {
                                 partyMembers.push(data.user);
-                                partyMemberCount.textContent = partyMembers.length + 1;
-                                addPartyMessage(`${data.user} joined the party!`, 'system');
+                                partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
+                                addPartyMessage(`${data.user} joined!`, 'sys');
                             }
                         } else if (data.type === 'leave') {
                             partyMembers = partyMembers.filter(u => u !== data.user);
-                            partyMemberCount.textContent = partyMembers.length + 1;
-                            addPartyMessage(`${data.user} left the party.`, 'system');
+                            partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
+                            addPartyMessage(`${data.user} left.`, 'sys');
                         } else if (data.type === 'message') {
                             if (data.user !== username) {
                                 addPartyMessage(data.text, 'other', data.user);
                             }
                         }
                     };
-                } catch (e) {
-                    console.log('BroadcastChannel not supported');
-                }
+                } catch (e) {}
 
                 broadcastChannel && broadcastChannel.postMessage({ type: 'join', user: username });
 
                 partyMessagesEl.innerHTML = '';
-                addPartyMessage(`🔗 Joined party: ${partyCode}`, 'system');
+                addPartyMessage(`🔗 Joined party: ${partyCode}`, 'sys');
                 updatePartyUI();
             } else if (code) {
                 alert('Invalid code. Must be 6 characters.');
@@ -1665,7 +1711,7 @@
                 broadcastChannel && broadcastChannel.postMessage({ type: 'leave', user: username });
                 isInParty = false;
                 partyMessagesEl.innerHTML = '';
-                addPartyMessage('🚪 You left the party.', 'system');
+                addPartyMessage('🚪 You left the party.', 'sys');
                 updatePartyUI();
             }
         }
@@ -1674,7 +1720,7 @@
             const text = partyInput.value.trim();
             if (!text || !isInParty) return;
 
-            addPartyMessage(text, 'own');
+            addPartyMessage(text, 'me');
             broadcastChannel && broadcastChannel.postMessage({ type: 'message', user: username, text: text });
             partyInput.value = '';
         }
@@ -1690,7 +1736,7 @@
             if (partyCode) {
                 navigator.clipboard.writeText(partyCode).then(() => {
                     copyCodeBtn.textContent = '✅';
-                    setTimeout(() => { copyCodeBtn.textContent = '📋'; }, 2000);
+                    setTimeout(() => { copyCodeBtn.textContent = '📋 Copy'; }, 2000);
                 }).catch(() => {
                     const textArea = document.createElement('textarea');
                     textArea.value = partyCode;
@@ -1699,7 +1745,7 @@
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
                     copyCodeBtn.textContent = '✅';
-                    setTimeout(() => { copyCodeBtn.textContent = '📋'; }, 2000);
+                    setTimeout(() => { copyCodeBtn.textContent = '📋 Copy'; }, 2000);
                 });
             }
         });
