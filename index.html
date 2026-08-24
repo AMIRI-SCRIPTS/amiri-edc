@@ -45,9 +45,9 @@
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 40px 35px;
-            max-width: 380px;
+            border-radius: 32px;
+            padding: 50px 40px;
+            max-width: 420px;
             width: 100%;
             text-align: center;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
@@ -66,14 +66,14 @@
         }
 
         .login-box .brand-icon {
-            font-size: 40px;
-            margin-bottom: 6px;
+            font-size: 48px;
+            margin-bottom: 8px;
             display: block;
         }
         .login-box h1 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: #ffffff;
         }
         .login-box h1 span {
@@ -82,33 +82,33 @@
         }
         .login-box .subtitle {
             color: #555555;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
         }
         .login-box .divider {
-            width: 30px;
+            width: 40px;
             height: 2px;
             background: #ffffff;
-            margin: 0 auto 20px;
+            margin: 0 auto 28px;
             opacity: 0.3;
         }
 
         .input-group {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         #passwordInput {
             flex: 1;
-            min-width: 120px;
-            padding: 10px 14px;
-            font-size: 13px;
+            min-width: 150px;
+            padding: 14px 18px;
+            font-size: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: 12px;
             background: rgba(0, 0, 0, 0.6);
             color: #ffffff;
             outline: none;
@@ -116,22 +116,24 @@
         }
         #passwordInput:focus {
             border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
         }
         #passwordInput::placeholder {
             color: #333333;
         }
         #passwordInput.error {
             border-color: #ff3333;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
         }
 
         #unlockBtn {
-            padding: 10px 22px;
-            font-size: 12px;
+            padding: 14px 28px;
+            font-size: 14px;
             font-weight: 600;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
@@ -143,11 +145,11 @@
         }
 
         .error-message {
-            margin-top: 10px;
-            font-size: 11px;
+            margin-top: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: #ff3333;
-            min-height: 16px;
+            min-height: 20px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -155,8 +157,8 @@
             opacity: 1;
         }
         .login-box .footer-text {
-            margin-top: 20px;
-            font-size: 9px;
+            margin-top: 28px;
+            font-size: 11px;
             color: #222222;
             letter-spacing: 1px;
         }
@@ -166,7 +168,7 @@
             display: none;
             position: relative;
             z-index: 1;
-            padding: 6px 10px;
+            padding: 10px 14px;
             min-height: 100vh;
             height: 100vh;
             overflow: hidden;
@@ -176,21 +178,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px 14px;
+            padding: 8px 16px;
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            margin-bottom: 6px;
+            border-radius: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 6px;
         }
 
         .dash-topbar .brand {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 800;
             color: #ffffff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
         .dash-topbar .brand span {
             color: #555555;
@@ -200,70 +202,70 @@
         .dash-topbar .right-section {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .dash-clock {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            padding: 2px 10px;
+            border-radius: 30px;
+            padding: 3px 12px;
             text-align: center;
-            min-width: 65px;
+            min-width: 80px;
         }
         .dash-clock .time {
             display: block;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
         .dash-clock .date {
             display: block;
-            font-size: 6px;
+            font-size: 7px;
             color: #444444;
             font-weight: 400;
         }
 
         .dash-avatar {
-            width: 26px;
-            height: 26px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 13px;
             cursor: pointer;
         }
 
         .proxy-toggle {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 2px 10px;
+            gap: 6px;
+            padding: 4px 10px;
             background: rgba(10, 10, 10, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 8px;
+            font-size: 9px;
             color: #888888;
         }
         .proxy-toggle:hover {
             border-color: rgba(255, 255, 255, 0.15);
         }
         .proxy-toggle .proxy-dot {
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: #444444;
             transition: background 0.3s;
         }
         .proxy-toggle .proxy-dot.active {
             background: #00ff44;
-            box-shadow: 0 0 10px rgba(0, 255, 68, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 68, 0.2);
         }
         .proxy-toggle .proxy-label.active {
             color: #00ff44;
@@ -272,9 +274,9 @@
         /* ===== MAIN LAYOUT ===== */
         .main-layout {
             display: grid;
-            grid-template-columns: 120px 1fr 260px;
-            gap: 6px;
-            height: calc(100vh - 56px);
+            grid-template-columns: 160px 1fr 280px;
+            gap: 10px;
+            height: calc(100vh - 68px);
         }
 
         /* ===== CLOAK PANEL ===== */
@@ -282,15 +284,15 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 8px 8px;
+            border-radius: 12px;
+            padding: 10px 10px;
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
         }
         .cloak-panel::-webkit-scrollbar {
-            width: 2px;
+            width: 3px;
         }
         .cloak-panel::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
@@ -301,49 +303,49 @@
         }
 
         .cloak-panel .panel-title {
-            font-size: 8px;
+            font-size: 9px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 4px;
-            padding-bottom: 4px;
+            margin-bottom: 6px;
+            padding-bottom: 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .cloak-option {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 4px 6px;
+            gap: 6px;
+            padding: 5px 8px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 5px;
-            margin-bottom: 2px;
+            border-radius: 6px;
+            margin-bottom: 3px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         .cloak-option:hover {
             background: rgba(255, 255, 255, 0.06);
-            transform: translateX(2px);
+            transform: translateX(3px);
         }
         .cloak-option.active {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.2);
         }
         .cloak-option .cloak-icon {
-            font-size: 12px;
-            width: 18px;
+            font-size: 14px;
+            width: 20px;
             text-align: center;
         }
         .cloak-option .cloak-name {
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 500;
             color: #ffffff;
         }
         .cloak-option .cloak-check {
             color: #00ff44;
-            font-size: 9px;
+            font-size: 10px;
             opacity: 0;
             margin-left: auto;
         }
@@ -351,8 +353,8 @@
             opacity: 1;
         }
         .cloak-option .cloak-status-dot {
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #444444;
             margin-left: auto;
@@ -367,10 +369,10 @@
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
-            gap: 4px;
+            gap: 8px;
         }
         .center-content::-webkit-scrollbar {
-            width: 2px;
+            width: 3px;
         }
         .center-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
@@ -384,12 +386,12 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 6px 12px;
+            border-radius: 10px;
+            padding: 8px 14px;
             flex-shrink: 0;
         }
         .welcome-banner h2 {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
         }
@@ -399,94 +401,104 @@
         }
         .welcome-banner p {
             color: #555555;
-            font-size: 9px;
+            font-size: 10px;
             margin-top: 1px;
         }
         .welcome-banner p strong {
             color: #ffffff;
         }
 
-        /* ========================================
-           CALCULATOR - SMALLER BOX
-           ======================================== */
+        /* ===== CALCULATOR + PARTY CHAT - SIDE BY SIDE ===== */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* ===== CALCULATOR ===== */
         .calculator-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 5px 8px;
-            flex-shrink: 0;
-            max-height: 155px;
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .calculator-modern .calc-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
         .calculator-modern .calc-header .calc-label {
-            font-size: 7px;
+            font-size: 9px;
             font-weight: 600;
             color: #555555;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
         .calculator-modern .calc-header .calc-mode {
-            font-size: 5px;
+            font-size: 7px;
             color: #333333;
             background: rgba(255, 255, 255, 0.03);
-            padding: 0px 4px;
-            border-radius: 4px;
+            padding: 1px 8px;
+            border-radius: 8px;
         }
 
         .calc-display-modern {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 4px;
-            padding: 2px 8px;
+            border-radius: 6px;
+            padding: 6px 12px;
             text-align: right;
-            margin-bottom: 3px;
-            min-height: 28px;
+            margin-bottom: 6px;
+            min-height: 44px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            flex-shrink: 0;
         }
         .calc-display-modern .calc-expr {
-            font-size: 8px;
+            font-size: 11px;
             color: #666666;
             font-weight: 300;
-            min-height: 10px;
+            min-height: 14px;
             font-family: 'Courier New', monospace;
         }
         .calc-display-modern .calc-result {
-            font-size: 16px;
+            font-size: 22px;
             font-weight: 700;
             color: #ffffff;
-            min-height: 18px;
+            min-height: 26px;
             font-family: 'Courier New', monospace;
         }
 
         .calc-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 2px;
+            gap: 4px;
+            flex: 1;
         }
 
         .calc-btn-modern {
-            padding: 2px 1px;
-            font-size: 9px;
+            padding: 4px 2px;
+            font-size: 12px;
             font-weight: 600;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             background: rgba(255, 255, 255, 0.04);
             color: #ffffff;
             cursor: pointer;
-            transition: all 0.12s ease;
+            transition: all 0.15s ease;
             font-family: inherit;
             text-align: center;
-            min-height: 18px;
-            line-height: 1;
+            min-height: 28px;
         }
         .calc-btn-modern:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -520,7 +532,7 @@
         .calc-btn-modern.fn {
             background: rgba(255, 200, 0, 0.06);
             color: #ffcc44;
-            font-size: 7px;
+            font-size: 10px;
         }
         .calc-btn-modern.fn:hover {
             background: rgba(255, 200, 0, 0.12);
@@ -529,62 +541,58 @@
             grid-column: span 2;
         }
 
-        /* ========================================
-           PARTY CHAT - SMALLER BOX
-           ======================================== */
+        /* ===== PARTY CHAT ===== */
         .party-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 5px 8px;
-            flex: 1;
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
-            min-height: 80px;
-            max-height: 160px;
+            height: 100%;
         }
 
         .party-modern .party-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
 
         .party-modern .party-top .party-title-section {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
         .party-modern .party-top .party-title-section .party-icon {
-            font-size: 10px;
+            font-size: 14px;
         }
         .party-modern .party-top .party-title-section .party-name {
-            font-size: 8px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
         }
         .party-modern .party-top .party-title-section .party-count {
-            font-size: 6px;
+            font-size: 8px;
             color: #555555;
             background: rgba(255, 255, 255, 0.04);
-            padding: 0px 4px;
-            border-radius: 6px;
+            padding: 1px 8px;
+            border-radius: 8px;
         }
 
         .party-modern .party-top .party-actions {
             display: flex;
-            gap: 2px;
+            gap: 4px;
         }
 
         .party-btn-modern {
-            padding: 1px 6px;
-            font-size: 6px;
+            padding: 3px 10px;
+            font-size: 8px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
+            border-radius: 5px;
             background: rgba(255, 255, 255, 0.04);
             color: #aaaaaa;
             cursor: pointer;
@@ -601,6 +609,7 @@
         }
         .party-btn-modern.create:hover {
             background: linear-gradient(135deg, #00dd55, #00bb44);
+            transform: scale(1.05);
         }
         .party-btn-modern.join {
             background: linear-gradient(135deg, #0066ff, #0044dd);
@@ -609,6 +618,7 @@
         }
         .party-btn-modern.join:hover {
             background: linear-gradient(135deg, #0077ff, #0055ee);
+            transform: scale(1.05);
         }
         .party-btn-modern.leave {
             background: rgba(255, 50, 50, 0.15);
@@ -622,33 +632,33 @@
         .party-code-modern {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 1px 6px;
+            gap: 6px;
+            padding: 3px 10px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 4px;
+            border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
         .party-code-modern .pc-label {
-            font-size: 5px;
+            font-size: 7px;
             color: #555555;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .party-code-modern .pc-code {
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 700;
             color: #44ff88;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             font-family: 'Courier New', monospace;
         }
         .party-code-modern .pc-copy {
-            padding: 0px 4px;
-            font-size: 6px;
+            padding: 1px 8px;
+            font-size: 8px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 3px;
+            border-radius: 4px;
             color: #666666;
             cursor: pointer;
             font-family: inherit;
@@ -662,15 +672,14 @@
         .party-msgs-modern {
             flex: 1;
             overflow-y: auto;
-            padding: 2px 2px;
+            padding: 4px 2px;
             display: flex;
             flex-direction: column;
-            gap: 1px;
-            min-height: 20px;
-            max-height: 40px;
+            gap: 2px;
+            min-height: 40px;
         }
         .party-msgs-modern::-webkit-scrollbar {
-            width: 2px;
+            width: 3px;
         }
         .party-msgs-modern::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
@@ -681,10 +690,10 @@
         }
 
         .party-msg-modern {
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 7px;
-            line-height: 1.2;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 9px;
+            line-height: 1.3;
             word-wrap: break-word;
             max-width: 95%;
         }
@@ -694,7 +703,7 @@
             text-align: center;
             font-style: italic;
             align-self: center;
-            font-size: 6px;
+            font-size: 8px;
         }
         .party-msg-modern.me {
             background: rgba(68, 200, 255, 0.12);
@@ -709,27 +718,27 @@
         .party-msg-modern .pm-user {
             font-weight: 600;
             color: #ffffff;
-            margin-right: 2px;
+            margin-right: 4px;
         }
         .party-msg-modern .pm-time {
-            font-size: 5px;
+            font-size: 6px;
             color: #333333;
-            margin-left: 2px;
+            margin-left: 4px;
         }
 
         .party-input-modern {
             display: flex;
-            gap: 2px;
-            padding-top: 2px;
+            gap: 4px;
+            padding-top: 4px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
         }
         .party-input-modern input {
             flex: 1;
-            padding: 2px 6px;
-            font-size: 7px;
+            padding: 4px 10px;
+            font-size: 9px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
@@ -742,12 +751,12 @@
             color: #333333;
         }
         .party-input-modern button {
-            padding: 2px 8px;
+            padding: 4px 12px;
             background: linear-gradient(135deg, #ffffff, #eeeeee);
             color: #000000;
             border: none;
-            border-radius: 4px;
-            font-size: 7px;
+            border-radius: 6px;
+            font-size: 9px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -766,42 +775,41 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             height: 100%;
-            width: 260px;
         }
 
         .chat-header {
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             flex-shrink: 0;
         }
         .chat-header .chat-icon {
-            font-size: 12px;
+            font-size: 14px;
         }
         .chat-header .chat-title {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             color: #ffffff;
         }
         .chat-header .chat-status {
-            font-size: 6px;
+            font-size: 7px;
             color: #00ff44;
             margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
         }
         .chat-header .chat-status::before {
             content: '';
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: #00ff44;
             animation: pulse 2s infinite;
@@ -820,13 +828,13 @@
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 6px 8px;
+            padding: 8px 10px;
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
         }
         .chat-messages::-webkit-scrollbar {
-            width: 2px;
+            width: 3px;
         }
         .chat-messages::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
@@ -838,10 +846,10 @@
 
         .message {
             max-width: 92%;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 10px;
-            line-height: 1.4;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            line-height: 1.5;
             animation: fadeInUp 0.3s ease;
             word-wrap: break-word;
             white-space: pre-wrap;
@@ -857,23 +865,23 @@
             align-self: flex-end;
         }
         .message .msg-time {
-            font-size: 6px;
+            font-size: 7px;
             color: #444444;
-            margin-top: 2px;
+            margin-top: 3px;
             display: block;
         }
 
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            padding: 4px 10px;
+            padding: 6px 12px;
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 10px;
             gap: 3px;
         }
         .typing-indicator span {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             background: #666666;
             border-radius: 50%;
             display: inline-block;
@@ -893,23 +901,23 @@
                 transform: translateY(0);
             }
             30% {
-                transform: translateY(-4px);
+                transform: translateY(-5px);
             }
         }
 
         .chat-input-area {
-            padding: 4px 8px;
+            padding: 6px 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
-            gap: 3px;
+            gap: 4px;
             flex-shrink: 0;
         }
         .chat-input-area input {
             flex: 1;
-            padding: 4px 8px;
-            font-size: 9px;
+            padding: 5px 10px;
+            font-size: 10px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 5px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
@@ -921,12 +929,12 @@
             color: #444444;
         }
         .chat-input-area button {
-            padding: 4px 10px;
+            padding: 5px 12px;
             background: #ffffff;
             color: #000000;
             border: none;
-            border-radius: 5px;
-            font-size: 9px;
+            border-radius: 6px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -945,43 +953,47 @@
             }
             .cloak-panel {
                 height: auto;
-                max-height: 70px;
+                max-height: 120px;
                 flex-direction: row;
                 flex-wrap: wrap;
-                padding: 4px 6px;
-                gap: 2px;
+                padding: 6px 8px;
+                gap: 3px;
                 overflow-y: auto;
             }
             .cloak-panel .panel-title {
                 width: 100%;
-                margin-bottom: 2px;
-                padding-bottom: 2px;
-                font-size: 7px;
+                margin-bottom: 3px;
+                padding-bottom: 3px;
+                font-size: 8px;
             }
             .cloak-option {
-                padding: 2px 4px;
+                padding: 3px 6px;
                 margin-bottom: 0;
                 flex: 1;
-                min-width: 55px;
+                min-width: 80px;
             }
             .cloak-option .cloak-name {
-                font-size: 7px;
+                font-size: 9px;
             }
             .center-content {
                 height: auto;
                 max-height: none;
             }
+            .bottom-row {
+                grid-template-columns: 1fr;
+                min-height: 300px;
+            }
             .calculator-modern {
-                max-height: none;
+                min-height: 200px;
+                max-height: 280px;
             }
             .party-modern {
-                min-height: 100px;
-                max-height: none;
+                min-height: 180px;
+                max-height: 280px;
             }
             .chat-sidebar {
-                height: 180px;
-                min-height: 140px;
-                width: 100%;
+                height: 200px;
+                min-height: 150px;
             }
             #dashboardScreen {
                 height: auto;
@@ -992,14 +1004,13 @@
 
         @media (max-width: 600px) {
             .login-box {
-                padding: 25px 16px;
-                border-radius: 20px;
+                padding: 30px 20px;
             }
             .login-box h1 {
-                font-size: 20px;
+                font-size: 22px;
             }
             .login-box .brand-icon {
-                font-size: 32px;
+                font-size: 36px;
             }
             .input-group {
                 flex-direction: column;
@@ -1012,108 +1023,115 @@
                 width: 100%;
             }
             .dash-topbar {
-                padding: 4px 8px;
+                padding: 6px 10px;
             }
             .dash-topbar .brand {
-                font-size: 11px;
+                font-size: 12px;
             }
             .dash-clock .date {
                 display: none;
             }
             .dash-clock {
-                min-width: 50px;
-                padding: 2px 6px;
+                min-width: 60px;
+                padding: 2px 8px;
             }
             .dash-clock .time {
-                font-size: 9px;
+                font-size: 10px;
             }
             .dash-avatar {
                 display: none;
             }
             .cloak-panel {
-                max-height: 55px;
-                padding: 3px 4px;
+                max-height: 100px;
+                padding: 4px 6px;
             }
             .cloak-option {
-                padding: 2px 3px;
-                min-width: 45px;
+                padding: 2px 4px;
+                min-width: 60px;
             }
             .cloak-option .cloak-icon {
-                font-size: 10px;
-                width: 14px;
+                font-size: 11px;
+                width: 16px;
             }
             .cloak-option .cloak-name {
-                font-size: 6px;
+                font-size: 8px;
+            }
+            .bottom-row {
+                grid-template-columns: 1fr;
+                min-height: 350px;
             }
             .calculator-modern {
-                padding: 4px 6px;
+                min-height: 220px;
+                max-height: 280px;
+                padding: 6px 8px;
             }
             .calc-btn-modern {
-                font-size: 8px;
-                padding: 2px 1px;
-                min-height: 16px;
+                font-size: 10px;
+                padding: 3px 1px;
+                min-height: 24px;
             }
             .calc-display-modern .calc-result {
-                font-size: 14px;
-                min-height: 16px;
+                font-size: 18px;
+                min-height: 20px;
             }
             .calc-display-modern .calc-expr {
-                font-size: 7px;
-            }
-            .calc-grid {
-                gap: 1px;
-            }
-            .party-modern {
-                min-height: 100px;
-                padding: 4px 6px;
-            }
-            .party-msg-modern {
-                font-size: 6px;
-                padding: 1px 4px;
-            }
-            .party-code-modern .pc-code {
                 font-size: 9px;
             }
+            .calc-grid {
+                gap: 3px;
+            }
+            .party-modern {
+                min-height: 180px;
+                max-height: 260px;
+                padding: 6px 8px;
+            }
+            .party-msg-modern {
+                font-size: 8px;
+                padding: 2px 8px;
+            }
+            .party-code-modern .pc-code {
+                font-size: 12px;
+            }
             .party-code-modern {
-                padding: 1px 4px;
+                padding: 2px 8px;
             }
             .chat-sidebar {
-                height: 150px;
-                min-height: 110px;
+                height: 160px;
+                min-height: 120px;
             }
             .message {
-                font-size: 8px;
-                padding: 4px 8px;
+                font-size: 10px;
+                padding: 5px 10px;
             }
             .welcome-banner h2 {
-                font-size: 11px;
+                font-size: 13px;
             }
             .welcome-banner {
-                padding: 4px 8px;
+                padding: 6px 10px;
             }
             .proxy-toggle {
-                font-size: 7px;
-                padding: 2px 6px;
+                font-size: 8px;
+                padding: 3px 8px;
             }
             .party-btn-modern {
-                font-size: 5px;
-                padding: 1px 4px;
-            }
-            .party-input-modern input {
-                font-size: 6px;
-                padding: 2px 4px;
-            }
-            .party-input-modern button {
-                font-size: 6px;
+                font-size: 7px;
                 padding: 2px 6px;
             }
+            .party-input-modern input {
+                font-size: 8px;
+                padding: 3px 8px;
+            }
+            .party-input-modern button {
+                font-size: 8px;
+                padding: 3px 10px;
+            }
             .chat-input-area input {
-                font-size: 7px;
-                padding: 3px 6px;
+                font-size: 9px;
+                padding: 4px 8px;
             }
             .chat-input-area button {
-                font-size: 7px;
-                padding: 3px 8px;
+                font-size: 9px;
+                padding: 4px 10px;
             }
         }
     </style>
@@ -1127,7 +1145,7 @@
         <div class="login-box">
             <span class="brand-icon">◆</span>
             <h1>AMIRI <span>EDC</span></h1>
-            <p class="subtitle">Secure Access</p>
+            <p class="subtitle">Secure Access Portal</p>
             <div class="divider"></div>
             <div class="input-group">
                 <input type="password" id="passwordInput" placeholder="Enter passcode..." autofocus>
@@ -1149,7 +1167,7 @@
                 </div>
                 <div class="dash-clock">
                     <span class="time" id="clockTime">00:00:00</span>
-                    <span class="date" id="clockDate">Mon, Jan 1</span>
+                    <span class="date" id="clockDate">Monday, Jan 1</span>
                 </div>
                 <div class="dash-avatar">✦</div>
             </div>
@@ -1159,34 +1177,34 @@
 
             <!-- CLOAK PANEL -->
             <div class="cloak-panel">
-                <div class="panel-title">🎭 Cloaks</div>
+                <div class="panel-title">🎭 Tab Cloaks</div>
                 <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
                     <span class="cloak-icon">🏫</span>
-                    <span class="cloak-name">Class</span>
+                    <span class="cloak-name">Classroom</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
                 <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
                     <span class="cloak-icon">📄</span>
-                    <span class="cloak-name">Docs</span>
+                    <span class="cloak-name">Google Docs</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
                 <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
                     <span class="cloak-icon">📁</span>
-                    <span class="cloak-name">Drive</span>
+                    <span class="cloak-name">Google Drive</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
                 <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
                     <span class="cloak-icon">📋</span>
-                    <span class="cloak-name">Forms</span>
+                    <span class="cloak-name">Google Forms</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
                 <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
                     <span class="cloak-icon">🖼️</span>
-                    <span class="cloak-name">Slides</span>
+                    <span class="cloak-name">Google Slides</span>
                     <span class="cloak-status-dot"></span>
                     <span class="cloak-check">✓</span>
                 </div>
@@ -1199,74 +1217,79 @@
                     <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong></p>
                 </div>
 
-                <!-- CALCULATOR - COMPACT -->
-                <div class="calculator-modern">
-                    <div class="calc-header">
-                        <span class="calc-label">🧮 Calc</span>
-                        <span class="calc-mode">adv</span>
-                    </div>
-                    <div class="calc-display-modern">
-                        <div class="calc-expr" id="calcExpression"></div>
-                        <div class="calc-result" id="calcResult">0</div>
-                    </div>
-                    <div class="calc-grid">
-                        <button class="calc-btn-modern clr" data-value="clear">AC</button>
-                        <button class="calc-btn-modern fn" data-value="sqrt">√</button>
-                        <button class="calc-btn-modern fn" data-value="^">x²</button>
-                        <button class="calc-btn-modern fn" data-value="^3">x³</button>
-                        <button class="calc-btn-modern op" data-value="/">÷</button>
-                        <button class="calc-btn-modern" data-value="7">7</button>
-                        <button class="calc-btn-modern" data-value="8">8</button>
-                        <button class="calc-btn-modern" data-value="9">9</button>
-                        <button class="calc-btn-modern op" data-value="*">×</button>
-                        <button class="calc-btn-modern" data-value="4">4</button>
-                        <button class="calc-btn-modern" data-value="5">5</button>
-                        <button class="calc-btn-modern" data-value="6">6</button>
-                        <button class="calc-btn-modern op" data-value="-">−</button>
-                        <button class="calc-btn-modern" data-value="1">1</button>
-                        <button class="calc-btn-modern" data-value="2">2</button>
-                        <button class="calc-btn-modern" data-value="3">3</button>
-                        <button class="calc-btn-modern op" data-value="+">+</button>
-                        <button class="calc-btn-modern fn" data-value="sin">sin</button>
-                        <button class="calc-btn-modern fn" data-value="cos">cos</button>
-                        <button class="calc-btn-modern fn" data-value="tan">tan</button>
-                        <button class="calc-btn-modern eq" data-value="=">=</button>
-                        <button class="calc-btn-modern zero" data-value="0">0</button>
-                        <button class="calc-btn-modern" data-value=".">.</button>
-                        <button class="calc-btn-modern fn" data-value="pi">π</button>
-                        <button class="calc-btn-modern fn" data-value="e">e</button>
-                    </div>
-                </div>
+                <!-- BOTTOM ROW: CALCULATOR + PARTY CHAT SIDE BY SIDE -->
+                <div class="bottom-row">
 
-                <!-- PARTY CHAT - COMPACT -->
-                <div class="party-modern">
-                    <div class="party-top">
-                        <div class="party-title-section">
-                            <span class="party-icon">🎉</span>
-                            <span class="party-name">Party</span>
-                            <span class="party-count" id="partyMemberCount">0</span>
+                    <!-- CALCULATOR -->
+                    <div class="calculator-modern">
+                        <div class="calc-header">
+                            <span class="calc-label">🧮 Calculator</span>
+                            <span class="calc-mode">advanced</span>
                         </div>
-                        <div class="party-actions">
-                            <button class="party-btn-modern create" id="createPartyBtn">+</button>
-                            <button class="party-btn-modern join" id="joinPartyBtn">🔗</button>
-                            <button class="party-btn-modern leave" id="leavePartyBtn" style="display:none;">✕</button>
+                        <div class="calc-display-modern">
+                            <div class="calc-expr" id="calcExpression"></div>
+                            <div class="calc-result" id="calcResult">0</div>
+                        </div>
+                        <div class="calc-grid">
+                            <button class="calc-btn-modern clr" data-value="clear">AC</button>
+                            <button class="calc-btn-modern fn" data-value="sqrt">√</button>
+                            <button class="calc-btn-modern fn" data-value="^">x²</button>
+                            <button class="calc-btn-modern fn" data-value="^3">x³</button>
+                            <button class="calc-btn-modern op" data-value="/">÷</button>
+                            <button class="calc-btn-modern" data-value="7">7</button>
+                            <button class="calc-btn-modern" data-value="8">8</button>
+                            <button class="calc-btn-modern" data-value="9">9</button>
+                            <button class="calc-btn-modern op" data-value="*">×</button>
+                            <button class="calc-btn-modern" data-value="4">4</button>
+                            <button class="calc-btn-modern" data-value="5">5</button>
+                            <button class="calc-btn-modern" data-value="6">6</button>
+                            <button class="calc-btn-modern op" data-value="-">−</button>
+                            <button class="calc-btn-modern" data-value="1">1</button>
+                            <button class="calc-btn-modern" data-value="2">2</button>
+                            <button class="calc-btn-modern" data-value="3">3</button>
+                            <button class="calc-btn-modern op" data-value="+">+</button>
+                            <button class="calc-btn-modern fn" data-value="sin">sin</button>
+                            <button class="calc-btn-modern fn" data-value="cos">cos</button>
+                            <button class="calc-btn-modern fn" data-value="tan">tan</button>
+                            <button class="calc-btn-modern eq" data-value="=">=</button>
+                            <button class="calc-btn-modern zero" data-value="0">0</button>
+                            <button class="calc-btn-modern" data-value=".">.</button>
+                            <button class="calc-btn-modern fn" data-value="pi">π</button>
+                            <button class="calc-btn-modern fn" data-value="e">e</button>
                         </div>
                     </div>
 
-                    <div class="party-code-modern" id="partyCodeDisplay" style="display:none;">
-                        <span class="pc-label">Code:</span>
-                        <span class="pc-code" id="partyCodeValue">------</span>
-                        <button class="pc-copy" id="copyCodeBtn">📋</button>
+                    <!-- PARTY CHAT -->
+                    <div class="party-modern">
+                        <div class="party-top">
+                            <div class="party-title-section">
+                                <span class="party-icon">🎉</span>
+                                <span class="party-name">Party Chat</span>
+                                <span class="party-count" id="partyMemberCount">0 online</span>
+                            </div>
+                            <div class="party-actions">
+                                <button class="party-btn-modern create" id="createPartyBtn">+ Create</button>
+                                <button class="party-btn-modern join" id="joinPartyBtn">🔗 Join</button>
+                                <button class="party-btn-modern leave" id="leavePartyBtn" style="display:none;">✕ Leave</button>
+                            </div>
+                        </div>
+
+                        <div class="party-code-modern" id="partyCodeDisplay" style="display:none;">
+                            <span class="pc-label">Code:</span>
+                            <span class="pc-code" id="partyCodeValue">------</span>
+                            <button class="pc-copy" id="copyCodeBtn">📋 Copy</button>
+                        </div>
+
+                        <div class="party-msgs-modern" id="partyMessages">
+                            <div class="party-msg-modern sys">💬 Create or join a party to chat!</div>
+                        </div>
+
+                        <div class="party-input-modern">
+                            <input type="text" id="partyInput" placeholder="Type a message..." disabled>
+                            <button id="partySendBtn" disabled>Send</button>
+                        </div>
                     </div>
 
-                    <div class="party-msgs-modern" id="partyMessages">
-                        <div class="party-msg-modern sys">💬 Create or join!</div>
-                    </div>
-
-                    <div class="party-input-modern">
-                        <input type="text" id="partyInput" placeholder="Type..." disabled>
-                        <button id="partySendBtn" disabled>Send</button>
-                    </div>
                 </div>
             </div>
 
@@ -1279,7 +1302,7 @@
                 </div>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
-                        👋 Ask me anything!
+                        👋 Ask me to write essays or explain concepts!
                         <span class="msg-time">Just now</span>
                     </div>
                 </div>
@@ -1287,7 +1310,7 @@
                     <span></span><span></span><span></span>
                 </div>
                 <div class="chat-input-area">
-                    <input type="text" id="chatInput" placeholder="Ask me..." autocomplete="off">
+                    <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
                     <button id="sendBtn">Send</button>
                 </div>
             </div>
@@ -1448,7 +1471,7 @@
             const m = String(now.getMinutes()).padStart(2, '0');
             const s = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('clockTime').textContent = `${h}:${m}:${s}`;
-            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             document.getElementById('clockDate').textContent =
                 `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
@@ -1593,7 +1616,7 @@
                 createPartyBtn.style.display = 'none';
                 joinPartyBtn.style.display = 'none';
                 leavePartyBtn.style.display = 'inline-block';
-                partyMemberCount.textContent = (partyMembers.length + 1);
+                partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
             } else {
                 partyCodeDisplay.style.display = 'none';
                 partyInput.disabled = true;
@@ -1601,7 +1624,7 @@
                 createPartyBtn.style.display = 'inline-block';
                 joinPartyBtn.style.display = 'inline-block';
                 leavePartyBtn.style.display = 'none';
-                partyMemberCount.textContent = '0';
+                partyMemberCount.textContent = '0 online';
                 if (broadcastChannel) {
                     broadcastChannel.close();
                     broadcastChannel = null;
@@ -1621,12 +1644,12 @@
                     if (data.type === 'join') {
                         if (!partyMembers.includes(data.user)) {
                             partyMembers.push(data.user);
-                            partyMemberCount.textContent = (partyMembers.length + 1);
+                            partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
                             addPartyMessage(`${data.user} joined!`, 'sys');
                         }
                     } else if (data.type === 'leave') {
                         partyMembers = partyMembers.filter(u => u !== data.user);
-                        partyMemberCount.textContent = (partyMembers.length + 1);
+                        partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
                         addPartyMessage(`${data.user} left.`, 'sys');
                     } else if (data.type === 'message') {
                         if (data.user !== username) {
@@ -1658,12 +1681,12 @@
                         if (data.type === 'join') {
                             if (!partyMembers.includes(data.user) && data.user !== username) {
                                 partyMembers.push(data.user);
-                                partyMemberCount.textContent = (partyMembers.length + 1);
+                                partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
                                 addPartyMessage(`${data.user} joined!`, 'sys');
                             }
                         } else if (data.type === 'leave') {
                             partyMembers = partyMembers.filter(u => u !== data.user);
-                            partyMemberCount.textContent = (partyMembers.length + 1);
+                            partyMemberCount.textContent = (partyMembers.length + 1) + ' online';
                             addPartyMessage(`${data.user} left.`, 'sys');
                         } else if (data.type === 'message') {
                             if (data.user !== username) {
@@ -1713,7 +1736,7 @@
             if (partyCode) {
                 navigator.clipboard.writeText(partyCode).then(() => {
                     copyCodeBtn.textContent = '✅';
-                    setTimeout(() => { copyCodeBtn.textContent = '📋'; }, 1500);
+                    setTimeout(() => { copyCodeBtn.textContent = '📋 Copy'; }, 2000);
                 }).catch(() => {
                     const textArea = document.createElement('textarea');
                     textArea.value = partyCode;
@@ -1722,7 +1745,7 @@
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
                     copyCodeBtn.textContent = '✅';
-                    setTimeout(() => { copyCodeBtn.textContent = '📋'; }, 1500);
+                    setTimeout(() => { copyCodeBtn.textContent = '📋 Copy'; }, 2000);
                 });
             }
         });
@@ -1763,7 +1786,8 @@ ${topic} connects to various disciplines including science, technology, arts, an
                 const jokes = [
                     "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰",
                     "🤣 What do you call a fake noodle? An impasta! 🍝",
-                    "😄 Why did the math book look so sad? Because it had too many problems! 📐"
+                    "😄 Why did the math book look so sad? Because it had too many problems! 📐",
+                    "😂 Why did the scarecrow win an award? Because he was outstanding in his field! 🌾"
                 ];
                 return jokes[Math.floor(Math.random() * jokes.length)];
             }
