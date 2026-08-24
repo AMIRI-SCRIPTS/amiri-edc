@@ -116,14 +116,12 @@
         }
         #passwordInput:focus {
             border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
         }
         #passwordInput::placeholder {
             color: #333333;
         }
         #passwordInput.error {
             border-color: #ff3333;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
         }
 
         #unlockBtn {
@@ -363,23 +361,68 @@
             background: #00ff44;
         }
 
-        /* ===== CENTER ===== */
+        /* ===== TAB SYSTEM ===== */
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            gap: 12px;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+            background: rgba(10, 10, 10, 0.5);
+            border-radius: 12px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: #888888;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+        }
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .tab-btn .tab-icon {
+            margin-right: 8px;
+        }
+
+        .tab-content {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 0;
+        }
+        .tab-content.active {
+            display: flex;
+        }
+
+        /* ===== CENTER CONTENT ===== */
         .center-content {
             display: flex;
             flex-direction: column;
             height: 100%;
-            overflow-y: auto;
-            gap: 12px;
-        }
-        .center-content::-webkit-scrollbar {
-            width: 3px;
-        }
-        .center-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .center-content::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
+            overflow: hidden;
         }
 
         .welcome-banner {
@@ -387,11 +430,11 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
-            padding: 14px 18px;
+            padding: 12px 18px;
             flex-shrink: 0;
         }
         .welcome-banner h2 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #ffffff;
         }
@@ -401,7 +444,7 @@
         }
         .welcome-banner p {
             color: #555555;
-            font-size: 12px;
+            font-size: 11px;
             margin-top: 2px;
         }
         .welcome-banner p strong {
@@ -409,9 +452,9 @@
         }
 
         /* ========================================
-           BOTTOM ROW - SIDE BY SIDE
+           EDUCATION TAB - CALCULATOR + PARTY + AI
            ======================================== */
-        .bottom-row {
+        .edu-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
@@ -419,15 +462,13 @@
             min-height: 0;
         }
 
-        /* ========================================
-           CALCULATOR - BIGGER
-           ======================================== */
+        /* Calculator */
         .calculator-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 12px;
+            padding: 14px 16px;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -437,72 +478,72 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             flex-shrink: 0;
         }
         .calculator-modern .calc-header .calc-label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #555555;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         .calculator-modern .calc-header .calc-mode {
-            font-size: 10px;
+            font-size: 9px;
             color: #333333;
             background: rgba(255, 255, 255, 0.03);
-            padding: 2px 12px;
-            border-radius: 10px;
+            padding: 2px 10px;
+            border-radius: 8px;
         }
 
         .calc-display-modern {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 8px;
-            padding: 10px 16px;
+            padding: 8px 14px;
             text-align: right;
-            margin-bottom: 10px;
-            min-height: 60px;
+            margin-bottom: 8px;
+            min-height: 50px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             flex-shrink: 0;
         }
         .calc-display-modern .calc-expr {
-            font-size: 14px;
+            font-size: 12px;
             color: #666666;
             font-weight: 300;
-            min-height: 18px;
+            min-height: 16px;
             font-family: 'Courier New', monospace;
         }
         .calc-display-modern .calc-result {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #ffffff;
-            min-height: 34px;
+            min-height: 30px;
             font-family: 'Courier New', monospace;
         }
 
         .calc-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
+            gap: 5px;
             flex: 1;
         }
 
         .calc-btn-modern {
-            padding: 8px 4px;
-            font-size: 15px;
+            padding: 6px 2px;
+            font-size: 13px;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.04);
             color: #ffffff;
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: inherit;
             text-align: center;
-            min-height: 38px;
+            min-height: 32px;
         }
         .calc-btn-modern:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -536,7 +577,7 @@
         .calc-btn-modern.fn {
             background: rgba(255, 200, 0, 0.06);
             color: #ffcc44;
-            font-size: 12px;
+            font-size: 10px;
         }
         .calc-btn-modern.fn:hover {
             background: rgba(255, 200, 0, 0.12);
@@ -545,15 +586,13 @@
             grid-column: span 2;
         }
 
-        /* ========================================
-           PARTY CHAT - BIGGER
-           ======================================== */
+        /* Party Chat */
         .party-modern {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 12px;
+            padding: 14px 16px;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -563,42 +602,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
 
         .party-modern .party-top .party-title-section {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .party-modern .party-top .party-title-section .party-icon {
-            font-size: 18px;
+            font-size: 16px;
         }
         .party-modern .party-top .party-title-section .party-name {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             color: #ffffff;
         }
         .party-modern .party-top .party-title-section .party-count {
-            font-size: 10px;
+            font-size: 9px;
             color: #555555;
             background: rgba(255, 255, 255, 0.04);
-            padding: 2px 12px;
-            border-radius: 10px;
+            padding: 2px 10px;
+            border-radius: 8px;
         }
 
         .party-modern .party-top .party-actions {
             display: flex;
-            gap: 6px;
+            gap: 4px;
         }
 
         .party-btn-modern {
-            padding: 5px 14px;
-            font-size: 10px;
+            padding: 4px 12px;
+            font-size: 9px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.04);
             color: #aaaaaa;
             cursor: pointer;
@@ -638,33 +677,33 @@
         .party-code-modern {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 5px 14px;
+            gap: 6px;
+            padding: 4px 12px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
         .party-code-modern .pc-label {
-            font-size: 9px;
+            font-size: 8px;
             color: #555555;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .party-code-modern .pc-code {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #44ff88;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             font-family: 'Courier New', monospace;
         }
         .party-code-modern .pc-copy {
-            padding: 2px 12px;
-            font-size: 10px;
+            padding: 2px 10px;
+            font-size: 9px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            border-radius: 4px;
             color: #666666;
             cursor: pointer;
             font-family: inherit;
@@ -678,11 +717,11 @@
         .party-msgs-modern {
             flex: 1;
             overflow-y: auto;
-            padding: 6px 4px;
+            padding: 4px 2px;
             display: flex;
             flex-direction: column;
-            gap: 3px;
-            min-height: 60px;
+            gap: 2px;
+            min-height: 40px;
         }
         .party-msgs-modern::-webkit-scrollbar {
             width: 3px;
@@ -696,10 +735,10 @@
         }
 
         .party-msg-modern {
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            line-height: 1.4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            line-height: 1.3;
             word-wrap: break-word;
             max-width: 95%;
         }
@@ -709,7 +748,7 @@
             text-align: center;
             font-style: italic;
             align-self: center;
-            font-size: 9px;
+            font-size: 8px;
         }
         .party-msg-modern.me {
             background: rgba(68, 200, 255, 0.12);
@@ -727,24 +766,24 @@
             margin-right: 4px;
         }
         .party-msg-modern .pm-time {
-            font-size: 8px;
+            font-size: 7px;
             color: #333333;
             margin-left: 4px;
         }
 
         .party-input-modern {
             display: flex;
-            gap: 6px;
-            padding-top: 6px;
+            gap: 4px;
+            padding-top: 4px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
         }
         .party-input-modern input {
             flex: 1;
-            padding: 6px 12px;
-            font-size: 11px;
+            padding: 5px 10px;
+            font-size: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             outline: none;
@@ -757,12 +796,12 @@
             color: #333333;
         }
         .party-input-modern button {
-            padding: 6px 16px;
+            padding: 5px 14px;
             background: linear-gradient(135deg, #ffffff, #eeeeee);
             color: #000000;
             border: none;
-            border-radius: 8px;
-            font-size: 11px;
+            border-radius: 6px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -776,6 +815,116 @@
             transform: none;
         }
 
+        /* ========================================
+           GAMES TAB
+           ======================================== */
+        .games-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .game-card {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 150px;
+        }
+        .game-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        .game-card .game-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .game-card .game-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .game-card .game-desc {
+            font-size: 11px;
+            color: #666666;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           GAME IFRAME OVERLAY
+           ======================================== */
+        .game-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+        .game-overlay.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-overlay .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+        .game-overlay .game-header .game-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .game-overlay .game-header .close-game {
+            padding: 8px 20px;
+            background: rgba(255, 50, 50, 0.2);
+            border: 1px solid rgba(255, 50, 50, 0.3);
+            border-radius: 8px;
+            color: #ff6666;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .game-overlay .game-header .close-game:hover {
+            background: rgba(255, 50, 50, 0.3);
+        }
+
+        .game-overlay .game-frame {
+            flex: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000000;
+        }
+        .game-overlay .game-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* ===== CHAT SIDEBAR ===== */
         .chat-sidebar {
             background: rgba(10, 10, 10, 0.7);
@@ -786,7 +935,6 @@
             flex-direction: column;
             overflow: hidden;
             height: 100%;
-            width: 300px;
         }
 
         .chat-header {
@@ -820,16 +968,6 @@
             border-radius: 50%;
             background: #00ff44;
             animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
         }
 
         .chat-messages {
@@ -951,20 +1089,13 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             .main-layout {
                 grid-template-columns: 140px 1fr 250px;
             }
-            .bottom-row {
-                grid-template-columns: 1fr;
-                min-height: 300px;
-            }
-            .chat-sidebar {
-                width: 100%;
-            }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 850px) {
             .main-layout {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto 1fr auto;
@@ -999,8 +1130,13 @@
                 height: auto;
                 max-height: none;
             }
-            .bottom-row {
-                min-height: 350px;
+            .edu-row {
+                grid-template-columns: 1fr;
+                min-height: 300px;
+            }
+            .games-grid {
+                grid-template-columns: 1fr;
+                min-height: 200px;
             }
             .chat-sidebar {
                 height: 250px;
@@ -1043,21 +1179,34 @@
             .dash-avatar {
                 display: none;
             }
+            .tab-btn {
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+            .tab-btn .tab-icon {
+                margin-right: 4px;
+            }
             .calculator-modern {
                 padding: 10px 12px;
             }
             .calc-btn-modern {
-                font-size: 12px;
-                padding: 6px 2px;
-                min-height: 32px;
+                font-size: 11px;
+                padding: 4px 1px;
+                min-height: 28px;
             }
             .calc-display-modern .calc-result {
-                font-size: 22px;
+                font-size: 20px;
             }
             .party-modern {
                 padding: 10px 12px;
             }
             .party-code-modern .pc-code {
+                font-size: 14px;
+            }
+            .game-card .game-icon {
+                font-size: 36px;
+            }
+            .game-card .game-name {
                 font-size: 14px;
             }
         }
@@ -1137,86 +1286,124 @@
                 </div>
             </div>
 
-            <!-- CENTER -->
+            <!-- CENTER CONTENT WITH TABS -->
             <div class="center-content">
                 <div class="welcome-banner">
                     <h2>Welcome back, <span>Student</span> 👋</h2>
                     <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong></p>
                 </div>
 
-                <!-- BOTTOM ROW: CALCULATOR + PARTY CHAT SIDE BY SIDE -->
-                <div class="bottom-row">
+                <!-- TABS -->
+                <div class="tabs-container">
+                    <div class="tab-bar">
+                        <button class="tab-btn active" data-tab="education">
+                            <span class="tab-icon">📚</span> Education
+                        </button>
+                        <button class="tab-btn" data-tab="games">
+                            <span class="tab-icon">🎮</span> Games
+                        </button>
+                    </div>
 
-                    <!-- CALCULATOR -->
-                    <div class="calculator-modern">
-                        <div class="calc-header">
-                            <span class="calc-label">🧮 Calculator</span>
-                            <span class="calc-mode">advanced</span>
-                        </div>
-                        <div class="calc-display-modern">
-                            <div class="calc-expr" id="calcExpression"></div>
-                            <div class="calc-result" id="calcResult">0</div>
-                        </div>
-                        <div class="calc-grid">
-                            <button class="calc-btn-modern clr" data-value="clear">AC</button>
-                            <button class="calc-btn-modern fn" data-value="sqrt">√</button>
-                            <button class="calc-btn-modern fn" data-value="^">x²</button>
-                            <button class="calc-btn-modern fn" data-value="^3">x³</button>
-                            <button class="calc-btn-modern op" data-value="/">÷</button>
-                            <button class="calc-btn-modern" data-value="7">7</button>
-                            <button class="calc-btn-modern" data-value="8">8</button>
-                            <button class="calc-btn-modern" data-value="9">9</button>
-                            <button class="calc-btn-modern op" data-value="*">×</button>
-                            <button class="calc-btn-modern" data-value="4">4</button>
-                            <button class="calc-btn-modern" data-value="5">5</button>
-                            <button class="calc-btn-modern" data-value="6">6</button>
-                            <button class="calc-btn-modern op" data-value="-">−</button>
-                            <button class="calc-btn-modern" data-value="1">1</button>
-                            <button class="calc-btn-modern" data-value="2">2</button>
-                            <button class="calc-btn-modern" data-value="3">3</button>
-                            <button class="calc-btn-modern op" data-value="+">+</button>
-                            <button class="calc-btn-modern fn" data-value="sin">sin</button>
-                            <button class="calc-btn-modern fn" data-value="cos">cos</button>
-                            <button class="calc-btn-modern fn" data-value="tan">tan</button>
-                            <button class="calc-btn-modern eq" data-value="=">=</button>
-                            <button class="calc-btn-modern zero" data-value="0">0</button>
-                            <button class="calc-btn-modern" data-value=".">.</button>
-                            <button class="calc-btn-modern fn" data-value="pi">π</button>
-                            <button class="calc-btn-modern fn" data-value="e">e</button>
+                    <!-- EDUCATION TAB -->
+                    <div class="tab-content active" id="tab-education">
+                        <div class="edu-row">
+                            <!-- CALCULATOR -->
+                            <div class="calculator-modern">
+                                <div class="calc-header">
+                                    <span class="calc-label">🧮 Calculator</span>
+                                    <span class="calc-mode">advanced</span>
+                                </div>
+                                <div class="calc-display-modern">
+                                    <div class="calc-expr" id="calcExpression"></div>
+                                    <div class="calc-result" id="calcResult">0</div>
+                                </div>
+                                <div class="calc-grid">
+                                    <button class="calc-btn-modern clr" data-value="clear">AC</button>
+                                    <button class="calc-btn-modern fn" data-value="sqrt">√</button>
+                                    <button class="calc-btn-modern fn" data-value="^">x²</button>
+                                    <button class="calc-btn-modern fn" data-value="^3">x³</button>
+                                    <button class="calc-btn-modern op" data-value="/">÷</button>
+                                    <button class="calc-btn-modern" data-value="7">7</button>
+                                    <button class="calc-btn-modern" data-value="8">8</button>
+                                    <button class="calc-btn-modern" data-value="9">9</button>
+                                    <button class="calc-btn-modern op" data-value="*">×</button>
+                                    <button class="calc-btn-modern" data-value="4">4</button>
+                                    <button class="calc-btn-modern" data-value="5">5</button>
+                                    <button class="calc-btn-modern" data-value="6">6</button>
+                                    <button class="calc-btn-modern op" data-value="-">−</button>
+                                    <button class="calc-btn-modern" data-value="1">1</button>
+                                    <button class="calc-btn-modern" data-value="2">2</button>
+                                    <button class="calc-btn-modern" data-value="3">3</button>
+                                    <button class="calc-btn-modern op" data-value="+">+</button>
+                                    <button class="calc-btn-modern fn" data-value="sin">sin</button>
+                                    <button class="calc-btn-modern fn" data-value="cos">cos</button>
+                                    <button class="calc-btn-modern fn" data-value="tan">tan</button>
+                                    <button class="calc-btn-modern eq" data-value="=">=</button>
+                                    <button class="calc-btn-modern zero" data-value="0">0</button>
+                                    <button class="calc-btn-modern" data-value=".">.</button>
+                                    <button class="calc-btn-modern fn" data-value="pi">π</button>
+                                    <button class="calc-btn-modern fn" data-value="e">e</button>
+                                </div>
+                            </div>
+
+                            <!-- PARTY CHAT -->
+                            <div class="party-modern">
+                                <div class="party-top">
+                                    <div class="party-title-section">
+                                        <span class="party-icon">🎉</span>
+                                        <span class="party-name">Party Chat</span>
+                                        <span class="party-count" id="partyMemberCount">0 online</span>
+                                    </div>
+                                    <div class="party-actions">
+                                        <button class="party-btn-modern create" id="createPartyBtn">+ Create</button>
+                                        <button class="party-btn-modern join" id="joinPartyBtn">🔗 Join</button>
+                                        <button class="party-btn-modern leave" id="leavePartyBtn" style="display:none;">✕ Leave</button>
+                                    </div>
+                                </div>
+
+                                <div class="party-code-modern" id="partyCodeDisplay" style="display:none;">
+                                    <span class="pc-label">Code:</span>
+                                    <span class="pc-code" id="partyCodeValue">------</span>
+                                    <button class="pc-copy" id="copyCodeBtn">📋 Copy</button>
+                                </div>
+
+                                <div class="party-msgs-modern" id="partyMessages">
+                                    <div class="party-msg-modern sys">💬 Create or join a party to chat!</div>
+                                </div>
+
+                                <div class="party-input-modern">
+                                    <input type="text" id="partyInput" placeholder="Type a message..." disabled>
+                                    <button id="partySendBtn" disabled>Send</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- PARTY CHAT -->
-                    <div class="party-modern">
-                        <div class="party-top">
-                            <div class="party-title-section">
-                                <span class="party-icon">🎉</span>
-                                <span class="party-name">Party Chat</span>
-                                <span class="party-count" id="partyMemberCount">0 online</span>
+                    <!-- GAMES TAB -->
+                    <div class="tab-content" id="tab-games">
+                        <div class="games-grid">
+                            <div class="game-card" data-game="snake">
+                                <div class="game-icon">🐍</div>
+                                <div class="game-name">Snake</div>
+                                <div class="game-desc">Classic snake game - eat food and grow!</div>
                             </div>
-                            <div class="party-actions">
-                                <button class="party-btn-modern create" id="createPartyBtn">+ Create</button>
-                                <button class="party-btn-modern join" id="joinPartyBtn">🔗 Join</button>
-                                <button class="party-btn-modern leave" id="leavePartyBtn" style="display:none;">✕ Leave</button>
+                            <div class="game-card" data-game="tetris">
+                                <div class="game-icon">🧩</div>
+                                <div class="game-name">Tetris</div>
+                                <div class="game-desc">Stack blocks and clear lines!</div>
                             </div>
-                        </div>
-
-                        <div class="party-code-modern" id="partyCodeDisplay" style="display:none;">
-                            <span class="pc-label">Code:</span>
-                            <span class="pc-code" id="partyCodeValue">------</span>
-                            <button class="pc-copy" id="copyCodeBtn">📋 Copy</button>
-                        </div>
-
-                        <div class="party-msgs-modern" id="partyMessages">
-                            <div class="party-msg-modern sys">💬 Create or join a party to chat!</div>
-                        </div>
-
-                        <div class="party-input-modern">
-                            <input type="text" id="partyInput" placeholder="Type a message..." disabled>
-                            <button id="partySendBtn" disabled>Send</button>
+                            <div class="game-card" data-game="pong">
+                                <div class="game-icon">🏓</div>
+                                <div class="game-name">Pong</div>
+                                <div class="game-desc">Classic ping pong against AI!</div>
+                            </div>
+                            <div class="game-card" data-game="flappy">
+                                <div class="game-icon">🦅</div>
+                                <div class="game-name">Flappy Bird</div>
+                                <div class="game-desc">Fly through the pipes!</div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -1245,6 +1432,17 @@
         </div>
     </div>
 
+    <!-- ===== GAME OVERLAY ===== -->
+    <div class="game-overlay" id="gameOverlay">
+        <div class="game-header">
+            <span class="game-title" id="gameTitle">Game</span>
+            <button class="close-game" id="closeGame">✕ Close Game</button>
+        </div>
+        <div class="game-frame">
+            <iframe id="gameFrame" src=""></iframe>
+        </div>
+    </div>
+
     <script>
         // ============================================
         // PROXY TOGGLE
@@ -1263,6 +1461,25 @@
                 label.textContent = 'Proxy: OFF';
                 label.className = 'proxy-label';
             }
+        });
+
+        // ============================================
+        // TAB SYSTEM
+        // ============================================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update content
+                tabContents.forEach(c => c.classList.remove('active'));
+                const target = document.getElementById('tab-' + btn.dataset.tab);
+                if (target) target.classList.add('active');
+            });
         });
 
         // ============================================
@@ -1674,6 +1891,45 @@
                     copyCodeBtn.textContent = '✅';
                     setTimeout(() => { copyCodeBtn.textContent = '📋 Copy'; }, 2000);
                 });
+            }
+        });
+
+        // ============================================
+        // GAMES
+        // ============================================
+        const gameOverlay = document.getElementById('gameOverlay');
+        const gameFrame = document.getElementById('gameFrame');
+        const gameTitle = document.getElementById('gameTitle');
+        const closeGame = document.getElementById('closeGame');
+
+        const gameUrls = {
+            'snake': 'https://snake-game-html.netlify.app/',
+            'tetris': 'https://tetris-html.netlify.app/',
+            'pong': 'https://pong-html.netlify.app/',
+            'flappy': 'https://flappy-bird-html.netlify.app/'
+        };
+
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const game = card.dataset.game;
+                const url = gameUrls[game];
+                if (url) {
+                    gameTitle.textContent = card.querySelector('.game-name').textContent;
+                    gameFrame.src = url;
+                    gameOverlay.classList.add('active');
+                }
+            });
+        });
+
+        closeGame.addEventListener('click', () => {
+            gameOverlay.classList.remove('active');
+            gameFrame.src = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && gameOverlay.classList.contains('active')) {
+                gameOverlay.classList.remove('active');
+                gameFrame.src = '';
             }
         });
 
