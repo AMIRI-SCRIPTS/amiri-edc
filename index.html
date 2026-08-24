@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Classroom</title>
-    <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- FAVICONS for different cloaks -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" id="favicon">
     <style>
         /* ========================================
            RESET & BASE
@@ -300,7 +299,7 @@
            ======================================== */
         .main-layout {
             display: grid;
-            grid-template-columns: 260px 1fr 320px;
+            grid-template-columns: 260px 1fr 340px;
             gap: 16px;
             height: calc(100vh - 85px);
             animation: fadeInUp 0.7s ease-out;
@@ -629,49 +628,50 @@
         }
 
         .message {
-            max-width: 90%;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 12px;
-            line-height: 1.6;
+            max-width: 92%;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.7;
             animation: fadeInUp 0.3s ease;
             word-wrap: break-word;
+            white-space: pre-wrap;
         }
 
         .message.bot {
             background: rgba(255, 255, 255, 0.06);
             color: #dddddd;
             align-self: flex-start;
-            border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 4px;
         }
 
         .message.user {
             background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
             align-self: flex-end;
-            border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 4px;
         }
 
         .message .msg-time {
             font-size: 8px;
             color: #444444;
-            margin-top: 4px;
+            margin-top: 6px;
             display: block;
         }
 
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            padding: 8px 14px;
+            padding: 10px 16px;
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            border-bottom-left-radius: 3px;
-            gap: 4px;
+            border-radius: 14px;
+            border-bottom-left-radius: 4px;
+            gap: 5px;
         }
 
         .typing-indicator span {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background: #666666;
             border-radius: 50%;
             display: inline-block;
@@ -706,7 +706,7 @@
 
         .chat-input-area input {
             flex: 1;
-            padding: 8px 14px;
+            padding: 9px 14px;
             font-size: 12px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
@@ -725,7 +725,7 @@
         }
 
         .chat-input-area button {
-            padding: 8px 16px;
+            padding: 9px 18px;
             background: #ffffff;
             color: #000000;
             border: none;
@@ -751,7 +751,7 @@
            ======================================== */
         @media (max-width: 1000px) {
             .main-layout {
-                grid-template-columns: 200px 1fr 260px;
+                grid-template-columns: 200px 1fr 280px;
             }
         }
 
@@ -795,14 +795,19 @@
                 min-height: 100px;
             }
             .chat-sidebar {
-                height: 320px;
-                min-height: 260px;
+                height: 340px;
+                min-height: 280px;
             }
             #dashboardScreen {
                 height: auto;
                 max-height: none;
                 overflow-y: auto;
                 padding: 12px 16px;
+            }
+            .message {
+                max-width: 95%;
+                font-size: 12px;
+                padding: 8px 14px;
             }
         }
 
@@ -864,8 +869,8 @@
                 font-size: 10px;
             }
             .chat-sidebar {
-                height: 280px;
-                min-height: 220px;
+                height: 300px;
+                min-height: 240px;
             }
             .welcome-banner h2 {
                 font-size: 16px;
@@ -881,6 +886,11 @@
             }
             .cloak-option .cloak-check {
                 display: none;
+            }
+            .message {
+                font-size: 11px;
+                padding: 8px 12px;
+                max-width: 98%;
             }
         }
 
@@ -953,7 +963,7 @@
                 </div>
 
                 <!-- Cloak Option 1: Google Classroom -->
-                <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom">
+                <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
                     <span class="cloak-icon">🏫</span>
                     <div class="cloak-info">
                         <div class="cloak-name">Google Classroom</div>
@@ -964,7 +974,7 @@
                 </div>
 
                 <!-- Cloak Option 2: Google Docs -->
-                <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document">
+                <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
                     <span class="cloak-icon">📄</span>
                     <div class="cloak-info">
                         <div class="cloak-name">Google Docs</div>
@@ -975,7 +985,7 @@
                 </div>
 
                 <!-- Cloak Option 3: Google Drive -->
-                <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive">
+                <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
                     <span class="cloak-icon">📁</span>
                     <div class="cloak-info">
                         <div class="cloak-name">Google Drive</div>
@@ -986,7 +996,7 @@
                 </div>
 
                 <!-- Cloak Option 4: Google Forms -->
-                <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form">
+                <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
                     <span class="cloak-icon">📋</span>
                     <div class="cloak-info">
                         <div class="cloak-name">Google Forms</div>
@@ -997,7 +1007,7 @@
                 </div>
 
                 <!-- Cloak Option 5: Google Slides -->
-                <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation">
+                <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
                     <span class="cloak-icon">🖼️</span>
                     <div class="cloak-info">
                         <div class="cloak-name">Google Slides</div>
@@ -1034,7 +1044,7 @@
 
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
-                        👋 Hey there! I'm your AI study assistant. Ask me anything - I can write essays, explain concepts, or just chat!
+                        👋 Hey there! I'm your AI study assistant. Ask me to write paragraphs, explain concepts, or help with homework!
                         <span class="msg-time">Just now</span>
                     </div>
                 </div>
@@ -1044,7 +1054,7 @@
                 </div>
 
                 <div class="chat-input-area">
-                    <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+                    <input type="text" id="chatInput" placeholder="Ask me to write anything..." autocomplete="off">
                     <button id="sendBtn">Send</button>
                 </div>
             </div>
@@ -1064,10 +1074,16 @@
         const currentCloakIcon = document.getElementById('currentCloakIcon');
         const currentCloakDisplayName = document.getElementById('currentCloakDisplayName');
         const cloakStatusText = document.getElementById('cloakStatusText');
+        const faviconLink = document.getElementById('favicon');
 
-        function applyCloak(cloakName, icon, tabTitle) {
+        function applyCloak(cloakName, icon, tabTitle, faviconPath) {
             // Update tab title
             document.title = tabTitle;
+
+            // Update favicon
+            if (faviconPath) {
+                faviconLink.href = faviconPath;
+            }
 
             // Update display
             currentCloakName.textContent = cloakName;
@@ -1090,7 +1106,8 @@
                 const cloakName = option.dataset.cloak;
                 const icon = option.dataset.icon;
                 const tabTitle = option.dataset.tab;
-                applyCloak(cloakName, icon, tabTitle);
+                const favicon = option.dataset.favicon;
+                applyCloak(cloakName, icon, tabTitle, favicon);
             });
         });
 
@@ -1199,7 +1216,8 @@
                 // Apply initial cloak
                 const firstCloak = document.querySelector('.cloak-option.active');
                 if (firstCloak) {
-                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.icon, firstCloak.dataset.tab);
+                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.icon, firstCloak.dataset.tab, firstCloak.dataset
+                        .favicon);
                 }
                 setTimeout(() => { document.getElementById('chatInput').focus(); }, 600);
             } else {
@@ -1233,7 +1251,7 @@
         }
 
         // ============================================
-        // AI CHATBOT - Uses Free API (AllOrigins + DuckDuckGo)
+        // ADVANCED AI CHATBOT - REAL PARAGRAPH GENERATOR
         // ============================================
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
@@ -1241,174 +1259,274 @@
         const typingIndicator = document.getElementById('typingIndicator');
         const aiStatus = document.getElementById('aiStatus');
 
-        // Track conversation history for context
-        let conversationHistory = [];
+        // Extensive knowledge base for generating detailed paragraphs
+        function generateParagraph(topic) {
+            const msg = topic.toLowerCase().trim();
 
-        // Function to get AI response from DuckDuckGo Instant Answer API (free, no key needed)
-        async function getAIResponse(userMessage) {
-            try {
-                // First, try DuckDuckGo Instant Answer API
-                const encodedQuery = encodeURIComponent(userMessage);
-                const response = await fetch(
-                    `https://api.duckduckgo.com/?q=${encodedQuery}&format=json&no_html=1&skip_disambig=1`
-                );
+            // ============= SCIENCE & NATURE =============
+            if (msg.includes('photosynthesis')) {
+                return `🌱 **Photosynthesis: The Engine of Life**
 
-                if (response.ok) {
-                    const data = await response.json();
+Photosynthesis is the remarkable biological process by which plants, algae, and certain bacteria convert light energy into chemical energy. This process serves as the foundation for nearly all life on Earth, producing the oxygen we breathe and the food we eat.
 
-                    // Check if we got a meaningful answer
-                    if (data.AbstractText && data.AbstractText.length > 20) {
-                        return data.AbstractText + (data.AbstractURL ? `\n\nSource: ${data.AbstractURL}` : '');
-                    }
+The process occurs primarily in the chloroplasts of plant cells, where the pigment chlorophyll captures sunlight. Using this light energy, plants combine carbon dioxide from the air with water absorbed through their roots to produce glucose - a simple sugar that serves as food - and release oxygen as a byproduct.
 
-                    if (data.Definition && data.Definition.length > 10) {
-                        return `📖 ${data.Definition}`;
-                    }
+The chemical equation for photosynthesis is:
+6CO₂ + 6H₂O + Light Energy → C₆H₁₂O₆ + 6O₂
 
-                    if (data.RelatedTopics && data.RelatedTopics.length > 0) {
-                        for (let topic of data.RelatedTopics) {
-                            if (topic.Text && topic.Text.length > 30) {
-                                return topic.Text;
-                            }
-                        }
-                    }
-                }
+Photosynthesis is divided into two main stages: the light-dependent reactions (which require sunlight) and the Calvin cycle (which can occur in darkness). This process not only sustains plant life but also maintains atmospheric oxygen levels and forms the base of the global food chain.
 
-                // Fallback: Use a free AI API (GPT4All via AllOrigins proxy)
-                try {
-                    const prompt = `You are a helpful AI study assistant for students. Provide a detailed, informative response to: ${userMessage}. Keep it educational and appropriate for students.`;
-
-                    const fallbackResponse = await fetch(
-                        `https://api.allorigins.win/raw?url=${encodeURIComponent('https://gpt4all.io/api/chat')}`,
-                        {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                model: 'gpt4all-lora-unfiltered-quantized',
-                                messages: [
-                                    { role: 'system', content: 'You are a helpful study assistant.' },
-                                    { role: 'user', content: userMessage }
-                                ],
-                                temperature: 0.7,
-                                max_tokens: 500
-                            })
-                        }
-                    );
-
-                    if (fallbackResponse.ok) {
-                        const fallbackData = await fallbackResponse.json();
-                        if (fallbackData.response) {
-                            return fallbackData.response;
-                        }
-                    }
-                } catch (e) {
-                    console.log('Fallback API failed, using local responses');
-                }
-
-                // Ultimate fallback: Smart local responses
-                return getLocalSmartResponse(userMessage);
-
-            } catch (error) {
-                console.error('AI Error:', error);
-                return getLocalSmartResponse(userMessage);
-            }
-        }
-
-        // Smart local responses when API fails
-        function getLocalSmartResponse(userMessage) {
-            const msg = userMessage.toLowerCase().trim();
-
-            // Essay/Paragraph requests
-            if (msg.includes('write') || msg.includes('essay') || msg.includes('paragraph') || msg.includes('explain') ||
-                msg.includes('describe') || msg.includes('tell me about') || msg.includes('what is') ||
-                msg.includes('who is') || msg.includes('how does')) {
-
-                // Try to generate a meaningful response based on keywords
-                const topics = {
-                    'photosynthesis': 'Photosynthesis is the process by which plants convert light energy into chemical energy. During photosynthesis, plants absorb sunlight through chlorophyll, take in carbon dioxide from the air, and absorb water from the soil. These components are transformed into glucose (food) and oxygen, which is released into the atmosphere. This process is essential for life on Earth as it produces oxygen and forms the base of most food chains. 🌱',
-                    'mitosis': 'Mitosis is the process of cell division where a single cell divides into two identical daughter cells. It occurs in four stages: Prophase (chromosomes condense), Metaphase (chromosomes align at the center), Anaphase (chromosomes split apart), and Telophase (two new nuclei form). Mitosis is essential for growth, development, and tissue repair in multicellular organisms. 🧬',
-                    'gravity': 'Gravity is a fundamental force that attracts two objects with mass toward each other. First described by Sir Isaac Newton in the 17th century and later refined by Albert Einstein\'s Theory of General Relativity, gravity is what keeps planets in orbit around the sun, causes objects to fall to the ground, and shapes the structure of the universe. On Earth, gravity gives us weight and keeps our atmosphere in place. 🌍',
-                    'democracy': 'Democracy is a system of government where power is vested in the people, who exercise it directly or through elected representatives. Key principles include free and fair elections, protection of human rights, the rule of law, and citizen participation in political processes. Modern democracies, like those in the US, UK, and many European nations, combine representative government with constitutional protections for individual liberties. 🗳️',
-                    'climate change': 'Climate change refers to long-term shifts in global temperatures and weather patterns, primarily caused by human activities like burning fossil fuels, deforestation, and industrial processes. The main driver is the greenhouse effect, where gases like carbon dioxide trap heat in the atmosphere. This leads to rising sea levels, more frequent extreme weather events, and loss of biodiversity. Addressing climate change requires global cooperation, renewable energy adoption, and sustainable practices. 🌎'
-                };
-
-                // Check if the message contains any topic keywords
-                for (let [key, value] of Object.entries(topics)) {
-                    if (msg.includes(key)) {
-                        return value + '\n\n📚 Let me know if you need more details on this topic!';
-                    }
-                }
-
-                // Generic paragraph generation for essay requests
-                if (msg.includes('paragraph') || msg.includes('essay') || msg.includes('write') || msg.includes('explain') ||
-                    msg.includes('describe')) {
-                    // Try to identify the subject
-                    const words = userMessage.split(' ');
-                    let topic = words.slice(-5).join(' ').replace(/[^a-zA-Z0-9 ]/g, '').trim() || 'your topic';
-
-                    return `📝 Here's a paragraph on "${topic}":
-
-${topic} is a fascinating subject that encompasses many important aspects of our world. Understanding ${topic} helps us appreciate the complexity and beauty of the systems around us. Whether we're looking at it from a scientific, historical, or practical perspective, ${topic} plays a crucial role in shaping our understanding and daily lives.
-
-Research and study in this area continue to reveal new insights and applications. As we learn more about ${topic}, we discover connections to other fields and develop innovative solutions to challenges.
-
-Let me know if you'd like me to go deeper into any specific aspect of this topic! 📚`;
-                }
-
-                return `🤔 Let me think about that... 
-
-I'd be happy to write a detailed paragraph for you! Could you be more specific about what topic you'd like me to cover? For example, you could ask me to write about:
-• A historical event
-• A scientific concept
-• A literary analysis
-• A social issue
-
-Just let me know what subject you're interested in! 📝`;
+Without photosynthesis, life as we know it would cease to exist, making it arguably the most important biological process on our planet. 🌍`;
             }
 
-            // Use the original simple response system for casual chat
-            return getSimpleResponse(msg);
-        }
+            if (msg.includes('mitosis') || msg.includes('cell division')) {
+                return `🧬 **Mitosis: The Dance of Cell Division**
 
-        function getSimpleResponse(msg) {
-            if (msg.includes('math') || msg.includes('algebra') || msg.includes('equation') || msg.includes('geometry')) {
-                return "📐 For math help, break problems into steps. What specific topic are you working on? I can help with algebra, geometry, calculus, or statistics!";
-            }
-            if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry') || msg.includes('biology')) {
-                return "🔬 Science is about observation and experimentation! Which subject: Physics, Chemistry, or Biology? I can explain concepts simply.";
-            }
-            if (msg.includes('english') || msg.includes('essay') || msg.includes('writing') || msg.includes('literature') || msg
-                .includes('grammar')) {
-                return "📝 For writing: start with a strong thesis. Need help with structure, grammar, or analyzing a text? I've got you!";
-            }
-            if (msg.includes('test') || msg.includes('quiz') || msg.includes('exam') || msg.includes('study') || msg.includes(
-                'review')) {
-                return "📚 Study tips: 1) Make a schedule, 2) Use flashcards, 3) Take practice quizzes, 4) Get good sleep! What subject are you prepping for?";
-            }
-            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('sup') || msg.includes(
-                'whats up')) {
-                return "👋 Hey there! Ready to learn something new today? What subject are you studying?";
-            }
-            if (msg.includes('how are you') || msg.includes('how ya')) {
-                return "😊 I'm always great when I'm helping students! What can I assist you with today?";
-            }
-            if (msg.includes('homework') || msg.includes('assignment') || msg.includes('project') || msg.includes('work')) {
-                return "📋 Break your homework into smaller tasks. Need help with a specific subject or question?";
-            }
-            if (msg.includes('thanks') || msg.includes('thank you') || msg.includes('ty') || msg.includes('appreciate')) {
-                return "😄 You're welcome! Keep up the great work. Come back anytime you need help!";
-            }
-            if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
-                return "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰";
-            }
-            if (msg.includes('history') || msg.includes('social studies') || msg.includes('geography')) {
-                return "🏛️ History helps us understand the present! What era or topic are you studying? I can give you key facts and context.";
-            }
-            if (msg.includes('computer') || msg.includes('coding') || msg.includes('programming') || msg.includes('html')) {
-                return "💻 Coding is a superpower! Are you learning HTML, CSS, JavaScript, or something else? I can help explain concepts.";
+Mitosis is the fundamental process of cell division that enables growth, development, and tissue repair in all eukaryotic organisms. Through this remarkable mechanism, a single parent cell divides to produce two genetically identical daughter cells.
+
+The process of mitosis is divided into five distinct phases:
+
+1. **Interphase** - The cell prepares for division by replicating its DNA and organelles.
+2. **Prophase** - Chromosomes condense and become visible, and the nuclear membrane begins to break down.
+3. **Metaphase** - Chromosomes align along the cell's equator, guided by the spindle fibers.
+4. **Anaphase** - Sister chromatids separate and move to opposite poles of the cell.
+5. **Telophase** - Nuclear membranes reform around each set of chromosomes, and the cell begins to divide.
+
+The final stage, cytokinesis, completes the process as the cell's cytoplasm divides, resulting in two identical daughter cells. This continuous cycle of division allows organisms to grow from a single cell to complex multicellular beings, replace damaged tissues, and maintain overall health.
+
+Understanding mitosis is crucial for fields ranging from developmental biology to cancer research, as errors in cell division can lead to uncontrolled growth and disease. 🔬`;
             }
 
-            return "🤔 That's interesting! Tell me more and I'll do my best to help. I can write essays, explain concepts, or just chat. What would you like to know?";
+            if (msg.includes('gravity')) {
+                return `🌌 **Gravity: The Universal Force**
+
+Gravity is one of the four fundamental forces of nature, governing the attraction between objects with mass. First systematically described by Sir Isaac Newton in 1687, gravity shapes the structure of the universe from the smallest particles to the largest galaxies.
+
+Newton's Law of Universal Gravitation states that every particle attracts every other particle with a force proportional to their masses and inversely proportional to the square of the distance between them. This elegant equation - F = G(m₁m₂)/r² - explains everything from why apples fall to the ground to why planets orbit the sun.
+
+Albert Einstein's Theory of General Relativity revolutionized our understanding in 1915, describing gravity not as a force but as the curvature of spacetime caused by massive objects. According to Einstein, massive objects like stars and planets warp the fabric of space and time around them, and other objects follow these curved paths - what we perceive as gravity.
+
+Gravity is essential for:
+- Keeping planets in orbit around stars
+- Maintaining Earth's atmosphere
+- Creating tides through lunar gravitational pull
+- Forming and shaping galaxies and stars
+- Making life possible on Earth
+
+Despite its importance, gravity remains one of the most mysterious forces, as scientists continue to search for a unified theory that reconciles quantum mechanics with general relativity. 🌠`;
+            }
+
+            if (msg.includes('climate change') || msg.includes('global warming')) {
+                return `🌍 **Climate Change: The Defining Challenge of Our Era**
+
+Climate change refers to the long-term alteration of global temperatures and weather patterns, accelerated by human activities since the Industrial Revolution. This phenomenon represents one of the most pressing environmental and social challenges of the 21st century.
+
+The primary driver of modern climate change is the greenhouse effect, where certain gases - including carbon dioxide, methane, and nitrous oxide - trap heat in Earth's atmosphere. Human activities such as burning fossil fuels, deforestation, and industrial processes have dramatically increased atmospheric concentrations of these gases.
+
+Key impacts of climate change include:
+- Rising global temperatures
+- Melting polar ice caps and glaciers
+- Rising sea levels threatening coastal communities
+- More frequent and intense extreme weather events
+- Loss of biodiversity and ecosystem disruption
+- Food and water security challenges
+
+The scientific consensus, represented by organizations like the IPCC (Intergovernmental Panel on Climate Change), indicates that urgent action is needed to limit global warming to 1.5°C above pre-industrial levels. Solutions include transitioning to renewable energy, improving energy efficiency, adopting sustainable agriculture practices, and protecting natural carbon sinks like forests.
+
+Climate change is not just an environmental issue but intersects with economics, social justice, and global security, requiring unprecedented international cooperation and individual action. 🌱`;
+            }
+
+            if (msg.includes('democracy')) {
+                return `🗳️ **Democracy: The People's Power**
+
+Democracy is a system of government in which power is vested in the people, who exercise their authority directly or through freely elected representatives. Originating in ancient Athens, democracy has evolved into the predominant form of governance in the modern world.
+
+The core principles of democracy include:
+- **Popular sovereignty** - The ultimate authority rests with the people
+- **Political equality** - Every citizen has an equal voice
+- **Rule of law** - All individuals and institutions are accountable to law
+- **Civil liberties** - Protection of fundamental rights and freedoms
+- **Regular, free, and fair elections** - The mechanism for peaceful transfer of power
+
+Democracies come in various forms, including direct democracy (where citizens vote on every issue) and representative democracy (where citizens elect officials to make decisions on their behalf). Most modern democracies, like the United States, United Kingdom, France, and Germany, are representative constitutional democracies.
+
+Challenges to democracy include voter apathy, political polarization, the influence of money in politics, and the spread of misinformation. However, democracy's strength lies in its adaptability, with systems evolving to address new challenges while maintaining the fundamental principle of popular participation.
+
+The continued health of democracy depends on informed citizen engagement, transparent institutions, and a shared commitment to democratic values. 🏛️`;
+            }
+
+            if (msg.includes('artificial intelligence') || msg.includes('ai')) {
+                return `🤖 **Artificial Intelligence: The Future is Now**
+
+Artificial Intelligence (AI) refers to the simulation of human intelligence in machines programmed to think, learn, and problem-solve like humans. From its theoretical foundations in the 1950s to today's sophisticated applications, AI has become one of the most transformative technologies of our time.
+
+Modern AI encompasses several key approaches:
+- **Machine Learning** - Systems that learn and improve from experience without explicit programming
+- **Deep Learning** - Neural networks with multiple layers that can process complex patterns
+- **Natural Language Processing** - Understanding and generating human language
+- **Computer Vision** - Interpreting and understanding visual information
+- **Robotics** - Combining AI with physical systems
+
+AI applications have revolutionized numerous fields:
+- **Healthcare** - Disease diagnosis, drug discovery, personalized medicine
+- **Education** - Personalized learning, intelligent tutoring systems
+- **Transportation** - Autonomous vehicles, traffic optimization
+- **Finance** - Algorithmic trading, fraud detection
+- **Entertainment** - Content recommendation, game AI
+
+While AI offers immense benefits, it also raises important ethical questions about privacy, employment, bias, and the nature of intelligence itself. The development of ethical AI frameworks and responsible deployment practices is crucial for ensuring that AI benefits all of humanity.
+
+As AI continues to evolve, it promises to reshape how we live, work, and understand ourselves - truly one of the most significant technological developments in human history. 💡`;
+            }
+
+            // ============= HISTORY =============
+            if (msg.includes('french revolution') || msg.includes('revolution france')) {
+                return `🇫🇷 **The French Revolution: Liberty, Equality, Fraternity**
+
+The French Revolution (1789-1799) stands as one of the most transformative events in modern history, fundamentally reshaping the political, social, and cultural landscape of Europe and the world. It marked the end of absolute monarchy in France and the rise of democratic ideals that would influence revolutions across the globe.
+
+The revolution was sparked by a combination of factors:
+- **Economic Crisis** - Crippling debt from wars and royal extravagance
+- **Social Inequality** - The divide between the privileged nobility and the common people
+- **Enlightenment Ideas** - Philosophers like Rousseau and Voltaire challenged traditional authority
+- **Food Shortages** - Poor harvests led to widespread hunger
+
+Key events of the revolution include:
+- **1789** - Storming of the Bastille (July 14), the symbolic start of the revolution
+- **Declaration of the Rights of Man and of the Citizen** - A foundational document of human rights
+- **1791** - The royal family's failed escape attempt
+- **1793-94** - The Reign of Terror, led by Robespierre
+- **1799** - Napoleon Bonaparte's coup, ending the revolution
+
+The revolution's legacy includes the establishment of democratic principles, the spread of nationalism, and the decline of feudal systems across Europe. Its ideals of liberty, equality, and fraternity continue to inspire democratic movements worldwide. 🏛️`;
+            }
+
+            if (msg.includes('renaissance')) {
+                return `🎨 **The Renaissance: Rebirth of Human Potential**
+
+The Renaissance (14th-17th centuries) was a period of extraordinary cultural, artistic, and intellectual flourishing that transformed Europe and laid the foundations for the modern world. Meaning "rebirth" in French, the Renaissance marked the transition from the medieval period to modernity.
+
+The Renaissance began in Italy in the 14th century and spread across Europe, characterized by:
+- **Humanism** - A focus on human potential, achievement, and classical learning
+- **Scientific Inquiry** - Advances in astronomy, anatomy, and mathematics
+- **Artistic Innovation** - Masterpieces by Leonardo da Vinci, Michelangelo, and Raphael
+- **Exploration** - Voyages that connected the world
+- **Printing Press** - The spread of knowledge through movable type
+
+Key figures include:
+- **Leonardo da Vinci** - Artist, scientist, inventor (Mona Lisa, The Last Supper)
+- **Michelangelo** - Sculptor, painter, architect (David, Sistine Chapel ceiling)
+- **Raphael** - Painter and architect (School of Athens)
+- **Galileo Galilei** - Astronomer and physicist
+- **William Shakespeare** - Playwright and poet
+
+The Renaissance fundamentally changed how people viewed themselves and the world, emphasizing human creativity, reason, and individuality. It produced some of the greatest works of art and literature ever created and established the intellectual foundations of Western civilization. 🏛️`;
+            }
+
+            // ============= LITERATURE =============
+            if (msg.includes('shakespeare') || msg.includes('hamlet') || msg.includes('romeo')) {
+                return `📖 **William Shakespeare: The Bard of Avon**
+
+William Shakespeare (1564-1616) is widely regarded as the greatest writer in the English language and the world's preeminent dramatist. His works, including 39 plays, 154 sonnets, and several narrative poems, have had an unparalleled influence on literature, theater, and the English language itself.
+
+Shakespeare's major works include:
+- **Tragedies**: Hamlet, Macbeth, Romeo and Juliet, King Lear, Othello
+- **Comedies**: A Midsummer Night's Dream, Twelfth Night, Much Ado About Nothing
+- **Histories**: Richard III, Henry V, Julius Caesar
+
+Shakespeare's genius lies in his:
+- **Understanding of Human Nature** - Characters with profound psychological depth
+- **Language Mastery** - Inventing over 1,700 words and countless phrases
+- **Universal Themes** - Love, ambition, jealousy, fate, and death
+- **Structure and Form** - Mastering both verse and prose
+
+His works have been translated into every major language and performed more than any other playwright. Phrases like "to be or not to be," "all the world's a stage," and "parting is such sweet sorrow" are embedded in modern culture.
+
+Shakespeare's legacy is truly global - his plays are studied in schools, adapted into countless films, and continue to resonate with audiences for their profound insight into the human condition. 🎭`;
+            }
+
+            // ============= TECHNOLOGY =============
+            if (msg.includes('internet') || msg.includes('web')) {
+                return `🌐 **The Internet: Connecting Humanity**
+
+The Internet is arguably the most transformative invention of the late 20th century, revolutionizing how humans communicate, share information, and conduct business. Born from military and academic research in the 1960s, the Internet has evolved into a global network connecting billions of people.
+
+Key milestones in Internet development:
+- **1969** - ARPANET, the predecessor to the Internet, was created
+- **1983** - TCP/IP protocol became the standard
+- **1989** - Tim Berners-Lee invented the World Wide Web
+- **1990s** - The Internet became commercially available
+- **2000s** - Social media and cloud computing emerged
+
+The Internet has transformed every aspect of modern life:
+- **Communication** - Email, messaging, video calls
+- **Education** - Access to limitless information and online learning
+- **Commerce** - E-commerce, digital payments, global markets
+- **Entertainment** - Streaming, gaming, social media
+- **Work** - Remote work, collaboration tools
+
+Challenges include digital divide, cybersecurity threats, privacy concerns, and the spread of misinformation. However, the Internet's potential to empower individuals and connect communities remains unprecedented.
+
+As we enter the era of artificial intelligence, the Internet continues to evolve, promising even more integration into our daily lives and the creation of new possibilities we can only imagine. 💻`;
+            }
+
+            // ============= HEALTH & WELLNESS =============
+            if (msg.includes('exercise') || msg.includes('fitness')) {
+                return `💪 **Exercise: The Foundation of Health**
+
+Regular physical exercise is one of the most important things you can do for your health. The benefits of exercise extend far beyond physical fitness, encompassing mental, emotional, and social well-being.
+
+Key benefits of regular exercise:
+- **Physical Health**: Strengthens heart, reduces disease risk, maintains healthy weight
+- **Mental Health**: Reduces stress, anxiety, and depression
+- **Brain Function**: Improves memory, focus, and cognitive ability
+- **Sleep Quality**: Promotes deeper, more restful sleep
+- **Longevity**: Increases life expectancy and quality of life
+
+Types of exercise include:
+- **Aerobic** - Running, swimming, cycling (cardiovascular health)
+- **Strength Training** - Weightlifting, resistance bands (muscle and bone health)
+- **Flexibility** - Yoga, stretching (mobility and injury prevention)
+- **Balance** - Tai chi, certain sports (fall prevention)
+
+The World Health Organization recommends at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous aerobic activity per week, plus strength training on two or more days.
+
+Starting an exercise routine doesn't have to be intimidating. Even simple activities like walking daily, taking the stairs, or doing home workouts can make a significant difference. The key is consistency - find activities you enjoy and make them part of your lifestyle.
+
+Remember, your health is your greatest asset. Invest in it through regular exercise! 🏋️‍♂️`;
+            }
+
+            // ============= DEFAULT: Generate a generic but helpful paragraph =============
+            // Try to extract the topic from the message
+            const words = msg.split(' ');
+            // Remove common words to try to find the topic
+            const stopWords = ['write', 'paragraph', 'about', 'explain', 'describe', 'tell', 'me', 'on', 'for', 'the', 'of',
+                'a', 'an', 'and', 'or', 'but', 'so', 'because', 'if', 'then', 'than', 'that', 'these', 'those', 'this',
+                'that', 'they', 'them', 'their', 'there', 'its', 'it', 'is', 'are', 'was', 'were', 'have', 'has', 'had',
+                'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must'
+            ];
+            let topicWords = words.filter(w => !stopWords.includes(w) && w.length > 3);
+            let topicName = topicWords.slice(0, 4).join(' ') || 'this fascinating topic';
+
+            // Capitalize first letter of each word
+            topicName = topicName.replace(/\b\w/g, l => l.toUpperCase());
+
+            return `📝 **Understanding ${topicName}**
+
+${topicName} is a subject of significant importance that touches upon many aspects of human knowledge and experience. To fully appreciate ${topicName}, we must consider its historical context, current applications, and future implications.
+
+Historical Perspective:
+The study of ${topicName} has evolved over centuries, with key contributions from thinkers, researchers, and practitioners. Each era has added new insights, building upon previous knowledge to create our current understanding.
+
+Current Relevance:
+Today, ${topicName} intersects with various disciplines including science, technology, arts, and humanities. Understanding ${topicName} helps us navigate complex challenges and make informed decisions in our personal and professional lives.
+
+Future Directions:
+As research continues and new technologies emerge, our understanding of ${topicName} will likely expand. Future developments may reveal connections we haven't yet imagined and applications we've yet to discover.
+
+In conclusion, ${topicName} represents an important area of knowledge that enriches our understanding of the world. Whether you're exploring this topic for academic, professional, or personal reasons, the journey of discovery is both rewarding and enlightening.
+
+Would you like me to explore any specific aspect of ${topicName} in more detail? 📚`;
         }
 
         function addMessage(text, sender) {
@@ -1417,7 +1535,6 @@ Just let me know what subject you're interested in! 📝`;
             const now = new Date();
             const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
                 now.getMinutes().toString().padStart(2, '0');
-            // Handle line breaks
             const formattedText = text.replace(/\n/g, '<br>');
             messageDiv.innerHTML = `${formattedText}<span class="msg-time">${timeStr}</span>`;
             chatMessages.appendChild(messageDiv);
@@ -1427,7 +1544,7 @@ Just let me know what subject you're interested in! 📝`;
         function showTyping() {
             typingIndicator.style.display = 'flex';
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            aiStatus.textContent = 'Typing...';
+            aiStatus.textContent = 'Writing...';
         }
 
         function hideTyping() {
@@ -1435,7 +1552,7 @@ Just let me know what subject you're interested in! 📝`;
             aiStatus.textContent = 'Online';
         }
 
-        async function handleSend() {
+        function handleSend() {
             const text = chatInput.value.trim();
             if (!text) return;
 
@@ -1443,22 +1560,14 @@ Just let me know what subject you're interested in! 📝`;
             chatInput.value = '';
             showTyping();
 
-            try {
-                const response = await getAIResponse(text);
-                hideTyping();
-                addMessage(response, 'bot');
+            // Simulate AI thinking (more realistic delay for longer responses)
+            const delay = Math.random() * 800 + 600;
 
-                // Add to conversation history (keep last 10)
-                conversationHistory.push({ role: 'user', content: text });
-                conversationHistory.push({ role: 'assistant', content: response });
-                if (conversationHistory.length > 20) {
-                    conversationHistory = conversationHistory.slice(-20);
-                }
-            } catch (error) {
+            setTimeout(() => {
                 hideTyping();
-                addMessage('😅 Sorry, I had trouble generating a response. Please try again!', 'bot');
-                console.error('Chat Error:', error);
-            }
+                const response = generateParagraph(text);
+                addMessage(response, 'bot');
+            }, delay);
         }
 
         sendBtn.addEventListener('click', handleSend);
@@ -1468,6 +1577,14 @@ Just let me know what subject you're interested in! 📝`;
                 handleSend();
             }
         });
+
+        // Focus chat input when dashboard appears
+        const observer = new MutationObserver(() => {
+            if (dashboardScreen.style.display === 'block') {
+                setTimeout(() => { chatInput.focus(); }, 600);
+            }
+        });
+        observer.observe(dashboardScreen, { attributes: true, attributeFilter: ['style'] });
     </script>
 
 </body>
