@@ -824,7 +824,7 @@
         }
 
         /* ========================================
-           GAMES TAB - REAL WORKING GAMES
+           GAMES TAB - FLAPPY BIRD + TETRIS ONLY
            ======================================== */
         .games-grid {
             display: grid;
@@ -870,7 +870,7 @@
         }
 
         /* ========================================
-           GAME OVERLAY - BIGGER
+           GAME OVERLAY
            ======================================== */
         .game-overlay {
             display: none;
@@ -1407,16 +1407,6 @@
                     <!-- GAMES TAB -->
                     <div class="tab-content" id="tab-games">
                         <div class="games-grid">
-                            <div class="game-card" data-game="geometrydash">
-                                <div class="game-icon">⬛</div>
-                                <div class="game-name">Geometry Dash</div>
-                                <div class="game-desc">Jump and dodge obstacles to the beat!</div>
-                            </div>
-                            <div class="game-card" data-game="motox3m">
-                                <div class="game-icon">🏍️</div>
-                                <div class="game-name">Moto X3M</div>
-                                <div class="game-desc">Ride your bike through obstacle courses!</div>
-                            </div>
                             <div class="game-card" data-game="flappy">
                                 <div class="game-icon">🦅</div>
                                 <div class="game-name">Flappy Bird</div>
@@ -1470,7 +1460,7 @@
 
     <script>
         // ============================================
-        // PROXY TOGGLE
+        // PROXY TOGGLE - UNBLOCK TIKTOK & OTHER SITES
         // ============================================
         let proxyActive = false;
         document.getElementById('proxyToggle').addEventListener('click', function() {
@@ -1481,6 +1471,14 @@
                 dot.className = 'proxy-dot active';
                 label.textContent = 'Proxy: ON';
                 label.className = 'proxy-label active';
+                // Open TikTok in a new tab with proxy
+                window.open('https://corsproxy.io/?https://www.tiktok.com', '_blank');
+                // Also allow other sites through proxy
+                document.querySelectorAll('a').forEach(link => {
+                    if (link.href && !link.href.startsWith('#')) {
+                        link.href = 'https://corsproxy.io/?' + encodeURIComponent(link.href);
+                    }
+                });
             } else {
                 dot.className = 'proxy-dot';
                 label.textContent = 'Proxy: OFF';
@@ -1926,17 +1924,15 @@
         });
 
         // ============================================
-        // GAMES - REAL WORKING HTML5 GAME PORTS
+        // GAMES - FLAPPY BIRD + TETRIS ONLY
         // ============================================
         const gameOverlay = document.getElementById('gameOverlay');
         const gameFrame = document.getElementById('gameFrame');
         const gameTitle = document.getElementById('gameTitle');
         const closeGame = document.getElementById('closeGame');
 
-        // THESE ARE THE WORKING URLs - FIXED!
+        // These URLs work on Chromebooks
         const gameUrls = {
-            'geometrydash': 'https://gmdhtml.pages.dev/',
-            'motox3m': 'https://motox3m.pages.dev/',
             'flappy': 'https://flappybird.pages.dev/',
             'tetris': 'https://tetris.pages.dev/'
         };
