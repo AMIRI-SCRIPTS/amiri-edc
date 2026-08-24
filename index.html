@@ -69,45 +69,6 @@
             transform: translateX(-50%) scale(1.05);
         }
 
-        /* ===== ROCKET SHIP BACKGROUND ===== */
-        .rocket-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .rocket-ship {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.4;
-            pointer-events: none;
-            transition: none;
-        }
-
-        .rocket-ship.flying {
-            animation: rocketLaunch 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-
-        @keyframes rocketLaunch {
-            0% {
-                opacity: 1;
-                transform: translate(0, 0) rotate(-45deg) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(calc(100vw + 200px), calc(-100vh - 200px)) rotate(-45deg) scale(1.5);
-            }
-        }
-
         /* ===== PASSWORD SCREEN ===== */
         #passwordScreen {
             position: relative;
@@ -262,6 +223,8 @@
             margin-bottom: 10px;
             flex-wrap: wrap;
             gap: 6px;
+            position: relative;
+            z-index: 10;
         }
 
         .dash-topbar .brand {
@@ -279,6 +242,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+            z-index: 10;
         }
 
         .dash-clock {
@@ -348,10 +313,11 @@
             color: #00ff44;
         }
 
-        /* ===== HAMBURGER MENU ===== */
+        /* ===== HAMBURGER MENU - ON TOP ===== */
         .hamburger-menu {
             position: relative;
             display: inline-block;
+            z-index: 999;
         }
 
         .hamburger-btn {
@@ -383,7 +349,7 @@
             padding: 8px 4px;
             min-width: 180px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            z-index: 100;
+            z-index: 9999;
         }
         .hamburger-dropdown.active {
             display: block;
@@ -1459,14 +1425,6 @@
     <!-- ===== KILL SWITCH - TOP CENTER ===== -->
     <button class="kill-switch" id="killSwitch">⛔ Kill Switch</button>
 
-    <!-- ===== ROCKET SHIP BACKGROUND ===== -->
-    <div class="rocket-bg" id="rocketBg">
-        <div class="rocket-ship" id="rocket1" style="background-image: url('spaceshipo.jfif'); top: 10%; left: 5%; width: 60px; height: 60px; opacity: 0.3;"></div>
-        <div class="rocket-ship" id="rocket2" style="background-image: url('spaceshipo.jfif'); top: 60%; left: 80%; width: 80px; height: 80px; opacity: 0.25;"></div>
-        <div class="rocket-ship" id="rocket3" style="background-image: url('spaceshipo.jfif'); top: 30%; left: 50%; width: 70px; height: 70px; opacity: 0.35;"></div>
-        <div class="rocket-ship" id="rocket4" style="background-image: url('spaceshipo.jfif'); top: 80%; left: 20%; width: 50px; height: 50px; opacity: 0.3;"></div>
-    </div>
-
     <canvas id="particles-canvas"></canvas>
 
     <!-- ===== PASSWORD SCREEN ===== -->
@@ -1716,29 +1674,6 @@
         });
 
         // ============================================
-        // LAUNCH ROCKETS ON CORRECT PASSWORD
-        // ============================================
-        function launchRockets() {
-            const rockets = document.querySelectorAll('.rocket-ship');
-            rockets.forEach((rocket, index) => {
-                // Randomize starting position
-                const startX = Math.random() * 80 + 10;
-                const startY = Math.random() * 80 + 10;
-                rocket.style.left = startX + '%';
-                rocket.style.top = startY + '%';
-                // Add flying class with delay
-                setTimeout(() => {
-                    rocket.classList.add('flying');
-                }, index * 300);
-            });
-
-            // Remove rockets after animation
-            setTimeout(() => {
-                document.getElementById('rocketBg').style.display = 'none';
-            }, 3500);
-        }
-
-        // ============================================
         // HAMBURGER MENU
         // ============================================
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -1926,23 +1861,17 @@
         function checkPassword() {
             const entered = passwordInput.value.trim();
             if (entered === CORRECT_PASSWORD) {
-                // Launch rockets
-                launchRockets();
-
-                // Show dashboard after rocket animation
-                setTimeout(() => {
-                    passwordScreen.style.display = 'none';
-                    dashboardScreen.style.display = 'block';
-                    errorMessage.classList.remove('show');
-                    updateClock();
-                    setInterval(updateClock, 1000);
-                    const firstCloak = document.querySelector('.cloak-option.active');
-                    if (firstCloak) {
-                        applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.tab, firstCloak.dataset.favicon);
-                    }
-                    setTimeout(() => { document.getElementById('chatInput').focus(); }, 500);
-                    setTimeout(drawGraph, 600);
-                }, 2800);
+                passwordScreen.style.display = 'none';
+                dashboardScreen.style.display = 'block';
+                errorMessage.classList.remove('show');
+                updateClock();
+                setInterval(updateClock, 1000);
+                const firstCloak = document.querySelector('.cloak-option.active');
+                if (firstCloak) {
+                    applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.tab, firstCloak.dataset.favicon);
+                }
+                setTimeout(() => { document.getElementById('chatInput').focus(); }, 500);
+                setTimeout(drawGraph, 600);
             } else {
                 errorMessage.textContent = '✗ Invalid passcode. Try again.';
                 errorMessage.classList.add('show');
