@@ -432,7 +432,22 @@
             text-align: center;
         }
 
-        /* ===== DRAGGABLE MENU TITLES ===== */
+        /* ===== DRAGGABLE PANELS ===== */
+        .panel-wrapper {
+            transition: all 0.15s ease;
+            cursor: default;
+        }
+
+        .panel-wrapper.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        .panel-wrapper.drag-over {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
         .draggable-title {
             cursor: grab;
             user-select: none;
@@ -457,11 +472,21 @@
 
         /* ===== MAIN LAYOUT ===== */
         .main-layout {
-            display: grid;
-            grid-template-columns: 160px 1fr 280px;
-            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             height: calc(100vh - 72px);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .main-layout .panel-wrapper {
+            flex-shrink: 0;
+            min-height: 60px;
+        }
+
+        .main-layout .panel-wrapper:last-child {
+            flex: 1;
         }
 
         /* ===== CLOAK PANEL ===== */
@@ -470,15 +495,13 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 14px;
-            padding: 12px 10px;
-            display: flex;
-            flex-direction: column;
+            padding: 12px 14px;
             height: 100%;
             overflow-y: auto;
             transition: all 0.3s ease;
         }
         .cloak-panel .panel-title {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 0.5px;
@@ -491,8 +514,8 @@
         .cloak-option {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
+            gap: 10px;
+            padding: 8px 12px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 8px;
@@ -511,7 +534,7 @@
         }
         .cloak-option .cloak-icon {
             font-size: 18px;
-            width: 24px;
+            width: 28px;
             text-align: center;
         }
         .cloak-option .cloak-name {
@@ -586,7 +609,7 @@
         }
 
         /* ========================================
-           CALCULATOR - BIGGER TEXT
+           CALCULATOR
            ======================================== */
         .calculator-container {
             background: rgba(10, 10, 10, 0.7);
@@ -596,7 +619,7 @@
             padding: 12px 14px;
             display: flex;
             flex-direction: column;
-            flex: 1;
+            height: 100%;
             min-height: 0;
             transition: all 0.3s ease;
         }
@@ -647,7 +670,6 @@
             color: #ffffff;
         }
 
-        /* ===== NORMAL CALCULATOR ===== */
         .calc-display {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.04);
@@ -748,9 +770,7 @@
             background: rgba(200, 200, 200, 0.12);
         }
 
-        /* ========================================
-           GRAPHING CALCULATOR
-           ======================================== */
+        /* ===== GRAPHING CALCULATOR ===== */
         .graphing-container {
             display: none;
             flex: 1;
@@ -852,8 +872,7 @@
             padding: 10px 12px;
             display: flex;
             flex-direction: column;
-            flex-shrink: 0;
-            max-height: 180px;
+            height: 100%;
             transition: all 0.3s ease;
         }
 
@@ -979,7 +998,6 @@
             flex-direction: column;
             gap: 3px;
             min-height: 30px;
-            max-height: 65px;
         }
         .party-msgs-modern::-webkit-scrollbar {
             width: 3px;
@@ -1071,7 +1089,7 @@
             transform: none;
         }
 
-        /* ===== CHAT SIDEBAR ===== */
+        /* ===== CHAT SIDEBAR - AI TUTOR ===== */
         .chat-sidebar {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
@@ -1115,6 +1133,12 @@
             border-radius: 50%;
             background: #00ff44;
             animation: pulse 2s infinite;
+        }
+        .chat-header .chat-status.searching::before {
+            background: #ffaa00;
+        }
+        .chat-header .chat-status.error::before {
+            background: #ff4444;
         }
 
         @keyframes pulse {
@@ -1160,6 +1184,22 @@
             background: rgba(255, 255, 255, 0.06);
             color: #dddddd;
             align-self: flex-start;
+        }
+        .message.bot .sources {
+            font-size: 11px;
+            color: #666666;
+            margin-top: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 6px;
+        }
+        .message.bot .sources a {
+            color: #66bbff;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .message.bot .sources a:hover {
+            text-decoration: underline;
         }
         .message.user {
             background: rgba(255, 255, 255, 0.12);
@@ -1239,64 +1279,45 @@
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
         }
         .chat-input-area button:hover {
             background: #dddddd;
+        }
+        .chat-input-area button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 850px) {
             .main-layout {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr auto;
                 height: auto;
                 max-height: none;
+                gap: 8px;
+            }
+            .main-layout .panel-wrapper {
+                min-height: 50px;
+            }
+            .main-layout .panel-wrapper:last-child {
+                flex: 0 1 auto;
             }
             .cloak-panel {
-                height: auto;
-                max-height: 90px;
-                flex-direction: row;
-                flex-wrap: wrap;
-                padding: 8px 10px;
-                gap: 4px;
+                max-height: 120px;
                 overflow-y: auto;
             }
-            .cloak-panel .panel-title {
-                width: 100%;
-                margin-bottom: 4px;
-                padding-bottom: 4px;
-                font-size: 12px;
-            }
-            .cloak-option {
-                padding: 4px 8px;
-                margin-bottom: 0;
-                flex: 1;
-                min-width: 70px;
-            }
-            .cloak-option .cloak-name {
-                font-size: 12px;
-            }
             .center-content {
-                height: auto;
-                max-height: none;
-            }
-            .calculator-container {
-                min-height: 240px;
-            }
-            .party-modern {
-                max-height: none;
+                max-height: 400px;
+                overflow-y: auto;
             }
             .chat-sidebar {
-                height: 220px;
-                min-height: 160px;
+                height: 250px;
+                min-height: 180px;
             }
             #dashboardScreen {
                 height: auto;
                 max-height: none;
                 overflow-y: auto;
-            }
-            .graphing-container .graph-canvas-wrapper {
-                min-height: 180px;
             }
             .hamburger-dropdown {
                 right: -10px;
@@ -1307,6 +1328,9 @@
             }
             .dash-topbar .brand {
                 font-size: 18px;
+            }
+            .panel-wrapper.drag-over {
+                border-color: rgba(255, 255, 255, 0.15);
             }
         }
 
@@ -1351,23 +1375,22 @@
                 display: none;
             }
             .cloak-panel {
-                max-height: 70px;
-                padding: 4px 6px;
+                max-height: 90px;
+                padding: 8px 10px;
             }
             .cloak-option {
-                padding: 3px 6px;
-                min-width: 55px;
+                padding: 4px 8px;
             }
             .cloak-option .cloak-icon {
                 font-size: 14px;
-                width: 18px;
+                width: 22px;
             }
             .cloak-option .cloak-name {
-                font-size: 10px;
+                font-size: 12px;
             }
             .calculator-container {
                 padding: 8px 10px;
-                min-height: 280px;
+                min-height: 250px;
             }
             .calc-btn {
                 font-size: 14px;
@@ -1395,8 +1418,8 @@
                 font-size: 15px;
             }
             .chat-sidebar {
-                height: 180px;
-                min-height: 130px;
+                height: 200px;
+                min-height: 150px;
             }
             .message {
                 font-size: 12px;
@@ -1447,6 +1470,9 @@
             }
             .size-controls label {
                 font-size: 12px;
+            }
+            .message.bot .sources {
+                font-size: 10px;
             }
         }
     </style>
@@ -1524,51 +1550,47 @@
 
         <div class="main-layout" id="mainLayout">
 
-            <!-- CLOAK PANEL -->
-            <div class="cloak-panel" id="cloakPanel">
-                <div class="panel-title draggable-title" data-drag="cloakPanel">
-                    <span class="drag-icon">⠿</span> 🎭 Tab Cloaks
-                </div>
-                <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
-                    <span class="cloak-icon">🏫</span>
-                    <span class="cloak-name">Classroom</span>
-                    <span class="cloak-status-dot"></span>
-                    <span class="cloak-check">✓</span>
-                </div>
-                <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
-                    <span class="cloak-icon">📄</span>
-                    <span class="cloak-name">Google Docs</span>
-                    <span class="cloak-status-dot"></span>
-                    <span class="cloak-check">✓</span>
-                </div>
-                <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
-                    <span class="cloak-icon">📁</span>
-                    <span class="cloak-name">Google Drive</span>
-                    <span class="cloak-status-dot"></span>
-                    <span class="cloak-check">✓</span>
-                </div>
-                <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
-                    <span class="cloak-icon">📋</span>
-                    <span class="cloak-name">Google Forms</span>
-                    <span class="cloak-status-dot"></span>
-                    <span class="cloak-check">✓</span>
-                </div>
-                <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
-                    <span class="cloak-icon">🖼️</span>
-                    <span class="cloak-name">Google Slides</span>
-                    <span class="cloak-status-dot"></span>
-                    <span class="cloak-check">✓</span>
+            <!-- PANEL: CLOAK -->
+            <div class="panel-wrapper" data-panel="cloakPanel" draggable="true">
+                <div class="cloak-panel" id="cloakPanel">
+                    <div class="panel-title draggable-title" data-drag="cloakPanel">
+                        <span class="drag-icon">⠿</span> 🎭 Tab Cloaks
+                    </div>
+                    <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
+                        <span class="cloak-icon">🏫</span>
+                        <span class="cloak-name">Classroom</span>
+                        <span class="cloak-status-dot"></span>
+                        <span class="cloak-check">✓</span>
+                    </div>
+                    <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
+                        <span class="cloak-icon">📄</span>
+                        <span class="cloak-name">Google Docs</span>
+                        <span class="cloak-status-dot"></span>
+                        <span class="cloak-check">✓</span>
+                    </div>
+                    <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
+                        <span class="cloak-icon">📁</span>
+                        <span class="cloak-name">Google Drive</span>
+                        <span class="cloak-status-dot"></span>
+                        <span class="cloak-check">✓</span>
+                    </div>
+                    <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
+                        <span class="cloak-icon">📋</span>
+                        <span class="cloak-name">Google Forms</span>
+                        <span class="cloak-status-dot"></span>
+                        <span class="cloak-check">✓</span>
+                    </div>
+                    <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
+                        <span class="cloak-icon">🖼️</span>
+                        <span class="cloak-name">Google Slides</span>
+                        <span class="cloak-status-dot"></span>
+                        <span class="cloak-check">✓</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- CENTER CONTENT -->
-            <div class="center-content">
-                <div class="welcome-banner">
-                    <h2>Welcome back, <span>Student</span> 👋</h2>
-                    <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong> • Your Ultimate School Tool</p>
-                </div>
-
-                <!-- CALCULATOR CONTAINER -->
+            <!-- PANEL: CALCULATOR -->
+            <div class="panel-wrapper" data-panel="calculatorContainer" draggable="true">
                 <div class="calculator-container" id="calculatorContainer">
                     <div class="calc-header">
                         <span class="calc-title draggable-title" data-drag="calculatorContainer">
@@ -1580,7 +1602,6 @@
                         </div>
                     </div>
 
-                    <!-- NORMAL CALCULATOR -->
                     <div id="normalCalc" class="normal-calculator" style="display:flex;flex-direction:column;flex:1;min-height:0;">
                         <div class="calc-display">
                             <div class="calc-expr" id="calcExpression"></div>
@@ -1619,7 +1640,6 @@
                         </div>
                     </div>
 
-                    <!-- GRAPHING CALCULATOR -->
                     <div id="graphingCalc" class="graphing-container">
                         <div class="graph-input-area">
                             <input type="text" id="graphInput" placeholder="f(x) = ..." value="x^2">
@@ -1640,8 +1660,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- PARTY CHAT -->
+            <!-- PANEL: PARTY CHAT -->
+            <div class="panel-wrapper" data-panel="partyModem" draggable="true">
                 <div class="party-modern" id="partyModem">
                     <div class="party-top">
                         <div class="party-title-section">
@@ -1675,27 +1697,29 @@
                 </div>
             </div>
 
-            <!-- CHAT SIDEBAR -->
-            <div class="chat-sidebar" id="chatSidebar">
-                <div class="chat-header">
-                    <span class="chat-icon">🧠</span>
-                    <span class="chat-title draggable-title" data-drag="chatSidebar">
-                        <span class="drag-icon">⠿</span> Smart AI Tutor
-                    </span>
-                    <span class="chat-status" id="aiStatus">Online</span>
-                </div>
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        👋 I'm your AI tutor! Ask me to explain concepts, write essays, or solve problems!
-                        <span class="msg-time">Just now</span>
+            <!-- PANEL: AI TUTOR -->
+            <div class="panel-wrapper" data-panel="chatSidebar" draggable="true" style="flex:1;min-height:100px;">
+                <div class="chat-sidebar" id="chatSidebar">
+                    <div class="chat-header">
+                        <span class="chat-icon">🧠</span>
+                        <span class="chat-title draggable-title" data-drag="chatSidebar">
+                            <span class="drag-icon">⠿</span> Smart AI Tutor
+                        </span>
+                        <span class="chat-status" id="aiStatus">Online</span>
                     </div>
-                </div>
-                <div class="typing-indicator" id="typingIndicator">
-                    <span></span><span></span><span></span>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="chatInput" placeholder="Ask for help..." autocomplete="off">
-                    <button id="sendBtn">Send</button>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            👋 I'm your AI tutor! I can search the web for answers to your questions. Ask me about any school subject!
+                            <span class="msg-time">Just now</span>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Ask about any subject..." autocomplete="off">
+                        <button id="sendBtn">Send</button>
+                    </div>
                 </div>
             </div>
 
@@ -1711,7 +1735,7 @@
         });
 
         // ============================================
-        // PROXY TOGGLE - NO NEW WINDOW, INLINE PROXY
+        // PROXY TOGGLE - NO NEW WINDOW
         // ============================================
         let proxyActive = false;
         const proxyToggle = document.getElementById('proxyToggle');
@@ -1724,7 +1748,6 @@
                 proxyDot.className = 'proxy-dot active';
                 proxyLabel.textContent = 'Proxy: ON';
                 proxyLabel.className = 'proxy-label active';
-                // Apply proxy to all links on the page
                 document.querySelectorAll('a').forEach(link => {
                     if (link.href && !link.href.startsWith('#') && !link.href.startsWith('javascript:')) {
                         const originalHref = link.href;
@@ -1732,13 +1755,11 @@
                         link.href = 'https://api.allorigins.win/get?url=' + encodeURIComponent(originalHref);
                     }
                 });
-                // Also proxy any external requests
-                console.log('🔒 Proxy ENABLED - All external links are now proxied');
+                console.log('🔒 Proxy ENABLED');
             } else {
                 proxyDot.className = 'proxy-dot';
                 proxyLabel.textContent = 'Proxy: OFF';
                 proxyLabel.className = 'proxy-label';
-                // Restore original links
                 document.querySelectorAll('a[data-original-href]').forEach(link => {
                     link.href = link.dataset.originalHref;
                 });
@@ -1747,106 +1768,185 @@
         });
 
         // ============================================
-        // DRAGGABLE TITLES - REORDER PANELS
+        // DRAGGABLE PANELS - FULL DRAG & DROP
         // ============================================
         let dragData = null;
+        const mainLayout = document.getElementById('mainLayout');
 
-        document.querySelectorAll('.draggable-title').forEach(title => {
-            title.addEventListener('mousedown', function(e) {
-                if (e.button !== 0) return;
-                const targetId = this.dataset.drag;
-                const target = document.getElementById(targetId);
-                if (!target) return;
+        document.querySelectorAll('.panel-wrapper').forEach(panel => {
+            // Make the entire panel draggable via the title
+            const title = panel.querySelector('.draggable-title');
+            if (title) {
+                title.addEventListener('mousedown', function(e) {
+                    if (e.button !== 0) return;
+                    startDrag(panel, e);
+                });
+            }
 
-                const rect = target.getBoundingClientRect();
-                const parent = target.parentNode;
-
-                dragData = {
-                    target: target,
-                    parent: parent,
-                    startY: e.clientY,
-                    startIndex: Array.from(parent.children).indexOf(target),
-                    offset: e.clientY - rect.top,
-                    originalHeight: rect.height
-                };
-
-                // Create ghost
-                const ghost = target.cloneNode(true);
-                ghost.style.position = 'fixed';
-                ghost.style.pointerEvents = 'none';
-                ghost.style.opacity = '0.5';
-                ghost.style.zIndex = '9999';
-                ghost.style.width = rect.width + 'px';
-                ghost.style.height = rect.height + 'px';
-                ghost.style.left = rect.left + 'px';
-                ghost.style.top = rect.top + 'px';
-                ghost.style.transition = 'none';
-                document.body.appendChild(ghost);
-                dragData.ghost = ghost;
-
-                // Highlight
-                target.style.opacity = '0.3';
-                target.style.transition = 'all 0.2s';
-
-                document.addEventListener('mousemove', onDragMove);
-                document.addEventListener('mouseup', onDragEnd);
-
-                e.preventDefault();
+            // Also make the panel itself draggable
+            panel.addEventListener('mousedown', function(e) {
+                // Only if clicking on the panel itself or empty space
+                if (e.target === panel || e.target.closest('.panel-wrapper') === panel && !e.target.closest(
+                        'button') && !e.target.closest('input') && !e.target.closest(
+                        '.calc-btn') && !e.target.closest('.cloak-option')) {
+                    // Check if we're clicking on the title area
+                    const titleArea = panel.querySelector('.draggable-title');
+                    if (titleArea && titleArea.contains(e.target)) {
+                        startDrag(panel, e);
+                    }
+                }
             });
         });
+
+        function startDrag(panel, e) {
+            if (dragData) return;
+
+            const rect = panel.getBoundingClientRect();
+            const panels = Array.from(mainLayout.querySelectorAll('.panel-wrapper'));
+
+            // Create ghost
+            const ghost = panel.cloneNode(true);
+            ghost.style.position = 'fixed';
+            ghost.style.pointerEvents = 'none';
+            ghost.style.opacity = '0.6';
+            ghost.style.zIndex = '9999';
+            ghost.style.width = rect.width + 'px';
+            ghost.style.height = rect.height + 'px';
+            ghost.style.left = rect.left + 'px';
+            ghost.style.top = rect.top + 'px';
+            ghost.style.transition = 'none';
+            ghost.style.borderRadius = '14px';
+            ghost.style.overflow = 'hidden';
+            document.body.appendChild(ghost);
+
+            dragData = {
+                panel: panel,
+                ghost: ghost,
+                startY: e.clientY,
+                offset: e.clientY - rect.top,
+                panels: panels,
+                startIndex: panels.indexOf(panel)
+            };
+
+            panel.classList.add('dragging');
+
+            document.addEventListener('mousemove', onDragMove);
+            document.addEventListener('mouseup', onDragEnd);
+            e.preventDefault();
+        }
 
         function onDragMove(e) {
             if (!dragData) return;
             const ghost = dragData.ghost;
             ghost.style.top = (e.clientY - dragData.offset) + 'px';
 
-            // Find which element we're hovering over
-            const elements = dragData.parent.children;
+            // Find which panel we're hovering over
+            const panels = dragData.panels;
             let targetIndex = -1;
-            for (let i = 0; i < elements.length; i++) {
-                const el = elements[i];
-                if (el === dragData.target) continue;
-                const rect = el.getBoundingClientRect();
+            let targetPanel = null;
+
+            for (let i = 0; i < panels.length; i++) {
+                const p = panels[i];
+                if (p === dragData.panel) continue;
+                const rect = p.getBoundingClientRect();
+                // Check if mouse is over this panel
                 if (e.clientY > rect.top && e.clientY < rect.bottom) {
                     targetIndex = i;
+                    targetPanel = p;
                     break;
                 }
             }
 
-            // Reorder if needed
-            if (targetIndex !== -1 && targetIndex !== dragData.target._currentIndex) {
-                const children = Array.from(dragData.parent.children);
-                const currentIndex = children.indexOf(dragData.target);
-                if (targetIndex > currentIndex) targetIndex--;
-                dragData.parent.insertBefore(dragData.target, children[targetIndex]);
-                dragData.target._currentIndex = targetIndex;
+            // If we're near the top or bottom of the list, handle edge cases
+            if (targetIndex === -1) {
+                // Check if we're above the first panel
+                const firstRect = panels[0].getBoundingClientRect();
+                if (e.clientY < firstRect.top + 20 && panels.indexOf(dragData.panel) !== 0) {
+                    targetIndex = 0;
+                }
+                // Check if we're below the last panel
+                const lastRect = panels[panels.length - 1].getBoundingClientRect();
+                if (e.clientY > lastRect.bottom - 20 && panels.indexOf(dragData.panel) !== panels.length - 1) {
+                    targetIndex = panels.length - 1;
+                }
+            }
+
+            // Update UI - show drop indicators
+            panels.forEach(p => p.classList.remove('drag-over'));
+            if (targetPanel) {
+                targetPanel.classList.add('drag-over');
+            }
+
+            // Reorder in DOM if needed
+            if (targetIndex !== -1) {
+                const currentIndex = panels.indexOf(dragData.panel);
+                if (targetIndex !== currentIndex) {
+                    // Remove from current position
+                    const panelEl = dragData.panel;
+                    // Determine where to insert
+                    if (targetIndex > currentIndex) {
+                        // Moving down - insert after the target
+                        const nextPanel = panels[targetIndex + 1] || null;
+                        if (nextPanel) {
+                            mainLayout.insertBefore(panelEl, nextPanel);
+                        } else {
+                            mainLayout.appendChild(panelEl);
+                        }
+                    } else {
+                        // Moving up - insert before the target
+                        mainLayout.insertBefore(panelEl, panels[targetIndex]);
+                    }
+                    // Update panels array
+                    dragData.panels = Array.from(mainLayout.querySelectorAll('.panel-wrapper'));
+                }
             }
         }
 
         function onDragEnd(e) {
             if (!dragData) return;
+
             // Clean up
             if (dragData.ghost) {
                 dragData.ghost.remove();
             }
-            dragData.target.style.opacity = '1';
+            dragData.panel.classList.remove('dragging');
+            dragData.panels.forEach(p => p.classList.remove('drag-over'));
 
             document.removeEventListener('mousemove', onDragMove);
             document.removeEventListener('mouseup', onDragEnd);
-            dragData = null;
 
-            // Update the main layout order
-            updateLayoutOrder();
-        }
-
-        function updateLayoutOrder() {
-            // Save the order to localStorage or just update display
-            const mainLayout = document.getElementById('mainLayout');
-            const children = Array.from(mainLayout.children);
-            const order = children.map(el => el.id);
+            // Save order
+            const order = Array.from(mainLayout.querySelectorAll('.panel-wrapper')).map(p => p.dataset.panel);
             console.log('📐 New layout order:', order);
-            // You could save to localStorage here if wanted
+            // Save to localStorage
+            try {
+                localStorage.setItem('panelOrder', JSON.stringify(order));
+            } catch (e) {}
+
+            dragData = null;
         }
+
+        // Restore saved order on load
+        function restorePanelOrder() {
+            try {
+                const saved = localStorage.getItem('panelOrder');
+                if (saved) {
+                    const order = JSON.parse(saved);
+                    const panels = mainLayout.querySelectorAll('.panel-wrapper');
+                    const panelMap = {};
+                    panels.forEach(p => { panelMap[p.dataset.panel] = p; });
+
+                    // Reorder based on saved order
+                    order.forEach(panelId => {
+                        if (panelMap[panelId]) {
+                            mainLayout.appendChild(panelMap[panelId]);
+                        }
+                    });
+                }
+            } catch (e) {}
+        }
+        // Uncomment to enable saved order
+        // restorePanelOrder();
 
         // ============================================
         // HAMBURGER MENU
@@ -1857,18 +1957,15 @@
         const sizeSlider = document.getElementById('sizeSlider');
         const sizeValue = document.getElementById('sizeValue');
 
-        // Toggle dropdown
         hamburgerBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             hamburgerDropdown.classList.toggle('active');
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', () => {
             hamburgerDropdown.classList.remove('active');
         });
 
-        // Toggle visibility of panels
         hamburgerItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1877,16 +1974,18 @@
                 if (target) {
                     item.classList.toggle('active');
                     const isActive = item.classList.contains('active');
-                    target.style.display = isActive ? '' : 'none';
+                    // Find the panel wrapper
+                    const wrapper = target.closest('.panel-wrapper');
+                    if (wrapper) {
+                        wrapper.style.display = isActive ? '' : 'none';
+                    }
                 }
             });
         });
 
-        // Size slider
         sizeSlider.addEventListener('input', function() {
             const val = this.value;
             sizeValue.textContent = val + '%';
-            const mainLayout = document.getElementById('mainLayout');
             mainLayout.style.transform = `scale(${val / 100})`;
             mainLayout.style.transformOrigin = 'top center';
         });
@@ -2055,7 +2154,7 @@
         }
 
         // ============================================
-        // NORMAL CALCULATOR
+        // CALCULATOR
         // ============================================
         let calcExpression = '';
         let calcResult = '0';
@@ -2474,7 +2573,7 @@
         });
 
         // ============================================
-        // SMART AI TUTOR
+        // SMART AI TUTOR - WEB SEARCH POWERED
         // ============================================
         const chatMessages2 = document.getElementById('chatMessages');
         const chatInput2 = document.getElementById('chatInput');
@@ -2482,91 +2581,272 @@
         const typingIndicator2 = document.getElementById('typingIndicator');
         const aiStatus2 = document.getElementById('aiStatus');
 
-        function getAIResponse(msg) {
-            const m = msg.toLowerCase().trim();
+        // AI that searches the web using DuckDuckGo Instant Answer API
+        async function getAIResponse(userMessage) {
+            try {
+                // First, try DuckDuckGo Instant Answer API (free, no key needed)
+                const encodedQuery = encodeURIComponent(userMessage);
+                const response = await fetch(
+                    `https://api.duckduckgo.com/?q=${encodedQuery}&format=json&no_html=1&skip_disambig=1`
+                );
 
-            if (m.includes('math') || m.includes('algebra') || m.includes('equation') || m.includes('solve')) {
-                return `📐 **Math Help**\n\nI can help you with math! Try:\n\n1. **Algebra**: Solve equations, simplify expressions\n2. **Geometry**: Area, volume, angles, shapes\n3. **Calculus**: Derivatives, integrals, limits\n4. **Statistics**: Mean, median, standard deviation\n\nTell me what specific math topic you're working on and I'll explain it step by step! 🧮`;
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Check if we got a meaningful answer
+                    if (data.AbstractText && data.AbstractText.length > 20) {
+                        let sources = '';
+                        if (data.AbstractURL) {
+                            sources = `\n\n📎 Source: ${data.AbstractURL}`;
+                        }
+                        // Also check for related topics
+                        let relatedInfo = '';
+                        if (data.RelatedTopics && data.RelatedTopics.length > 0) {
+                            for (let topic of data.RelatedTopics) {
+                                if (topic.Text && topic.Text.length > 30 && topic.Text !== data.AbstractText) {
+                                    relatedInfo = `\n\n📚 Related: ${topic.Text.substring(0, 200)}...`;
+                                    if (topic.Icon && topic.Icon.URL) {
+                                        // Could add icon if needed
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        return data.AbstractText + sources + relatedInfo;
+                    }
+
+                    if (data.Definition && data.Definition.length > 10) {
+                        return `📖 ${data.Definition}`;
+                    }
+
+                    // Check if there are related topics we can use
+                    if (data.RelatedTopics && data.RelatedTopics.length > 0) {
+                        for (let topic of data.RelatedTopics) {
+                            if (topic.Text && topic.Text.length > 30) {
+                                let result = topic.Text;
+                                if (topic.Icon && topic.Icon.URL) {
+                                    // Could add icon
+                                }
+                                return result;
+                            }
+                        }
+                    }
+                }
+
+                // Fallback: Use a free AI API (GPT4All via AllOrigins proxy)
+                try {
+                    const prompt =
+                        `You are a helpful AI study assistant for students. Provide a detailed, informative response to: ${userMessage}. Keep it educational and appropriate for students. Format your response with clear paragraphs and bullet points if needed.`;
+
+                    const fallbackResponse = await fetch(
+                        `https://api.allorigins.win/raw?url=${encodeURIComponent('https://gpt4all.io/api/chat')}`,
+                        {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                model: 'gpt4all-lora-unfiltered-quantized',
+                                messages: [
+                                    { role: 'system', content: 'You are a helpful study assistant.' },
+                                    { role: 'user', content: userMessage }
+                                ],
+                                temperature: 0.7,
+                                max_tokens: 500
+                            })
+                        }
+                    );
+
+                    if (fallbackResponse.ok) {
+                        const fallbackData = await fallbackResponse.json();
+                        if (fallbackData.response) {
+                            return fallbackData.response;
+                        }
+                    }
+                } catch (e) {
+                    console.log('Fallback API failed, using local responses');
+                }
+
+                // Ultimate fallback: Smart local responses
+                return getLocalResponse(userMessage);
+
+            } catch (error) {
+                console.error('AI Error:', error);
+                return getLocalResponse(userMessage);
             }
-
-            if (m.includes('science') || m.includes('physics') || m.includes('chemistry') || m.includes('biology')) {
-                return `🔬 **Science Help**\n\nWhich science subject are you studying?\n\n- **Physics**: Motion, forces, energy, electricity\n- **Chemistry**: Elements, compounds, reactions\n- **Biology**: Cells, genetics, evolution, ecology\n\nLet me know your topic and I'll break it down for you! 🧪`;
-            }
-
-            if (m.includes('essay') || m.includes('paragraph') || m.includes('write') || m.includes('explain') ||
-                m.includes('describe')) {
-                let topic = msg.replace(/write|paragraph|essay|explain|describe|tell me about|what is|a|an|the|for|on|about|with|by|of|to|from|in|at|and|or|but|so|because|if|then|than|that|these|those|this|that|they|them|their|there|its|it|is|are|was|were|have|has|had|do|does|did|will|would|could|should|may|might|must|please|can|you/gi, '')
-                    .trim();
-                if (!topic || topic.length < 2) topic = "this topic";
-                topic = topic.replace(/\b\w/g, l => l.toUpperCase());
-                return `📝 **Paragraph on "${topic}"**\n\n${topic} is a fascinating subject that encompasses many important aspects of our world. Understanding ${topic} helps us appreciate the complexity and beauty of the systems and ideas that shape our lives.\n\nThe study of ${topic} involves exploring its historical development, current applications, and future implications. Scholars and practitioners continue to make discoveries that expand our knowledge.\n\n${topic} connects to various disciplines including science, technology, arts, and humanities. By exploring ${topic}, we gain insights into fundamental principles that govern our world.\n\n📚 *Would you like me to explore any specific aspect of ${topic} in more detail?*`;
-            }
-
-            if (m.includes('history') || m.includes('war') || m.includes('ancient') || m.includes('civilization')) {
-                return `🏛️ **History Help**\n\nHistory helps us understand the present! What era or topic are you studying?\n\n- **Ancient Civilizations**: Egypt, Greece, Rome, China\n- **World Wars**: WWI, WWII, causes and effects\n- **American History**: Revolution, Civil War, Civil Rights\n- **European History**: Renaissance, Enlightenment, Industrial Revolution\n\nTell me what you need help with! 📜`;
-            }
-
-            if (m.includes('study') || m.includes('homework') || m.includes('assignment') || m.includes('exam') ||
-                m.includes('test')) {
-                return `📚 **Study Tips for Success**\n\n1. **Plan Ahead**: Break large assignments into smaller tasks\n2. **Active Learning**: Summarize, teach others, make flashcards\n3. **Pomodoro Technique**: 25 min study, 5 min break\n4. **Find Your Style**: Visual? Auditory? Kinesthetic?\n5. **Healthy Habits**: Get enough sleep, exercise, and eat well\n6. **Practice Problems**: Apply what you learn\n7. **Review Regularly**: Don't cram - space out your review\n\nWhat subject are you studying for? I can give more specific advice! 🎯`;
-            }
-
-            if (m.includes('joke') || m.includes('funny')) {
-                const jokes = [
-                    "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰",
-                    "🤣 What do you call a fake noodle? An impasta! 🍝",
-                    "😄 Why did the math book look so sad? Because it had too many problems! 📐",
-                    "😂 Why did the scarecrow win an award? Because he was outstanding in his field! 🌾"
-                ];
-                return jokes[Math.floor(Math.random() * jokes.length)];
-            }
-
-            if (m.includes('hello') || m.includes('hi') || m.includes('hey')) {
-                return "👋 Hey there! I'm your AI tutor. Ask me about math, science, history, essay writing, study tips, or anything school-related!";
-            }
-
-            if (m.includes('thank')) {
-                return "😄 You're welcome! Happy to help. Anything else I can assist with?";
-            }
-
-            return "🤔 That's interesting! Tell me more about what you need help with. I'm here to tutor you in:\n\n• Math (algebra, geometry, calculus)\n• Science (physics, chemistry, biology)\n• History\n• Essay writing\n• Study tips and homework help\n\nWhat subject are we tackling today? 🎓";
         }
 
-        function addMessage2(text, sender) {
+        // Smart local responses when API fails
+        function getLocalResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
+
+            // Essay/Paragraph requests
+            if (msg.includes('write') || msg.includes('essay') || msg.includes('paragraph') || msg.includes('explain') ||
+                msg.includes('describe') || msg.includes('tell me about') || msg.includes('what is') ||
+                msg.includes('who is') || msg.includes('how does') || msg.includes('define')) {
+
+                // Try to generate a meaningful response based on keywords
+                const topics = {
+                    'photosynthesis': '🌱 **Photosynthesis** is the process by which plants convert light energy into chemical energy. During photosynthesis, plants absorb sunlight through chlorophyll, take in carbon dioxide from the air, and absorb water from the soil. These components are transformed into glucose (food) and oxygen, which is released into the atmosphere. This process is essential for life on Earth as it produces oxygen and forms the base of most food chains.',
+                    'mitosis': '🧬 **Mitosis** is the process of cell division where a single cell divides into two identical daughter cells. It occurs in four stages: Prophase (chromosomes condense), Metaphase (chromosomes align at the center), Anaphase (chromosomes split apart), and Telophase (two new nuclei form). Mitosis is essential for growth, development, and tissue repair in multicellular organisms.',
+                    'gravity': '🌌 **Gravity** is a fundamental force that attracts two objects with mass toward each other. First described by Sir Isaac Newton in the 17th century and later refined by Albert Einstein\'s Theory of General Relativity, gravity is what keeps planets in orbit around the sun, causes objects to fall to the ground, and shapes the structure of the universe.',
+                    'democracy': '🗳️ **Democracy** is a system of government where power is vested in the people, who exercise it directly or through elected representatives. Key principles include free and fair elections, protection of human rights, the rule of law, and citizen participation in political processes.',
+                    'climate change': '🌍 **Climate change** refers to long-term shifts in global temperatures and weather patterns, primarily caused by human activities like burning fossil fuels, deforestation, and industrial processes. The main driver is the greenhouse effect, where gases like carbon dioxide trap heat in the atmosphere. This leads to rising sea levels, more frequent extreme weather events, and loss of biodiversity.'
+                };
+
+                // Check if the message contains any topic keywords
+                for (let [key, value] of Object.entries(topics)) {
+                    if (msg.includes(key)) {
+                        return value + '\n\n📚 Let me know if you need more details on this topic!';
+                    }
+                }
+
+                // Generic paragraph generation for essay requests
+                if (msg.includes('paragraph') || msg.includes('essay') || msg.includes('write') || msg.includes('explain') ||
+                    msg.includes('describe')) {
+                    // Try to identify the subject
+                    const words = userMessage.split(' ');
+                    let topic = words.slice(-5).join(' ').replace(/[^a-zA-Z0-9 ]/g, '').trim() || 'your topic';
+
+                    return `📝 Here's a paragraph on "${topic}":
+
+${topic} is a fascinating subject that encompasses many important aspects of our world. Understanding ${topic} helps us appreciate the complexity and beauty of the systems around us.
+
+Research and study in this area continue to reveal new insights and applications. As we learn more about ${topic}, we discover connections to other fields and develop innovative solutions to challenges.
+
+Let me know if you'd like me to go deeper into any specific aspect of this topic! 📚`;
+                }
+
+                return `🤔 Let me think about that... 
+
+I'd be happy to help! Could you be more specific about what topic you'd like me to cover? For example, you could ask me about:
+• A historical event
+• A scientific concept
+• A literary analysis
+• A social issue
+
+Just let me know what subject you're interested in! 📝`;
+            }
+
+            // Use the original simple response system for casual chat
+            return getSimpleResponse(msg);
+        }
+
+        function getSimpleResponse(msg) {
+            if (msg.includes('math') || msg.includes('algebra') || msg.includes('equation') || msg.includes('geometry')) {
+                return "📐 For math help, break problems into steps. What specific topic are you working on? I can help with algebra, geometry, calculus, or statistics!";
+            }
+            if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry') || msg.includes('biology')) {
+                return "🔬 Science is about observation and experimentation! Which subject: Physics, Chemistry, or Biology? I can explain concepts simply.";
+            }
+            if (msg.includes('english') || msg.includes('essay') || msg.includes('writing') || msg.includes('literature') || msg
+                .includes('grammar')) {
+                return "📝 For writing: start with a strong thesis. Need help with structure, grammar, or analyzing a text? I've got you!";
+            }
+            if (msg.includes('test') || msg.includes('quiz') || msg.includes('exam') || msg.includes('study') || msg.includes(
+                'review')) {
+                return "📚 Study tips: 1) Make a schedule, 2) Use flashcards, 3) Take practice quizzes, 4) Get good sleep! What subject are you prepping for?";
+            }
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('sup') || msg.includes(
+                'whats up')) {
+                return "👋 Hey there! Ready to learn something new today? What subject are you studying?";
+            }
+            if (msg.includes('how are you') || msg.includes('how ya')) {
+                return "😊 I'm always great when I'm helping students! What can I assist you with today?";
+            }
+            if (msg.includes('homework') || msg.includes('assignment') || msg.includes('project') || msg.includes('work')) {
+                return "📋 Break your homework into smaller tasks. Need help with a specific subject or question?";
+            }
+            if (msg.includes('thanks') || msg.includes('thank you') || msg.includes('ty') || msg.includes('appreciate')) {
+                return "😄 You're welcome! Keep up the great work. Come back anytime you need help!";
+            }
+            if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
+                return "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰";
+            }
+            if (msg.includes('history') || msg.includes('social studies') || msg.includes('geography')) {
+                return "🏛️ History helps us understand the present! What era or topic are you studying? I can give you key facts and context.";
+            }
+            if (msg.includes('computer') || msg.includes('coding') || msg.includes('programming') || msg.includes('html')) {
+                return "💻 Coding is a superpower! Are you learning HTML, CSS, JavaScript, or something else? I can help explain concepts.";
+            }
+
+            return "🤔 That's interesting! Tell me more and I'll do my best to help. I can write essays, explain concepts, or just chat. What would you like to know?";
+        }
+
+        function addMessage2(text, sender, sources = null) {
             const div = document.createElement('div');
             div.className = `message ${sender}`;
             const now = new Date();
             const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-            div.innerHTML = `${text.replace(/\n/g, '<br>')}<span class="msg-time">${timeStr}</span>`;
+
+            let htmlContent = text.replace(/\n/g, '<br>');
+
+            if (sources) {
+                htmlContent += `<div class="sources">📎 Sources: ${sources}</div>`;
+            }
+
+            div.innerHTML = `${htmlContent}<span class="msg-time">${timeStr}</span>`;
             chatMessages2.appendChild(div);
             chatMessages2.scrollTop = chatMessages2.scrollHeight;
         }
 
         function showTyping2() {
             typingIndicator2.style.display = 'flex';
-            aiStatus2.textContent = 'Thinking...';
+            aiStatus2.textContent = 'Searching...';
+            aiStatus2.className = 'chat-status searching';
         }
 
         function hideTyping2() {
             typingIndicator2.style.display = 'none';
             aiStatus2.textContent = 'Online';
+            aiStatus2.className = 'chat-status';
         }
 
-        function handleSend2() {
+        function showError() {
+            aiStatus2.textContent = 'Error';
+            aiStatus2.className = 'chat-status error';
+            setTimeout(() => {
+                aiStatus2.textContent = 'Online';
+                aiStatus2.className = 'chat-status';
+            }, 3000);
+        }
+
+        async function handleSend2() {
             const text = chatInput2.value.trim();
             if (!text) return;
+
             addMessage2(text, 'user');
             chatInput2.value = '';
             showTyping2();
-            setTimeout(() => {
+
+            try {
+                const response = await getAIResponse(text);
                 hideTyping2();
-                addMessage2(getAIResponse(text), 'bot');
-            }, Math.random() * 500 + 300);
+
+                // Extract sources if present in response
+                let sources = null;
+                let cleanedResponse = response;
+                if (response.includes('Source:')) {
+                    const parts = response.split('Source:');
+                    cleanedResponse = parts[0].trim();
+                    sources = parts[1] ? parts[1].trim() : null;
+                }
+
+                addMessage2(cleanedResponse, 'bot', sources);
+
+            } catch (error) {
+                hideTyping2();
+                showError();
+                addMessage2('😅 Sorry, I had trouble searching for an answer. Please try again!', 'bot');
+                console.error('Chat Error:', error);
+            }
         }
 
         sendBtn2.addEventListener('click', handleSend2);
-        chatInput2.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
-                handleSend2(); } });
+        chatInput2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSend2();
+            }
+        });
     </script>
 
 </body>
