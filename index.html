@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Classroom</title>
-    <!-- FAVICONS for different cloaks -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" id="favicon">
     <style>
         /* ========================================
@@ -212,7 +211,6 @@
             overflow: hidden;
         }
 
-        /* Top Bar */
         .dash-topbar {
             display: flex;
             justify-content: space-between;
@@ -299,7 +297,7 @@
            ======================================== */
         .main-layout {
             display: grid;
-            grid-template-columns: 260px 1fr 340px;
+            grid-template-columns: 240px 1fr 340px;
             gap: 16px;
             height: calc(100vh - 85px);
             animation: fadeInUp 0.7s ease-out;
@@ -422,13 +420,14 @@
             background: #00ff44;
         }
 
-        /* CENTER CONTENT */
+        /* CENTER CONTENT - WELCOME + CALCULATOR */
         .center-content {
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow-y: auto;
             padding-right: 4px;
+            gap: 14px;
         }
 
         .center-content::-webkit-scrollbar {
@@ -450,8 +449,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 14px;
-            padding: 18px 22px;
-            margin-bottom: 14px;
+            padding: 16px 20px;
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
@@ -469,7 +467,7 @@
         }
 
         .welcome-banner h2 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.3px;
@@ -483,7 +481,7 @@
         .welcome-banner p {
             color: #555555;
             font-size: 12px;
-            margin-top: 3px;
+            margin-top: 2px;
             letter-spacing: 0.3px;
         }
 
@@ -491,67 +489,128 @@
             color: #ffffff;
         }
 
-        .current-cloak-display {
+        /* ========================================
+           CALCULATOR
+           ======================================== */
+        .calculator {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 14px;
-            padding: 20px;
+            padding: 18px 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 180px;
+            min-height: 300px;
         }
 
-        .current-cloak-display .big-icon {
-            font-size: 48px;
-            margin-bottom: 6px;
-        }
-
-        .current-cloak-display .cloak-label {
+        .calculator .calc-title {
             font-size: 11px;
-            color: #888888;
-            font-weight: 300;
+            font-weight: 600;
+            color: #555555;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .current-cloak-display .cloak-name-display {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-top: 4px;
-        }
-
-        .current-cloak-display .cloak-status-text {
-            font-size: 11px;
-            color: #00ff44;
-            margin-top: 6px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .current-cloak-display .cloak-status-text::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #00ff44;
-            animation: pulse 2s infinite;
+        .calculator .calc-title span {
+            color: #333333;
         }
 
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+        .calc-display {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: right;
+            margin-bottom: 14px;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .calc-display .calc-expression {
+            font-size: 16px;
+            color: #888888;
+            font-weight: 300;
+            min-height: 24px;
+            word-wrap: break-word;
+            text-align: right;
+        }
+
+        .calc-display .calc-result {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            min-height: 40px;
+            text-align: right;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            flex: 1;
+        }
+
+        .calc-btn {
+            padding: 12px 6px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.03);
+        }
+
+        .calc-btn:active {
+            transform: scale(0.95);
+        }
+
+        .calc-btn.operator {
+            background: rgba(255, 255, 255, 0.06);
+            color: #00ccff;
+        }
+
+        .calc-btn.operator:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .calc-btn.equals {
+            background: #ffffff;
+            color: #000000;
+            grid-column: span 2;
+        }
+
+        .calc-btn.equals:hover {
+            background: #dddddd;
+        }
+
+        .calc-btn.clear {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff6666;
+        }
+
+        .calc-btn.clear:hover {
+            background: rgba(255, 0, 0, 0.25);
+        }
+
+        .calc-btn.zero {
+            grid-column: span 2;
         }
 
         /* ========================================
@@ -790,9 +849,8 @@
                 height: auto;
                 max-height: none;
             }
-            .current-cloak-display {
-                padding: 16px;
-                min-height: 100px;
+            .calculator {
+                min-height: 320px;
             }
             .chat-sidebar {
                 height: 340px;
@@ -868,6 +926,16 @@
             .cloak-option .cloak-info .cloak-name {
                 font-size: 10px;
             }
+            .calculator {
+                min-height: 340px;
+            }
+            .calc-btn {
+                font-size: 16px;
+                padding: 10px 4px;
+            }
+            .calc-display .calc-result {
+                font-size: 26px;
+            }
             .chat-sidebar {
                 height: 300px;
                 min-height: 240px;
@@ -878,19 +946,13 @@
             .welcome-banner {
                 padding: 12px 16px;
             }
-            .current-cloak-display .big-icon {
-                font-size: 32px;
-            }
-            .current-cloak-display .cloak-name-display {
-                font-size: 16px;
-            }
-            .cloak-option .cloak-check {
-                display: none;
-            }
             .message {
                 font-size: 11px;
                 padding: 8px 12px;
                 max-width: 98%;
+            }
+            .calc-buttons {
+                gap: 6px;
             }
         }
 
@@ -906,6 +968,13 @@
             }
             .dash-avatar {
                 display: none;
+            }
+            .calc-btn {
+                font-size: 14px;
+                padding: 8px 4px;
+            }
+            .calc-display .calc-result {
+                font-size: 22px;
             }
         }
     </style>
@@ -953,7 +1022,7 @@
             </div>
         </div>
 
-        <!-- MAIN LAYOUT: Cloak Dropdown + Center + Chat -->
+        <!-- MAIN LAYOUT -->
         <div class="main-layout">
 
             <!-- LEFT: Cloak Dropdown Panel -->
@@ -962,7 +1031,6 @@
                     🎭 Tab Cloaks <span>• select</span>
                 </div>
 
-                <!-- Cloak Option 1: Google Classroom -->
                 <div class="cloak-option active" data-cloak="Google Classroom" data-icon="🏫" data-tab="Home - Classroom" data-favicon="favicon.ico">
                     <span class="cloak-icon">🏫</span>
                     <div class="cloak-info">
@@ -973,7 +1041,6 @@
                     <span class="cloak-check">✓</span>
                 </div>
 
-                <!-- Cloak Option 2: Google Docs -->
                 <div class="cloak-option" data-cloak="Google Docs" data-icon="📄" data-tab="Untitled Document" data-favicon="google docs.ico">
                     <span class="cloak-icon">📄</span>
                     <div class="cloak-info">
@@ -984,7 +1051,6 @@
                     <span class="cloak-check">✓</span>
                 </div>
 
-                <!-- Cloak Option 3: Google Drive -->
                 <div class="cloak-option" data-cloak="Google Drive" data-icon="📁" data-tab="My Drive" data-favicon="google drive.ico">
                     <span class="cloak-icon">📁</span>
                     <div class="cloak-info">
@@ -995,7 +1061,6 @@
                     <span class="cloak-check">✓</span>
                 </div>
 
-                <!-- Cloak Option 4: Google Forms -->
                 <div class="cloak-option" data-cloak="Google Forms" data-icon="📋" data-tab="Untitled Form" data-favicon="google forms.ico">
                     <span class="cloak-icon">📋</span>
                     <div class="cloak-info">
@@ -1006,7 +1071,6 @@
                     <span class="cloak-check">✓</span>
                 </div>
 
-                <!-- Cloak Option 5: Google Slides -->
                 <div class="cloak-option" data-cloak="Google Slides" data-icon="🖼️" data-tab="Untitled Presentation" data-favicon="favicon.ico">
                     <span class="cloak-icon">🖼️</span>
                     <div class="cloak-info">
@@ -1019,32 +1083,54 @@
 
             </div>
 
-            <!-- CENTER: Welcome + Current Cloak Display -->
+            <!-- CENTER: Welcome + Calculator -->
             <div class="center-content">
                 <div class="welcome-banner">
                     <h2>Welcome back, <span>Student</span> 👋</h2>
-                    <p>Your tab is currently cloaked as: <strong id="currentCloakDisplayName">Google Classroom</strong></p>
+                    <p>Cloak: <strong id="currentCloakDisplayName">Google Classroom</strong> • Calculator ready</p>
                 </div>
 
-                <div class="current-cloak-display">
-                    <div class="big-icon" id="currentCloakIcon">🏫</div>
-                    <div class="cloak-label">Currently Cloaked As</div>
-                    <div class="cloak-name-display" id="currentCloakName">Google Classroom</div>
-                    <div class="cloak-status-text" id="cloakStatusText">Active • Tab shows "Home - Classroom"</div>
+                <!-- CALCULATOR -->
+                <div class="calculator">
+                    <div class="calc-title">🧮 Calculator <span>• basic</span></div>
+                    <div class="calc-display">
+                        <div class="calc-expression" id="calcExpression"></div>
+                        <div class="calc-result" id="calcResult">0</div>
+                    </div>
+                    <div class="calc-buttons">
+                        <button class="calc-btn clear" data-value="clear">AC</button>
+                        <button class="calc-btn" data-value="%">%</button>
+                        <button class="calc-btn operator" data-value="/">÷</button>
+                        <button class="calc-btn operator" data-value="*">×</button>
+                        <button class="calc-btn" data-value="7">7</button>
+                        <button class="calc-btn" data-value="8">8</button>
+                        <button class="calc-btn" data-value="9">9</button>
+                        <button class="calc-btn operator" data-value="-">−</button>
+                        <button class="calc-btn" data-value="4">4</button>
+                        <button class="calc-btn" data-value="5">5</button>
+                        <button class="calc-btn" data-value="6">6</button>
+                        <button class="calc-btn operator" data-value="+">+</button>
+                        <button class="calc-btn" data-value="1">1</button>
+                        <button class="calc-btn" data-value="2">2</button>
+                        <button class="calc-btn" data-value="3">3</button>
+                        <button class="calc-btn equals" data-value="=">=</button>
+                        <button class="calc-btn zero" data-value="0">0</button>
+                        <button class="calc-btn" data-value=".">.</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- RIGHT: AI CHATBOT -->
+            <!-- RIGHT: Smart AI Chatbot -->
             <div class="chat-sidebar">
                 <div class="chat-header">
-                    <span class="chat-icon">🤖</span>
-                    <span class="chat-title">AI Assistant</span>
+                    <span class="chat-icon">🧠</span>
+                    <span class="chat-title">Smart AI</span>
                     <span class="chat-status" id="aiStatus">Online</span>
                 </div>
 
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
-                        👋 Hey there! I'm your AI study assistant. Ask me to write paragraphs, explain concepts, or help with homework!
+                        👋 Hey there! I'm your Smart AI Assistant. Ask me to write essays, explain concepts, or help with homework!
                         <span class="msg-time">Just now</span>
                     </div>
                 </div>
@@ -1067,31 +1153,18 @@
     ============================================ -->
     <script>
         // ============================================
-        // TAB CLOAK - DROPDOWN SELECTION
+        // TAB CLOAK
         // ============================================
         const cloakOptions = document.querySelectorAll('.cloak-option');
-        const currentCloakName = document.getElementById('currentCloakName');
-        const currentCloakIcon = document.getElementById('currentCloakIcon');
         const currentCloakDisplayName = document.getElementById('currentCloakDisplayName');
-        const cloakStatusText = document.getElementById('cloakStatusText');
         const faviconLink = document.getElementById('favicon');
 
         function applyCloak(cloakName, icon, tabTitle, faviconPath) {
-            // Update tab title
             document.title = tabTitle;
-
-            // Update favicon
             if (faviconPath) {
                 faviconLink.href = faviconPath;
             }
-
-            // Update display
-            currentCloakName.textContent = cloakName;
-            currentCloakIcon.textContent = icon;
             currentCloakDisplayName.textContent = cloakName;
-            cloakStatusText.textContent = `Active • Tab shows "${tabTitle}"`;
-
-            // Update active state on options
             cloakOptions.forEach(option => {
                 option.classList.remove('active');
                 if (option.dataset.cloak === cloakName) {
@@ -1100,14 +1173,10 @@
             });
         }
 
-        // Click handler for cloak options
         cloakOptions.forEach(option => {
             option.addEventListener('click', () => {
-                const cloakName = option.dataset.cloak;
-                const icon = option.dataset.icon;
-                const tabTitle = option.dataset.tab;
-                const favicon = option.dataset.favicon;
-                applyCloak(cloakName, icon, tabTitle, favicon);
+                applyCloak(option.dataset.cloak, option.dataset.icon, option.dataset.tab, option.dataset
+                    .favicon);
             });
         });
 
@@ -1213,7 +1282,6 @@
                 errorMessage.classList.remove('show');
                 updateClock();
                 setInterval(updateClock, 1000);
-                // Apply initial cloak
                 const firstCloak = document.querySelector('.cloak-option.active');
                 if (firstCloak) {
                     applyCloak(firstCloak.dataset.cloak, firstCloak.dataset.icon, firstCloak.dataset.tab, firstCloak.dataset
@@ -1251,7 +1319,86 @@
         }
 
         // ============================================
-        // ADVANCED AI CHATBOT - REAL PARAGRAPH GENERATOR
+        // CALCULATOR
+        // ============================================
+        let calcExpression = '';
+        let calcResult = '0';
+
+        function updateCalcDisplay() {
+            document.getElementById('calcExpression').textContent = calcExpression;
+            document.getElementById('calcResult').textContent = calcResult || '0';
+        }
+
+        function handleCalcInput(value) {
+            if (value === 'clear') {
+                calcExpression = '';
+                calcResult = '0';
+                updateCalcDisplay();
+                return;
+            }
+
+            if (value === '=') {
+                try {
+                    let evalExpr = calcExpression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                    const result = Function('"use strict"; return (' + evalExpr + ')')();
+                    calcResult = String(parseFloat(result.toFixed(10)));
+                    calcExpression = '';
+                    updateCalcDisplay();
+                } catch (e) {
+                    calcResult = 'Error';
+                    updateCalcDisplay();
+                }
+                return;
+            }
+
+            if (calcResult !== '0' && calcExpression === '' && !isNaN(value)) {
+                calcResult = '0';
+            }
+
+            if (calcResult !== '0' && calcExpression === '' && '+-/*%'.includes(value)) {
+                calcExpression = calcResult + value;
+                calcResult = '0';
+                updateCalcDisplay();
+                return;
+            }
+
+            calcExpression += value;
+            calcResult = '0';
+            updateCalcDisplay();
+        }
+
+        document.querySelectorAll('.calc-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                handleCalcInput(btn.dataset.value);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key;
+            if (key >= '0' && key <= '9') {
+                handleCalcInput(key);
+            } else if (key === '.') {
+                handleCalcInput('.');
+            } else if (key === '+') {
+                handleCalcInput('+');
+            } else if (key === '-') {
+                handleCalcInput('-');
+            } else if (key === '*') {
+                handleCalcInput('*');
+            } else if (key === '/') {
+                handleCalcInput('/');
+            } else if (key === 'Enter' || key === '=') {
+                e.preventDefault();
+                handleCalcInput('=');
+            } else if (key === 'Escape' || key === 'c' || key === 'C') {
+                handleCalcInput('clear');
+            } else if (key === '%') {
+                handleCalcInput('%');
+            }
+        });
+
+        // ============================================
+        // SMART AI - FULL CUSTOM KNOWLEDGE BASE
         // ============================================
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
@@ -1259,13 +1406,131 @@
         const typingIndicator = document.getElementById('typingIndicator');
         const aiStatus = document.getElementById('aiStatus');
 
-        // Extensive knowledge base for generating detailed paragraphs
-        function generateParagraph(topic) {
-            const msg = topic.toLowerCase().trim();
+        // ============================================
+        // EXTENSIVE KNOWLEDGE BASE
+        // ============================================
+        function getSmartResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
 
-            // ============= SCIENCE & NATURE =============
-            if (msg.includes('photosynthesis')) {
-                return `🌱 **Photosynthesis: The Engine of Life**
+            // ========== ESSAY / PARAGRAPH REQUESTS ==========
+            if (msg.includes('write') || msg.includes('essay') || msg.includes('paragraph') ||
+                msg.includes('explain') || msg.includes('describe') || msg.includes('tell me about') ||
+                msg.includes('what is') || msg.includes('who is') || msg.includes('how does') ||
+                msg.includes('define') || msg.includes('summarize')) {
+
+                // Extract topic by removing common words
+                let topic = userMessage.replace(/write|essay|paragraph|explain|describe|tell me about|what is|who is|how does|define|summarize|a|an|the|for|on|about|with|by|of|to|from|in|at|and|or|but|so|because|if|then|than|that|these|those|this|that|they|them|their|there|its|it|is|are|was|were|have|has|had|do|does|did|will|would|could|should|may|might|must|please|can|you/i/gi, '').trim();
+
+                if (!topic || topic.length < 2) {
+                    topic = "this topic";
+                }
+
+                // Capitalize topic
+                topic = topic.replace(/\b\w/g, l => l.toUpperCase());
+
+                return generateParagraph(topic, msg);
+            }
+
+            // ========== SPECIFIC SUBJECTS ==========
+            // Science
+            if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry') || msg.includes('biology')) {
+                return getScienceResponse(msg);
+            }
+
+            // Math
+            if (msg.includes('math') || msg.includes('algebra') || msg.includes('geometry') || msg.includes('calculus') ||
+                msg.includes('equation') || msg.includes('solve')) {
+                return getMathResponse(msg);
+            }
+
+            // History
+            if (msg.includes('history') || msg.includes('war') || msg.includes('ancient') || msg.includes('civilization') ||
+                msg.includes('empire') || msg.includes('revolution')) {
+                return getHistoryResponse(msg);
+            }
+
+            // Literature / English
+            if (msg.includes('book') || msg.includes('poem') || msg.includes('poetry') || msg.includes('shakespeare') ||
+                msg.includes('novel') || msg.includes('author') || msg.includes('literature')) {
+                return getLiteratureResponse(msg);
+            }
+
+            // Technology
+            if (msg.includes('computer') || msg.includes('coding') || msg.includes('programming') ||
+                msg.includes('html') || msg.includes('css') || msg.includes('javascript') ||
+                msg.includes('python') || msg.includes('ai') || msg.includes('artificial intelligence') ||
+                msg.includes('internet') || msg.includes('web')) {
+                return getTechResponse(msg);
+            }
+
+            // Study tips
+            if (msg.includes('study') || msg.includes('homework') || msg.includes('assignment') ||
+                msg.includes('exam') || msg.includes('test') || msg.includes('quiz') || msg.includes('grade')) {
+                return getStudyTipsResponse(msg);
+            }
+
+            // ========== SOCIAL / CASUAL ==========
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('sup')) {
+                return "👋 Hey there! Ready to learn something new today? I can write essays, explain concepts, or help with homework. What would you like to know?";
+            }
+
+            if (msg.includes('how are you') || msg.includes('how ya')) {
+                return "😊 I'm always great when I'm helping students! What can I assist you with today? I can write essays, explain difficult concepts, or just chat!";
+            }
+
+            if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
+                return getJoke();
+            }
+
+            if (msg.includes('thank') || msg.includes('thanks') || msg.includes('appreciate')) {
+                return "😄 You're welcome! Keep up the great work! I'm always here if you need help with anything. What would you like to learn about next?";
+            }
+
+            // ========== DEFAULT ==========
+            return `🤔 That's an interesting question! I'd love to help you with that.
+
+Here's what I can do:
+📝 **Write essays and paragraphs** on any topic
+🔬 **Explain science concepts** (physics, chemistry, biology)
+📐 **Help with math** (algebra, geometry, calculus)
+📖 **Analyze literature** (books, poems, authors)
+💻 **Explain technology** (coding, AI, web development)
+📚 **Give study tips** and homework help
+🎭 **Tell jokes** and have conversations
+
+Just tell me what you need, and I'll do my best to help! 🚀`;
+        }
+
+        // ============================================
+        // PARAGRAPH GENERATOR
+        // ============================================
+        function generateParagraph(topic, context) {
+            // Check if we have a pre-written response for this topic
+            const preWritten = getPreWrittenResponse(topic.toLowerCase(), context);
+            if (preWritten) return preWritten;
+
+            // Generate a custom paragraph
+            return `📝 **Paragraph on "${topic}"**
+
+${topic} is a fascinating subject that encompasses many important aspects of our world. Understanding ${topic} helps us appreciate the complexity and beauty of the systems and ideas that shape our lives and society.
+
+The study of ${topic} involves exploring its historical development, current applications, and potential future implications. Scholars and practitioners in this field continue to make discoveries that expand our knowledge and improve our understanding.
+
+${topic} connects to various disciplines, including science, technology, arts, and humanities. By exploring ${topic}, we gain insights into fundamental principles that govern our world and help us navigate an increasingly complex environment.
+
+Whether you're studying ${topic} for academic, professional, or personal reasons, the journey of discovery is both rewarding and enlightening. Continued exploration of this topic promises to reveal even more fascinating insights and applications.
+
+📚 *Would you like me to explore any specific aspect of ${topic} in more detail?*`;
+        }
+
+        // ============================================
+        // PRE-WRITTEN RESPONSES
+        // ============================================
+        function getPreWrittenResponse(topic, context) {
+            const responses = {
+
+                // ===== SCIENCE =====
+                'photosynthesis': `🌱 **Photosynthesis: The Engine of Life**
 
 Photosynthesis is the remarkable biological process by which plants, algae, and certain bacteria convert light energy into chemical energy. This process serves as the foundation for nearly all life on Earth, producing the oxygen we breathe and the food we eat.
 
@@ -1276,11 +1541,9 @@ The chemical equation for photosynthesis is:
 
 Photosynthesis is divided into two main stages: the light-dependent reactions (which require sunlight) and the Calvin cycle (which can occur in darkness). This process not only sustains plant life but also maintains atmospheric oxygen levels and forms the base of the global food chain.
 
-Without photosynthesis, life as we know it would cease to exist, making it arguably the most important biological process on our planet. 🌍`;
-            }
+Without photosynthesis, life as we know it would cease to exist, making it arguably the most important biological process on our planet. 🌍`,
 
-            if (msg.includes('mitosis') || msg.includes('cell division')) {
-                return `🧬 **Mitosis: The Dance of Cell Division**
+                'mitosis': `🧬 **Mitosis: The Dance of Cell Division**
 
 Mitosis is the fundamental process of cell division that enables growth, development, and tissue repair in all eukaryotic organisms. Through this remarkable mechanism, a single parent cell divides to produce two genetically identical daughter cells.
 
@@ -1294,11 +1557,9 @@ The process of mitosis is divided into five distinct phases:
 
 The final stage, cytokinesis, completes the process as the cell's cytoplasm divides, resulting in two identical daughter cells. This continuous cycle of division allows organisms to grow from a single cell to complex multicellular beings, replace damaged tissues, and maintain overall health.
 
-Understanding mitosis is crucial for fields ranging from developmental biology to cancer research, as errors in cell division can lead to uncontrolled growth and disease. 🔬`;
-            }
+Understanding mitosis is crucial for fields ranging from developmental biology to cancer research, as errors in cell division can lead to uncontrolled growth and disease. 🔬`,
 
-            if (msg.includes('gravity')) {
-                return `🌌 **Gravity: The Universal Force**
+                'gravity': `🌌 **Gravity: The Universal Force**
 
 Gravity is one of the four fundamental forces of nature, governing the attraction between objects with mass. First systematically described by Sir Isaac Newton in 1687, gravity shapes the structure of the universe from the smallest particles to the largest galaxies.
 
@@ -1313,11 +1574,9 @@ Gravity is essential for:
 - Forming and shaping galaxies and stars
 - Making life possible on Earth
 
-Despite its importance, gravity remains one of the most mysterious forces, as scientists continue to search for a unified theory that reconciles quantum mechanics with general relativity. 🌠`;
-            }
+Despite its importance, gravity remains one of the most mysterious forces, as scientists continue to search for a unified theory that reconciles quantum mechanics with general relativity. 🌠`,
 
-            if (msg.includes('climate change') || msg.includes('global warming')) {
-                return `🌍 **Climate Change: The Defining Challenge of Our Era**
+                'climate change': `🌍 **Climate Change: The Defining Challenge of Our Era**
 
 Climate change refers to the long-term alteration of global temperatures and weather patterns, accelerated by human activities since the Industrial Revolution. This phenomenon represents one of the most pressing environmental and social challenges of the 21st century.
 
@@ -1333,11 +1592,9 @@ Key impacts of climate change include:
 
 The scientific consensus, represented by organizations like the IPCC (Intergovernmental Panel on Climate Change), indicates that urgent action is needed to limit global warming to 1.5°C above pre-industrial levels. Solutions include transitioning to renewable energy, improving energy efficiency, adopting sustainable agriculture practices, and protecting natural carbon sinks like forests.
 
-Climate change is not just an environmental issue but intersects with economics, social justice, and global security, requiring unprecedented international cooperation and individual action. 🌱`;
-            }
+Climate change is not just an environmental issue but intersects with economics, social justice, and global security, requiring unprecedented international cooperation and individual action. 🌱`,
 
-            if (msg.includes('democracy')) {
-                return `🗳️ **Democracy: The People's Power**
+                'democracy': `🗳️ **Democracy: The People's Power**
 
 Democracy is a system of government in which power is vested in the people, who exercise their authority directly or through freely elected representatives. Originating in ancient Athens, democracy has evolved into the predominant form of governance in the modern world.
 
@@ -1352,36 +1609,10 @@ Democracies come in various forms, including direct democracy (where citizens vo
 
 Challenges to democracy include voter apathy, political polarization, the influence of money in politics, and the spread of misinformation. However, democracy's strength lies in its adaptability, with systems evolving to address new challenges while maintaining the fundamental principle of popular participation.
 
-The continued health of democracy depends on informed citizen engagement, transparent institutions, and a shared commitment to democratic values. 🏛️`;
-            }
+The continued health of democracy depends on informed citizen engagement, transparent institutions, and a shared commitment to democratic values. 🏛️`,
 
-            if (msg.includes('artificial intelligence') || msg.includes('ai')) {
-                return `🤖 **Artificial Intelligence: The Future is Now**
-
-Artificial Intelligence (AI) refers to the simulation of human intelligence in machines programmed to think, learn, and problem-solve like humans. From its theoretical foundations in the 1950s to today's sophisticated applications, AI has become one of the most transformative technologies of our time.
-
-Modern AI encompasses several key approaches:
-- **Machine Learning** - Systems that learn and improve from experience without explicit programming
-- **Deep Learning** - Neural networks with multiple layers that can process complex patterns
-- **Natural Language Processing** - Understanding and generating human language
-- **Computer Vision** - Interpreting and understanding visual information
-- **Robotics** - Combining AI with physical systems
-
-AI applications have revolutionized numerous fields:
-- **Healthcare** - Disease diagnosis, drug discovery, personalized medicine
-- **Education** - Personalized learning, intelligent tutoring systems
-- **Transportation** - Autonomous vehicles, traffic optimization
-- **Finance** - Algorithmic trading, fraud detection
-- **Entertainment** - Content recommendation, game AI
-
-While AI offers immense benefits, it also raises important ethical questions about privacy, employment, bias, and the nature of intelligence itself. The development of ethical AI frameworks and responsible deployment practices is crucial for ensuring that AI benefits all of humanity.
-
-As AI continues to evolve, it promises to reshape how we live, work, and understand ourselves - truly one of the most significant technological developments in human history. 💡`;
-            }
-
-            // ============= HISTORY =============
-            if (msg.includes('french revolution') || msg.includes('revolution france')) {
-                return `🇫🇷 **The French Revolution: Liberty, Equality, Fraternity**
+                // ===== HISTORY =====
+                'french revolution': `🇫🇷 **The French Revolution: Liberty, Equality, Fraternity**
 
 The French Revolution (1789-1799) stands as one of the most transformative events in modern history, fundamentally reshaping the political, social, and cultural landscape of Europe and the world. It marked the end of absolute monarchy in France and the rise of democratic ideals that would influence revolutions across the globe.
 
@@ -1398,11 +1629,9 @@ Key events of the revolution include:
 - **1793-94** - The Reign of Terror, led by Robespierre
 - **1799** - Napoleon Bonaparte's coup, ending the revolution
 
-The revolution's legacy includes the establishment of democratic principles, the spread of nationalism, and the decline of feudal systems across Europe. Its ideals of liberty, equality, and fraternity continue to inspire democratic movements worldwide. 🏛️`;
-            }
+The revolution's legacy includes the establishment of democratic principles, the spread of nationalism, and the decline of feudal systems across Europe. Its ideals of liberty, equality, and fraternity continue to inspire democratic movements worldwide. 🏛️`,
 
-            if (msg.includes('renaissance')) {
-                return `🎨 **The Renaissance: Rebirth of Human Potential**
+                'renaissance': `🎨 **The Renaissance: Rebirth of Human Potential**
 
 The Renaissance (14th-17th centuries) was a period of extraordinary cultural, artistic, and intellectual flourishing that transformed Europe and laid the foundations for the modern world. Meaning "rebirth" in French, the Renaissance marked the transition from the medieval period to modernity.
 
@@ -1420,12 +1649,10 @@ Key figures include:
 - **Galileo Galilei** - Astronomer and physicist
 - **William Shakespeare** - Playwright and poet
 
-The Renaissance fundamentally changed how people viewed themselves and the world, emphasizing human creativity, reason, and individuality. It produced some of the greatest works of art and literature ever created and established the intellectual foundations of Western civilization. 🏛️`;
-            }
+The Renaissance fundamentally changed how people viewed themselves and the world, emphasizing human creativity, reason, and individuality. It produced some of the greatest works of art and literature ever created and established the intellectual foundations of Western civilization. 🏛️`,
 
-            // ============= LITERATURE =============
-            if (msg.includes('shakespeare') || msg.includes('hamlet') || msg.includes('romeo')) {
-                return `📖 **William Shakespeare: The Bard of Avon**
+                // ===== LITERATURE =====
+                'shakespeare': `📖 **William Shakespeare: The Bard of Avon**
 
 William Shakespeare (1564-1616) is widely regarded as the greatest writer in the English language and the world's preeminent dramatist. His works, including 39 plays, 154 sonnets, and several narrative poems, have had an unparalleled influence on literature, theater, and the English language itself.
 
@@ -1442,12 +1669,10 @@ Shakespeare's genius lies in his:
 
 His works have been translated into every major language and performed more than any other playwright. Phrases like "to be or not to be," "all the world's a stage," and "parting is such sweet sorrow" are embedded in modern culture.
 
-Shakespeare's legacy is truly global - his plays are studied in schools, adapted into countless films, and continue to resonate with audiences for their profound insight into the human condition. 🎭`;
-            }
+Shakespeare's legacy is truly global - his plays are studied in schools, adapted into countless films, and continue to resonate with audiences for their profound insight into the human condition. 🎭`,
 
-            // ============= TECHNOLOGY =============
-            if (msg.includes('internet') || msg.includes('web')) {
-                return `🌐 **The Internet: Connecting Humanity**
+                // ===== TECHNOLOGY =====
+                'internet': `🌐 **The Internet: Connecting Humanity**
 
 The Internet is arguably the most transformative invention of the late 20th century, revolutionizing how humans communicate, share information, and conduct business. Born from military and academic research in the 1960s, the Internet has evolved into a global network connecting billions of people.
 
@@ -1467,68 +1692,434 @@ The Internet has transformed every aspect of modern life:
 
 Challenges include digital divide, cybersecurity threats, privacy concerns, and the spread of misinformation. However, the Internet's potential to empower individuals and connect communities remains unprecedented.
 
-As we enter the era of artificial intelligence, the Internet continues to evolve, promising even more integration into our daily lives and the creation of new possibilities we can only imagine. 💻`;
+As we enter the era of artificial intelligence, the Internet continues to evolve, promising even more integration into our daily lives and the creation of new possibilities we can only imagine. 💻`,
+
+                'artificial intelligence': `🤖 **Artificial Intelligence: The Future is Now**
+
+Artificial Intelligence (AI) refers to the simulation of human intelligence in machines programmed to think, learn, and problem-solve like humans. From its theoretical foundations in the 1950s to today's sophisticated applications, AI has become one of the most transformative technologies of our time.
+
+Modern AI encompasses several key approaches:
+- **Machine Learning** - Systems that learn and improve from experience without explicit programming
+- **Deep Learning** - Neural networks with multiple layers that can process complex patterns
+- **Natural Language Processing** - Understanding and generating human language
+- **Computer Vision** - Interpreting and understanding visual information
+- **Robotics** - Combining AI with physical systems
+
+AI applications have revolutionized numerous fields:
+- **Healthcare** - Disease diagnosis, drug discovery, personalized medicine
+- **Education** - Personalized learning, intelligent tutoring systems
+- **Transportation** - Autonomous vehicles, traffic optimization
+- **Finance** - Algorithmic trading, fraud detection
+- **Entertainment** - Content recommendation, game AI
+
+While AI offers immense benefits, it also raises important ethical questions about privacy, employment, bias, and the nature of intelligence itself. The development of ethical AI frameworks and responsible deployment practices is crucial for ensuring that AI benefits all of humanity.
+
+As AI continues to evolve, it promises to reshape how we live, work, and understand ourselves - truly one of the most significant technological developments in human history. 💡`,
+            };
+
+            // Check if any key matches the topic
+            for (let [key, value] of Object.entries(responses)) {
+                if (topic.includes(key) || key.includes(topic)) {
+                    return value;
+                }
             }
-
-            // ============= HEALTH & WELLNESS =============
-            if (msg.includes('exercise') || msg.includes('fitness')) {
-                return `💪 **Exercise: The Foundation of Health**
-
-Regular physical exercise is one of the most important things you can do for your health. The benefits of exercise extend far beyond physical fitness, encompassing mental, emotional, and social well-being.
-
-Key benefits of regular exercise:
-- **Physical Health**: Strengthens heart, reduces disease risk, maintains healthy weight
-- **Mental Health**: Reduces stress, anxiety, and depression
-- **Brain Function**: Improves memory, focus, and cognitive ability
-- **Sleep Quality**: Promotes deeper, more restful sleep
-- **Longevity**: Increases life expectancy and quality of life
-
-Types of exercise include:
-- **Aerobic** - Running, swimming, cycling (cardiovascular health)
-- **Strength Training** - Weightlifting, resistance bands (muscle and bone health)
-- **Flexibility** - Yoga, stretching (mobility and injury prevention)
-- **Balance** - Tai chi, certain sports (fall prevention)
-
-The World Health Organization recommends at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous aerobic activity per week, plus strength training on two or more days.
-
-Starting an exercise routine doesn't have to be intimidating. Even simple activities like walking daily, taking the stairs, or doing home workouts can make a significant difference. The key is consistency - find activities you enjoy and make them part of your lifestyle.
-
-Remember, your health is your greatest asset. Invest in it through regular exercise! 🏋️‍♂️`;
-            }
-
-            // ============= DEFAULT: Generate a generic but helpful paragraph =============
-            // Try to extract the topic from the message
-            const words = msg.split(' ');
-            // Remove common words to try to find the topic
-            const stopWords = ['write', 'paragraph', 'about', 'explain', 'describe', 'tell', 'me', 'on', 'for', 'the', 'of',
-                'a', 'an', 'and', 'or', 'but', 'so', 'because', 'if', 'then', 'than', 'that', 'these', 'those', 'this',
-                'that', 'they', 'them', 'their', 'there', 'its', 'it', 'is', 'are', 'was', 'were', 'have', 'has', 'had',
-                'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must'
-            ];
-            let topicWords = words.filter(w => !stopWords.includes(w) && w.length > 3);
-            let topicName = topicWords.slice(0, 4).join(' ') || 'this fascinating topic';
-
-            // Capitalize first letter of each word
-            topicName = topicName.replace(/\b\w/g, l => l.toUpperCase());
-
-            return `📝 **Understanding ${topicName}**
-
-${topicName} is a subject of significant importance that touches upon many aspects of human knowledge and experience. To fully appreciate ${topicName}, we must consider its historical context, current applications, and future implications.
-
-Historical Perspective:
-The study of ${topicName} has evolved over centuries, with key contributions from thinkers, researchers, and practitioners. Each era has added new insights, building upon previous knowledge to create our current understanding.
-
-Current Relevance:
-Today, ${topicName} intersects with various disciplines including science, technology, arts, and humanities. Understanding ${topicName} helps us navigate complex challenges and make informed decisions in our personal and professional lives.
-
-Future Directions:
-As research continues and new technologies emerge, our understanding of ${topicName} will likely expand. Future developments may reveal connections we haven't yet imagined and applications we've yet to discover.
-
-In conclusion, ${topicName} represents an important area of knowledge that enriches our understanding of the world. Whether you're exploring this topic for academic, professional, or personal reasons, the journey of discovery is both rewarding and enlightening.
-
-Would you like me to explore any specific aspect of ${topicName} in more detail? 📚`;
+            return null;
         }
 
+        // ============================================
+        // SUBJECT-SPECIFIC RESPONSES
+        // ============================================
+        function getScienceResponse(msg) {
+            if (msg.includes('physics')) {
+                return `🔭 **Physics: Understanding the Universe**
+
+Physics is the fundamental science that seeks to understand the laws governing the universe, from the smallest subatomic particles to the largest galaxies. It explores matter, energy, space, and time, and how they interact.
+
+Key branches of physics include:
+- **Classical Mechanics** - Motion, forces, energy (Newton's laws)
+- **Thermodynamics** - Heat, temperature, and energy transfer
+- **Electromagnetism** - Electricity, magnetism, and light
+- **Quantum Mechanics** - The behavior of matter at atomic scales
+- **Relativity** - The relationship between space and time
+
+Physics has given us countless technologies that shape modern life, from smartphones and computers to medical imaging and renewable energy. Its principles explain why the sky is blue, how stars shine, and what holds atoms together.
+
+The beauty of physics lies in its ability to describe the natural world with elegant mathematical equations that reveal the deep order underlying apparent chaos. 🧪`;
+            }
+
+            if (msg.includes('chemistry')) {
+                return `🧪 **Chemistry: The Science of Matter**
+
+Chemistry is the scientific study of matter - its composition, structure, properties, and the changes it undergoes during chemical reactions. It bridges the gap between physics and biology, explaining the molecular basis of everything around us.
+
+Chemistry is divided into several main branches:
+- **Organic Chemistry** - The study of carbon-containing compounds (essential to life)
+- **Inorganic Chemistry** - The study of compounds without carbon
+- **Physical Chemistry** - The physics of chemical systems
+- **Analytical Chemistry** - Identifying and measuring matter
+- **Biochemistry** - Chemical processes in living organisms
+
+Chemistry has given us countless innovations that improve quality of life: medicines, materials, fertilizers, and clean energy. It helps us understand everything from cooking to climate change.
+
+Understanding chemistry empowers us to solve problems, create new materials, and appreciate the molecular complexity of the world around us. 🔬`;
+            }
+
+            if (msg.includes('biology')) {
+                return `🧬 **Biology: The Science of Life**
+
+Biology is the natural science that studies life and living organisms, including their physical structure, chemical processes, molecular interactions, physiological mechanisms, development, and evolution.
+
+The major branches of biology include:
+- **Molecular Biology** - The study of biological molecules
+- **Genetics** - The study of genes and heredity
+- **Ecology** - The study of organisms and their environment
+- **Evolutionary Biology** - How species change over time
+- **Anatomy and Physiology** - The structure and function of organisms
+
+Biology explains the incredible diversity of life on Earth, from microscopic bacteria to giant sequoias, from single-celled organisms to complex ecosystems. It helps us understand ourselves, treat diseases, conserve biodiversity, and appreciate the wonders of the natural world.
+
+The unifying principle of biology is evolution, which explains the diversity and adaptation of all living things through natural selection and genetic change over time. 🌿`;
+            }
+
+            return `🔬 **Science: The Pursuit of Knowledge**
+
+Science is the systematic study of the natural world through observation, experimentation, and reasoning. It encompasses many disciplines including physics, chemistry, biology, astronomy, and earth sciences.
+
+Scientific inquiry follows the scientific method: observation, hypothesis formulation, experimentation, analysis, and conclusion. This process allows us to build reliable knowledge about the universe, from the smallest particles to the largest structures.
+
+Science has transformed human understanding and enabled countless technological advances that improve our lives. It teaches us to think critically, question assumptions, and base conclusions on evidence.
+
+Whether studying the cosmos or the microscopic world, science reveals the wonder and complexity of existence, inspiring curiosity and discovery. 🌟`;
+        }
+
+        function getMathResponse(msg) {
+            if (msg.includes('algebra')) {
+                return `📐 **Algebra: The Language of Mathematics**
+
+Algebra is a branch of mathematics that uses symbols and letters to represent numbers and quantities in formulas and equations. It's essentially the language of mathematics, allowing us to express relationships and solve problems systematically.
+
+Key algebra concepts include:
+- **Variables** - Symbols (x, y, z) that represent unknown values
+- **Expressions** - Combinations of variables and operations
+- **Equations** - Mathematical statements that two expressions are equal
+- **Functions** - Relationships where each input has one output
+- **Polynomials** - Expressions with multiple terms
+
+Algebra is fundamental to almost all areas of mathematics and has countless real-world applications. It's used in physics, engineering, economics, computer science, and everyday problem-solving.
+
+Learning algebra develops critical thinking and problem-solving skills that are valuable in any field. 🔢`;
+            }
+
+            if (msg.includes('geometry')) {
+                return `📐 **Geometry: The Study of Shapes and Space**
+
+Geometry is the branch of mathematics concerned with the properties and relationships of points, lines, angles, surfaces, and solids. It's one of the oldest branches of mathematics, dating back to ancient civilizations.
+
+Key geometry concepts include:
+- **Points, Lines, and Angles** - The building blocks of geometry
+- **Triangles and Polygons** - Two-dimensional shapes
+- **Circles** - The study of curved shapes
+- **Perimeter, Area, and Volume** - Measuring shapes and spaces
+- **Theorems** - Proven statements about geometric relationships
+
+Geometry has practical applications in architecture, engineering, art, computer graphics, and everyday life. Understanding geometry helps us navigate the world, design structures, and appreciate mathematical beauty.
+
+The Pythagorean theorem (a² + b² = c²) is one of the most famous geometric principles, with applications far beyond mathematics. 📏`;
+            }
+
+            return `📊 **Mathematics: The Science of Patterns**
+
+Mathematics is the abstract science of number, quantity, and space, studying patterns, structure, and logical relationships. It provides the language and tools for understanding the world and solving problems across all disciplines.
+
+Key areas of mathematics include:
+- **Arithmetic** - Basic operations with numbers
+- **Algebra** - Symbols and equations
+- **Geometry** - Shapes and space
+- **Calculus** - Rates of change and accumulation
+- **Statistics** - Data analysis and probability
+
+Mathematics is everywhere - from the golden ratio in nature to the algorithms that power computers. It helps us understand the universe, make predictions, and create technology.
+
+The beauty of mathematics lies in its logical elegance and its power to reveal hidden patterns in the world around us. 🎯`;
+        }
+
+        function getHistoryResponse(msg) {
+            if (msg.includes('ancient') || msg.includes('egypt')) {
+                return `🏛️ **Ancient Egypt: The Cradle of Civilization**
+
+Ancient Egypt was one of the world's earliest and most advanced civilizations, flourishing along the Nile River for thousands of years. Its achievements in architecture, art, mathematics, and medicine continue to inspire wonder.
+
+Key aspects of ancient Egypt:
+- **The Pyramids** - Monumental tombs that demonstrate advanced engineering
+- **Hieroglyphics** - One of the world's first writing systems
+- **Pharaohs** - Powerful rulers considered divine
+- **The Nile River** - The lifeblood of Egyptian civilization
+- **Mummification** - Their unique approach to the afterlife
+
+Ancient Egypt influenced Greek and Roman civilizations, and through them, the rest of the world. Its legacy can be seen in architecture, art, religion, and our fascination with the mysteries of the past.
+
+The Rosetta Stone, discovered in 1799, was key to deciphering Egyptian hieroglyphics and understanding this remarkable civilization. 🏺`;
+            }
+
+            if (msg.includes('roman') || msg.includes('rome')) {
+                return `🏛️ **The Roman Empire: Foundation of the Modern World**
+
+The Roman Empire was one of the largest and most powerful empires in history, spanning Europe, North Africa, and the Middle East. Its influence on law, government, language, architecture, and culture continues to shape our world today.
+
+Key Roman contributions:
+- **Law** - Roman law forms the foundation of many modern legal systems
+- **Government** - Concepts of republic and citizenship
+- **Architecture** - Arches, domes, and concrete construction
+- **Latin** - The basis of Romance languages
+- **Infrastructure** - Roads, aqueducts, and public buildings
+
+The Romans were skilled engineers, military strategists, and administrators. Their empire connected diverse cultures and facilitated the spread of ideas, technologies, and religions.
+
+The fall of Rome in 476 CE marks the end of ancient history and the beginning of the medieval period in Europe. 🏺`;
+            }
+
+            return `📜 **History: The Story of Humanity**
+
+History is the study of past events and human affairs, examining the experiences and actions of people and civilizations. It helps us understand who we are, where we came from, and how the world we live in was shaped.
+
+Key periods in history include:
+- **Ancient History** - Early civilizations (Egypt, Greece, Rome, China)
+- **Middle Ages** - The post-Roman world, feudalism, and religious influence
+- **Renaissance** - Rebirth of learning and culture in Europe
+- **Modern History** - The industrial and technological age
+
+History teaches us valuable lessons about human nature, power, ambition, and the consequences of our actions. By studying the past, we can better understand the present and make wiser decisions for the future.
+
+As philosopher George Santayana wrote: "Those who cannot remember the past are condemned to repeat it." 📚`;
+        }
+
+        function getLiteratureResponse(msg) {
+            if (msg.includes('poem') || msg.includes('poetry')) {
+                return `📝 **Poetry: The Art of Language**
+
+Poetry is a form of literature that uses aesthetic and rhythmic qualities of language to evoke meaning, emotion, and beauty. It's one of the oldest forms of human expression, predating written history.
+
+Key elements of poetry:
+- **Rhyme** - Similar sounds at the end of words
+- **Rhythm** - The pattern of stressed and unstressed syllables
+- **Meter** - The rhythmic structure of a line
+- **Imagery** - Vivid language that creates pictures in the mind
+- **Symbolism** - Using words to represent deeper meanings
+
+Poetry can be structured (sonnets, haikus, villanelles) or free verse. It explores themes of love, nature, death, faith, and the human condition. Poets use language in creative ways to express what cannot be said in ordinary speech.
+
+Some of the greatest poets include William Shakespeare, Emily Dickinson, Robert Frost, Maya Angelou, and Rumi. 📖`;
+            }
+
+            if (msg.includes('shakespeare')) {
+                return getPreWrittenResponse('shakespeare');
+            }
+
+            return `📚 **Literature: The Mirror of Humanity**
+
+Literature is the art of written work, encompassing novels, plays, poetry, and essays. It explores the human experience, expressing ideas, emotions, and stories that connect us across time and culture.
+
+Major genres of literature include:
+- **Fiction** - Imaginative narratives (novels, short stories)
+- **Non-fiction** - Factual writing (biographies, essays, journalism)
+- **Drama** - Plays performed on stage
+- **Poetry** - Literature in verse form
+- **Prose** - Ordinary language without metrical structure
+
+Literature serves many purposes: entertainment, education, social commentary, and personal expression. It builds empathy, expands vocabulary, and fosters critical thinking.
+
+The study of literature helps us understand ourselves and others, explore different perspectives, and appreciate the power of language. 📖`;
+        }
+
+        function getTechResponse(msg) {
+            if (msg.includes('html') || msg.includes('css')) {
+                return `💻 **HTML & CSS: Building the Web**
+
+HTML (HyperText Markup Language) and CSS (Cascading Style Sheets) are the foundational technologies for building websites and web applications.
+
+HTML provides the structure and content of a webpage:
+- **Elements** - Building blocks like headings, paragraphs, and links
+- **Tags** - <html>, <body>, <h1>, <p>, <div>, etc.
+- **Semantics** - Meaningful structure that helps search engines
+
+CSS provides the styling and visual appearance:
+- **Colors and Fonts** - Choosing how text looks
+- **Layout** - Positioning elements on the page
+- **Responsiveness** - Making sites work on phones and tablets
+- **Animations** - Adding movement and interactivity
+
+Together, HTML and CSS create the websites we use every day. They're easy to learn and powerful to master, making them the perfect starting point for web development. 🌐`;
+            }
+
+            if (msg.includes('javascript')) {
+                return `⚡ **JavaScript: The Language of Interactivity**
+
+JavaScript is the programming language that brings websites to life. It adds interactivity, animations, and dynamic content, making web pages responsive and engaging.
+
+Key JavaScript features:
+- **DOM Manipulation** - Changing what users see
+- **Event Handling** - Responding to clicks, keypresses, and more
+- **Animations** - Moving and transforming elements
+- **API Calls** - Fetching data from servers
+- **Logic** - Decision-making and calculations
+
+JavaScript is one of the most popular programming languages globally, used by millions of developers. It's supported by all modern browsers and has an extensive ecosystem of libraries and frameworks (React, Vue, Angular).
+
+Learning JavaScript opens doors to web development, game creation, mobile apps, and even server-side programming with Node.js. 🚀`;
+            }
+
+            if (msg.includes('python')) {
+                return `🐍 **Python: The Versatile Language**
+
+Python is a high-level, interpreted programming language known for its readability, versatility, and extensive libraries. It's one of the most popular programming languages in the world.
+
+Key Python applications:
+- **Web Development** - Django, Flask, FastAPI
+- **Data Science** - Pandas, NumPy, Matplotlib
+- **Artificial Intelligence** - TensorFlow, PyTorch, scikit-learn
+- **Automation** - Scripts, bots, and workflows
+- **Scientific Computing** - Research and analysis
+
+Python's philosophy emphasizes code readability and simplicity, making it an excellent choice for beginners while still being powerful enough for professionals.
+
+The Python community is one of the most welcoming and supportive in the programming world, with extensive documentation and resources available for learning. 💻`;
+            }
+
+            return `💻 **Technology: Shaping the Future**
+
+Technology is the application of scientific knowledge for practical purposes, creating tools, systems, and solutions that improve human life. From the wheel to artificial intelligence, technology has driven human progress.
+
+Key areas of technology include:
+- **Computing and Software** - The digital revolution
+- **Artificial Intelligence** - Machines that think and learn
+- **Biotechnology** - Technology in medicine and biology
+- **Green Technology** - Sustainable solutions for the environment
+- **Communications** - Connecting people across the globe
+
+Technology has transformed every aspect of modern life - how we work, learn, communicate, and entertain ourselves. It creates new opportunities and challenges, requiring us to adapt and learn continuously.
+
+Understanding technology helps us navigate the modern world and contribute to shaping a better future. 🚀`;
+        }
+
+        function getStudyTipsResponse(msg) {
+            if (msg.includes('exam') || msg.includes('test')) {
+                return `📚 **Exam Preparation: The Key to Success**
+
+Preparing for exams requires strategy, discipline, and effective study techniques. Here are proven strategies to help you succeed:
+
+1. **Create a Study Schedule**
+   - Plan ahead and break study sessions into manageable chunks
+   - Use the Pomodoro Technique (25 minutes focus, 5 minutes break)
+
+2. **Active Learning**
+   - Don't just read - summarize, explain, and teach what you learn
+   - Use flashcards, mind maps, and practice questions
+   - Connect new information to what you already know
+
+3. **Find Your Learning Style**
+   - Visual: Use diagrams, charts, and color coding
+   - Auditory: Record notes, study with others
+   - Kinesthetic: Practice problems, build models
+
+4. **Healthy Habits**
+   - Get 7-9 hours of sleep before the exam
+   - Eat brain foods (nuts, berries, fish, dark chocolate)
+   - Stay hydrated and exercise regularly
+
+5. **Practice, Practice, Practice**
+   - Take practice tests under exam conditions
+   - Review mistakes and understand why you got them wrong
+   - Time yourself to improve speed and accuracy
+
+Remember: Consistent effort over time beats cramming every time. Start early and stay consistent! 🎯`;
+            }
+
+            if (msg.includes('homework') || msg.includes('assignment')) {
+                return `📋 **Homework Strategies: Get It Done Efficiently**
+
+Homework is an essential part of learning that reinforces what you've studied. Here's how to make it more manageable:
+
+1. **Create the Right Environment**
+   - Find a quiet, well-lit space to work
+   - Minimize distractions (phone away, notifications off)
+   - Keep all materials organized and accessible
+
+2. **Break It Down**
+   - Divide large assignments into smaller tasks
+   - Tackle the hardest work when you're most alert
+   - Use checklists to track your progress
+
+3. **Time Management**
+   - Estimate time needed for each task
+   - Set specific deadlines for yourself
+   - Take short breaks to stay focused
+
+4. **When You Get Stuck**
+   - Try a different approach to the problem
+   - Look for examples or similar problems
+   - Ask for help from teachers, classmates, or online resources
+
+5. **Review and Check**
+   - Always review your work before submitting
+   - Check for errors and completeness
+   - Reflect on what you learned
+
+Homework isn't just about completing assignments - it's about building knowledge and skills. 🎓`;
+            }
+
+            return `📚 **Study Strategies: Learn Smarter, Not Harder**
+
+Effective studying is about quality, not just quantity. Here's how to make your study time more productive:
+
+**The Science of Learning:**
+- **Spaced Repetition** - Review material at increasing intervals
+- **Active Recall** - Test yourself instead of just re-reading
+- **Interleaving** - Mix different subjects and topics
+- **Elaborative Interrogation** - Ask "why" and make connections
+
+**Study Environment:**
+- Eliminate distractions
+- Use background music or white noise if it helps
+- Change locations occasionally to boost memory
+
+**Brain Health:**
+- Sleep is essential for memory consolidation
+- Exercise improves cognitive function
+- Nutrition affects concentration and energy
+
+**Study Techniques:**
+- The Cornell Method (note-taking system)
+- Mind mapping (visual organization)
+- Peer teaching (explain to others)
+- Feynman Technique (explain simply)
+
+Everyone learns differently - experiment to find what works best for you! 🌟`;
+        }
+
+        // ============================================
+        // JOKE GENERATOR
+        // ============================================
+        function getJoke() {
+            const jokes = [
+                "😂 Why did the student eat his homework? Because the teacher said it was a piece of cake! 🍰",
+                "🤣 What do you call a fake noodle? An impasta! 🍝",
+                "😄 Why did the math book look so sad? Because it had too many problems! 📐",
+                "😂 What do you call a bear with no teeth? A gummy bear! 🐻",
+                "🤣 Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+                "😄 What did the ocean say to the shore? Nothing, it just waved! 🌊",
+                "😂 Why don't scientists trust atoms? Because they make up everything! ⚛️",
+                "🤣 What do you call a fish wearing a bowtie? Sofishticated! 🐟",
+                "😄 How do you organize a space party? You planet! 🪐",
+                "😂 Why did the computer go to the doctor? It had a virus! 💻",
+                "🤣 What do you call a dinosaur with an extensive vocabulary? A thesaurus! 🦕",
+                "😄 What did the grape do when it got stepped on? It let out a little wine! 🍇"
+            ];
+            return jokes[Math.floor(Math.random() * jokes.length)];
+        }
+
+        // ============================================
+        // CHAT INTERFACE
+        // ============================================
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}`;
@@ -1544,7 +2135,7 @@ Would you like me to explore any specific aspect of ${topicName} in more detail?
         function showTyping() {
             typingIndicator.style.display = 'flex';
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            aiStatus.textContent = 'Writing...';
+            aiStatus.textContent = 'Thinking...';
         }
 
         function hideTyping() {
@@ -1552,7 +2143,7 @@ Would you like me to explore any specific aspect of ${topicName} in more detail?
             aiStatus.textContent = 'Online';
         }
 
-        function handleSend() {
+        async function handleSend() {
             const text = chatInput.value.trim();
             if (!text) return;
 
@@ -1560,12 +2151,12 @@ Would you like me to explore any specific aspect of ${topicName} in more detail?
             chatInput.value = '';
             showTyping();
 
-            // Simulate AI thinking (more realistic delay for longer responses)
-            const delay = Math.random() * 800 + 600;
+            // Simulate thinking with a realistic delay
+            const delay = Math.random() * 600 + 400;
 
             setTimeout(() => {
                 hideTyping();
-                const response = generateParagraph(text);
+                const response = getSmartResponse(text);
                 addMessage(response, 'bot');
             }, delay);
         }
